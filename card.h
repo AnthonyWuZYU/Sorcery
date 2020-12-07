@@ -30,5 +30,5 @@ class Card {
 
         //destroy(): destroys the card
         void destroy();
-}
+};
 #endif
