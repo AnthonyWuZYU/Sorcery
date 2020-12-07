@@ -7,7 +7,8 @@ class Card {
 
     string Name; // Name of the Card
     int Cost; // Magic Cost to use Card
-
+    //Ability ability
+    
     public: 
         // Constructor, takes in string Name, int Cost and the name of ability
         // depending on the string ability, we create the associated ability object
