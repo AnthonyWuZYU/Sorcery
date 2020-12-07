@@ -20,6 +20,9 @@ class Card {
         //Copy Assignment Operator
         Card & operator=(const Card & other);
 
+        //Compare Operator
+        bool operator==(const Card &lhs, const Card &rhs);
+
         //get_Name(): returns the Name of the card
         //get_Name: None -> String
         std::string get_Name();
