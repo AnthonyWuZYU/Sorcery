@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 #include "view.h"
+#include "hand.h"
+#include "deck.h"
 
 class Player{
 int life;
