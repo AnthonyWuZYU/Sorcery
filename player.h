@@ -14,7 +14,7 @@ Deck *deck;
 Hand *hand;
 
 public:
-Player(int life = 20, int magic = 0); // Player default constructor
+Player(); // Player default constructor
 virtual ~Player(); // Player destructor
 int getLife(); // method that returns player's life
 void setLife(); // method to change player's life

@@ -4,7 +4,7 @@
 #include <vector>
 
 class Deck {
-    Vector<Card> Cards; // The Vector that holds all the cards of the deck
+    vector<Card> Cards; // The Vector that holds all the cards of the deck
     public:
         // Constructor for Deck. Takes field filename, will be the .deck file to load
         // the cards into the deck.
