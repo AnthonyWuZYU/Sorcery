@@ -1,9 +1,10 @@
 #ifndef DECK_H
 #define DECK_H
 #include "card.h"
+#include <vector>
 
 class Deck {
-    Vector<Card> Cards; // The Vector that holds all the cards of the deck
+    vector<Card> Cards; // The Vector that holds all the cards of the deck
     public:
         // Constructor for Deck. Takes field filename, will be the .deck file to load
         // the cards into the deck.
@@ -34,5 +35,5 @@ class Deck {
         //add: Card -> None
         void add(Card card);
 
-}
+};
 #endif
