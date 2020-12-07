@@ -8,13 +8,13 @@ EXEC=sorcery
 # First target in the makefile is the default target.
 # Note that the LIBFLAGS must come last in the command
 $(EXEC): $(OBJECTS)
-        $(CXX) $(CXXFLAGS) $(OBJECTS) -o $(EXEC)
+	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(EXEC)
 
 %.o: %.cc
-        $(CXX) -c -o $@ $< $(CXXFLAGS) 
+	$(CXX) -c -o $@ $< $(CXXFLAGS) 
 
 -include ${DEPENDS}
 
 .PHONY: clean
 clean:
-	        rm  -f $(OBJECTS) $(DEPENDS) $(EXEC)
+	rm  -f $(OBJECTS) $(DEPENDS) $(EXEC)

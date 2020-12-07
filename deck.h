@@ -1,6 +1,7 @@
 #ifndef DECK_H
 #define DECK_H
 #include "card.h"
+#include <vector>
 
 class Deck {
     Vector<Card> Cards; // The Vector that holds all the cards of the deck
@@ -34,5 +35,5 @@ class Deck {
         //add: Card -> None
         void add(Card card);
 
-}
+};
 #endif
