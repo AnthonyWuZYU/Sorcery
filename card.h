@@ -1,6 +1,6 @@
 #ifndef CARD_H
 #define CARD_H
-
+#include <string>
 
 
 class Card {
@@ -12,10 +12,16 @@ class Card {
     public: 
         // Constructor, takes in string Name, int Cost and the name of ability
         // depending on the string ability, we create the associated ability object
-        Card(std::string Name, int Cost, string ability);
+        Card(std::string Name, int Cost, std::string ability);
 
         // Card deconstructor
         virtual ~Card();
+
+        //Copy Assignment Operator
+        Card & operator=(const Card & other);
+
+        //Compare Operator
+        bool operator==(const Card &other);
 
         //get_Name(): returns the Name of the card
         //get_Name: None -> String
