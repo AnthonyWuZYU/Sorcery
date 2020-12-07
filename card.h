@@ -15,7 +15,7 @@ class Card {
         Card(string Name, int Cost, string ability);
 
         // Card deconstructor
-        ~Card();
+        virtual ~Card();
 
         //get_Name(): returns the Name of the card
         //get_Name: None -> String
