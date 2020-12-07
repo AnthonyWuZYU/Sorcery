@@ -7,13 +7,10 @@ class Deck {
     public:
         // Constructor for Deck. Takes field filename, will be the .deck file to load
         // the cards into the deck.
-        Deck(string filename);
+        Deck(std::string filename);
 
         // Deconstructor for Deck
         ~Deck();
-
-        // load_deck(): loads all cards from .deck file into the Cards vector
-        void load_deck();
 
         // shuffle(): Shuffles the cards in Cards vector
         void shuffle();
@@ -27,7 +24,7 @@ class Deck {
 
         // get_card(name): returns the card that has card.name == name
         // get_card: String -> Card
-        Card get_card(string name);
+        Card get_card(std::string name);
 
         // remove(card): Searches from deck and removes the given card from deck.
         // remove: Card -> None
