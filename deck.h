@@ -25,6 +25,10 @@ class Deck {
         // pop: None -> Card
         Card pop();
 
+        // get_card(name): returns the card that has card.name == name
+        // get_card: String -> Card
+        Card get_card(string name);
+
         // remove(card): Searches from deck and removes the given card from deck.
         // remove: Card -> None
         void remove(Card card);
