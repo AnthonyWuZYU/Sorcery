@@ -4,7 +4,7 @@
 #include <vector>
 
 class Deck {
-    vector<Card> Cards; // The Vector that holds all the cards of the deck
+    vector<Card> cards; // The Vector that holds all the cards of the deck
     public:
         // Constructor for Deck. Takes field filename, will be the .deck file to load
         // the cards into the deck.
@@ -33,7 +33,7 @@ class Deck {
 
         // add(card): Adds inputted card to top of deck
         //add: Card -> None
-        void add(Card card);
+        void add(string cardname);
 
 };
 #endif
