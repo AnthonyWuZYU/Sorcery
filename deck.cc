@@ -32,11 +32,18 @@ Card Deck::get_top() {
 }
 
 Card Deck::pop() {
-    
+    Card temp = cards.back();
+    cards.pop_back();
+    return temp;
 }
 
 void Deck::remove(Card card) {
-
+    for (auto it = cards.begin(); it != cards.end(); it++) {
+        if (*it == card) {
+            cards.erase(it);
+            break;
+        }
+    }
 }
 
 void Deck::add(String cardname) {
