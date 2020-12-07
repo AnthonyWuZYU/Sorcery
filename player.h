@@ -23,8 +23,8 @@ int getMagic(); // method that returns player's magic value
 void setMagic( int magic ); // method to change player's magic value
 std::string getName(); // method that returns player's name
 void setName( std::string name ); // method to change player's name
-Deck getDeck(); // method that returns player's deck
-Hand getHand(); // method that returns player's hand
+Deck *getDeck(); // method that returns player's deck
+Hand *getHand(); // method that returns player's hand
 void setDeck( Deck *deck ); // method to set/change the player's deck
 void setHand( Hand *hand ); // method to set/change the player's hand
 };
