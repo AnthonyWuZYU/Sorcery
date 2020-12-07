@@ -64,7 +64,7 @@ int main () {
 			}
 			
 			if (quit) break;
-			cout << "Player " << turn + 1 << "'s turn:" << endl
+			cout << "Player " << turn + 1 << "'s turn:" << endl;
 		}
 
 
