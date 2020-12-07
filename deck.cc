@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include <random>
 #include <chrono>
 #include <vector>
 #include <stdexcept>
@@ -15,7 +16,7 @@ Deck::Deck(string filename) {
     while ( true ) {
         infile >> i;
         if ( infile.fail() ) break;
-        this.add(i);
+        this->add(i);
     }
 }
 
@@ -46,6 +47,6 @@ void Deck::remove(Card card) {
     }
 }
 
-void Deck::add(String cardname) {
+void Deck::add(string cardname) {
 
 }
