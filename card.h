@@ -5,23 +5,26 @@
 
 class Card {
 
-    std::string Name; // Name of the Card
-    int Cost; // Magic Cost to use Card
+    std::string name; // Name of the Card
+    int cost; // Magic Cost to use Card
     //Ability ability
     
     public: 
         // Constructor, takes in string Name, int Cost and the name of ability
         // depending on the string ability, we create the associated ability object
-        Card(std::string Name, int Cost, std::string ability);
+        Card(std::string name, int cost);
 
         // Card deconstructor
         virtual ~Card();
 
         //Copy Assignment Operator
-        Card & operator=(const Card & other);
+        virtual Card & operator=(const Card & other);
 
         //Compare Operator
-        bool operator==(const Card &other);
+        bool operator==(Card &other);
+
+        // Equal() returns if the cards are equal
+        virtual bool equal(const Card &other);
 
         //get_Name(): returns the Name of the card
         //get_Name: None -> String
@@ -32,9 +35,9 @@ class Card {
         int get_Cost();
 
         //use_ability(): uses the ability object of the card to perform the ability
-        void use_ability();
+        virtual void use_ability();
 
         //destroy(): destroys the card
-        void destroy();
+        virtual void destroy();
 };
 #endif
