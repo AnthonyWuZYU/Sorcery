@@ -57,8 +57,9 @@ int main () {
 				cout << "          board -- Describe all cards on the board." << endl;
 			} else if (cmd == "quit") {
 				quit = true;
-		
-			} else {
+			} else if (cmd == "end") {
+                                turn = (turn++) % 2;
+                        } else {
 				cerr << "Invalid command." << endl;
 				cerr << "Type \"help\" to show all possible command." << endl;
 			}
