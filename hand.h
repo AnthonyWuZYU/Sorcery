@@ -16,6 +16,6 @@ class Hand{
     void add(Card card); // adds a card object into the cards vector if it is not full
  
     void remove(Card card); // removes a card object from the cards vector
-}
+};
 
 #endif
