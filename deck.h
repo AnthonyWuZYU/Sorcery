@@ -43,4 +43,7 @@ class Deck {
 
 // Loads the minion vector from the minion.csv file
 std::vector<std::vector<std::string>> load_data(std::string filename);
+
+// Checks if given str is in the given 2D Vector Data
+bool is_in(std::vector<std::vector<std::string>> data, string str);
 #endif

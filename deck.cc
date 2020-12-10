@@ -12,12 +12,26 @@ using namespace std;
 Deck::Deck(string filename) {
     ifstream infile{ filename };
     string i;
+
+    minions = load_data("minion.csv");
+
     // Reading the .deck file and adding each card by its name
     while ( true ) {
         infile >> i;
         if ( infile.fail() ) break;
         this->add(i);
     }
+}
+
+
+
+bool is_in(std::vector<std::vector<std::string>> data, string str) {
+    for (auto it = data.begin(); it != data.end(); it++ {
+        if (it->at(0) == str) {
+            return true;
+        }
+    }
+    return false;
 }
 
 std::vector<std::vector<std::string>> load_data(std::string filename) {
@@ -71,5 +85,8 @@ void Deck::remove(Card card) {
 }
 
 void Deck::add(string cardname) {
-    
+    // Check if it is a minion card
+    if (is_in(minions, cardname)) {
+        
+    }
 }
