@@ -20,6 +20,29 @@ Deck::Deck(string filename) {
     }
 }
 
+std::vector<std::vector<std::string>> load_data(std::string filename) {
+    std::vector< std::vector< std::string > > data;
+    string line = "";
+    string temp = "";
+    ifstream fin{ filename };
+
+    while (getline(fin, line)) {
+        std::vector< std::string > vec;
+        stringstream s{line};
+
+        // Parses the line by , and stores the string into the row
+        while(getline(s, temp, ',')) {
+            vec.emplace_back(temp);
+        }
+
+        //adds row to data grid
+        data.push_back(vec);
+    }
+    fin.close();
+
+    return data;
+}
+
 void Deck::shuffle() {
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::default_random_engine rng{seed};

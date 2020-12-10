@@ -5,6 +5,10 @@
 
 class Deck {
     std::vector<Card> cards; // The Vector that holds all the cards of the deck
+
+    // Temporary Code for Card Database
+    std::vector<std::vector<std::string>> minions;
+
     public:
         // Constructor for Deck. Takes field filename, will be the .deck file to load
         // the cards into the deck.
@@ -36,4 +40,7 @@ class Deck {
         void add(std::string cardname);
 
 };
+
+// Loads the minion vector from the minion.csv file
+std::vector<std::vector<std::string>> load_data(std::string filename);
 #endif
