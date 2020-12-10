@@ -24,6 +24,8 @@ Deck::Deck(string filename) {
     }
 }
 
+Deck::~Deck() {}
+
 std::vector<std::string> get_info(std::vector<std::vector<std::string>> data, std::string cardname) {
     for (auto it = data.begin(); it != data.end(); it++) {
         if (it->at(0) == cardname) {
