@@ -14,7 +14,7 @@ Card & Minion::operator=(const Card & other)  {
     return *this;
 }
 
-bool Minion::equal(const Minion &other) const  {
+bool Minion::equal(const Card &other) const  {
     if (other.get_attack() == attack && other.get_defence() == defence) {
         return true;
     } else {

@@ -1,4 +1,5 @@
-﻿Air Elemental,0,1,1,,
+﻿Name,Cost,Attack,Defence,Activated Ability,Triggered ability
+Air Elemental,0,1,1,,
 Earth Elemental,3,4,4,,
 Bomb,2,1,2,Deals damage to all the opponent minions equal to its attack value when it dies,
 Fire Elemental,2,2,2,"Whenever an opponent's minion enters play, deal 1 damage to it",

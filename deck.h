@@ -1,6 +1,7 @@
 #ifndef DECK_H
 #define DECK_H
 #include "card.h"
+#include "minion.h"
 #include <vector>
 
 class Deck {
@@ -21,7 +22,7 @@ class Deck {
         void shuffle();
 
         // get_top(): returns the card from the top of deck. Does not remove.
-        Card get_top();
+        Card get_top() const;
 
         // pop(): returns card from top of deck. Removes card from deck.
         // pop: None -> Card
@@ -29,7 +30,8 @@ class Deck {
 
         // get_card(name): returns the card that has card.name == name
         // get_card: String -> Card
-        Card get_card(std::string name);
+        // Requires: the card associated with name is in the deck
+        Card get_card(std::string name) const;
 
         // remove(card): Searches from deck and removes the given card from deck.
         // remove: Card -> None
@@ -45,5 +47,9 @@ class Deck {
 std::vector<std::vector<std::string>> load_data(std::string filename);
 
 // Checks if given str is in the given 2D Vector Data
-bool is_in(std::vector<std::vector<std::string>> data, string str);
+bool is_in(std::vector<std::vector<std::string>> data, std::string str);
+
+// Returns a vector of the information for given cardname. As a safety function, if cardname is not in data, we return the first element of data.
+// Requires: cardname be in data
+std::vector<std::string> get_info(std::vector<std::vector<std::string>> data, std::string cardname);
 #endif

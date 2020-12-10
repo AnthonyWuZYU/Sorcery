@@ -20,7 +20,7 @@ class Minion : public Card {
         Card & operator=(const Card & other) override;
 
         //Compare Operator
-        bool equal(const Minion &other) const;
+        bool equal(const Card &other) const override;
 
         //use_ability(): uses the ability object of the card to perform the ability
         //void use_ability() override;

@@ -6,6 +6,7 @@
 #include <chrono>
 #include <vector>
 #include <stdexcept>
+#include <sstream>
 
 using namespace std;
 
@@ -23,10 +24,17 @@ Deck::Deck(string filename) {
     }
 }
 
+std::vector<std::string> get_info(std::vector<std::vector<std::string>> data, std::string cardname) {
+    for (auto it = data.begin(); it != data.end(); it++) {
+        if (it->at(0) == cardname) {
+            return *it;
+        }
+    }
+    return *data.begin();
+}
 
-
-bool is_in(std::vector<std::vector<std::string>> data, string str) {
-    for (auto it = data.begin(); it != data.end(); it++ {
+bool is_in(std::vector<std::vector<std::string>> data, std::string str) {
+    for (auto it = data.begin(); it != data.end(); it++) {
         if (it->at(0) == str) {
             return true;
         }
@@ -65,7 +73,7 @@ void Deck::shuffle() {
 	} 
 }
 
-Card Deck::get_top() {
+Card Deck::get_top() const{
     return cards.back();
 }
 
@@ -85,8 +93,19 @@ void Deck::remove(Card card) {
 }
 
 void Deck::add(string cardname) {
+    vector<string> info;
     // Check if it is a minion card
     if (is_in(minions, cardname)) {
-        
+        info = get_info(minions, cardname);
+        Card temp = Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3])};
     }
+}
+
+Card Deck::get_card(std::string name) const {
+    for (auto it = cards.begin(); it != cards.end(); it++) {
+        if (it->get_Name() == name) {
+            return *it;
+        }
+    }
+    return *cards.begin();
 }
