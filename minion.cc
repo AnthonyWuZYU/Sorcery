@@ -6,13 +6,16 @@ attack{attack}, defence{defence}, action{0}, Card{name, cost} {}
 
 Minion::~Minion(){}
 
-Card & Minion::operator=(const Card & other) {
-
+Card & Minion::operator=(const Card & other)  {
+    swap(name, other.name);
+    swap(cost, other.cost);
+    swap(defence, other.defence);
+    swap(action, other.action);
+    return *this;
 }
 
-bool Minion::equal(const Minion &other) {
-    Minion temp = other;
-    if (temp.get_attack() == attack && temp.get_defence() == defence) {
+bool Minion::equal(const Minion &other) const  {
+    if (other.get_attack() == attack && other.get_defence() == defence) {
         return true;
     } else {
         return false;
@@ -43,11 +46,11 @@ void Minion::set_defence(int d) {defence = d;}
 
 void Minion::set_action(int a) {action = a;}
 
-int Minion::get_attack() {return attack;}
+int Minion::get_attack() const {return attack;}
 
-int Minion::get_defence() {return defence;}
+int Minion::get_defence() const {return defence;}
 
-int Minion::get_action() {return action;}
+int Minion::get_action() const {return action;}
 
 
 
