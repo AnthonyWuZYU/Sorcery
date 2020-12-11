@@ -34,8 +34,8 @@ int Player::getMaxMagic(){
     return maxMagic;
 }
 
-void Player::setMaxMagic( int m ){
-    maxMagic = m;
+void Player::addMaxMagic( int m ){
+    maxMagic += m;
 }
 
 string Player::getName(){

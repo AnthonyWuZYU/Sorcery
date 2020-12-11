@@ -34,16 +34,21 @@ int main () {
         	}
         	Player player2{player2_name};
 		
+		// set opponent to each other	
 		player1.setOpp(&player2);
 		player2.setOpp(&player1);
 		
 		string cmd;
 		string option;
 		
+		// cursor set the player1 as the initial player
 		Player* cur = player2.getOpp();	
 		
-
+		// game start and magic add 1 each turn, the magic fill to its max
 		cout << cur->getName() << "'s turn" << endl;
+		cur->addMaxMagic(1);
+		cur->setMagic(cur->getMaxMagic());
+		
     		bool quit = false;
 
 		while (cin >> cmd) {
@@ -65,8 +70,11 @@ int main () {
 		
 			} else if (cmd == "end") {
 				cur = cur->getOpp();	
-
-                        } else if (cmd == "quit") {
+				cout << cur->getName() << "'s turn" << endl;
+                		cur->addMaxMagic(1);
+                		cur->setMagic(cur->getMaxMagic());
+                        
+			} else if (cmd == "quit") {
                                 quit = true;
 
                         } else {

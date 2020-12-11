@@ -32,7 +32,7 @@ class Player{
 	
 	int getMaxMagic(); // method that returns player's max magic value
         
-	void setMaxMagic( int magic ); // method to change player's max magic value
+	void addMaxMagic( int magic ); // method to change player's max magic value
 	
 	std::string getName(); // method that returns player's name
 	
