@@ -1,15 +1,15 @@
 #include "hand.h"
 using namespace std;
 
-int Hand::getSize(){
+int Hand::getSize() const{
     return cards.size();
 }
 
-vector<Card> Hand::getHand(){
+vector<Card> Hand::getHand() const{
     return cards;
 }
 
-Card Hand::getCard( unsigned int i ){
+Card Hand::getCard( unsigned int i ) const{
     return cards.at(i);
 }
 
