@@ -17,8 +17,6 @@ int main () {
 	string player1_name;
 	string player2_name;
 	
-	int turn = 0;	
-
 	try {
 		//get player1's name 
 		while ( player1_name.empty() ) {
@@ -36,9 +34,21 @@ int main () {
         	}
         	Player player2{player2_name};
 		
+		// set opponent to each other	
+		player1.setOpp(&player2);
+		player2.setOpp(&player1);
+		
 		string cmd;
 		string option;
-		cout << "Player 1's turn" << endl;
+		
+		// cursor set the player1 as the initial player
+		Player* cur = player2.getOpp();	
+		
+		// game start and magic add 1 each turn, the magic fill to its max
+		cout << cur->getName() << "'s turn" << endl;
+		cur->addMaxMagic(1);
+		cur->setMagic(cur->getMaxMagic());
+		
     		bool quit = false;
 
 		while (cin >> cmd) {
@@ -55,16 +65,26 @@ int main () {
 				cout << "          inspect minion -- View a minion's card and all enchantments on that minion." << endl;
 				cout << "          hand -- Describe all cards in your hand." << endl;
 				cout << "          board -- Describe all cards on the board." << endl;
-			} else if (cmd == "quit") {
-				quit = true;
+			} else if (cmd == "hand") {
+				
 		
-			} else {
+			} else if (cmd == "end") {
+				cur = cur->getOpp();	
+				cout << cur->getName() << "'s turn" << endl;
+                		cur->addMaxMagic(1);
+                		cur->setMagic(cur->getMaxMagic());
+                        
+			} else if (cmd == "quit") {
+                                quit = true;
+
+                        } else {
 				cerr << "Invalid command." << endl;
 				cerr << "Type \"help\" to show all possible command." << endl;
 			}
 			
 			if (quit) break;
-			cout << "Player " << turn + 1 << "'s turn:" << endl;
+			
+			cout << cur->getName() << "'s turn" << endl;	
 		}
 
 
