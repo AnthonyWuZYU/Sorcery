@@ -3,7 +3,7 @@
 Card Graveyard::revive(){
     Card temp = grave.back;
 
-    grave.pop_back;
+    grave.pop_back();
 
     return temp;
 }
