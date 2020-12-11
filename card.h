@@ -9,13 +9,13 @@ class Card {
     int cost; // Magic Cost to use Card
     //Ability ability
     
-    public: 
+   // public: 
         // Constructor, takes in string Name, int Cost and the name of ability
         // depending on the string ability, we create the associated ability object
         Card(std::string name, int cost);
 
         // Card deconstructor
-        virtual ~Card();
+       // virtual ~Card();
 
         //Copy Assignment Operator
         virtual Card & operator=(const Card & other);
