@@ -9,9 +9,9 @@ class Graveyard{
 
     public:
 
-    Card revive() const; // returns the top card ( most recent dead card ) and removes it from the vector grave
+    Card revive(); // returns the top card ( most recent dead card ) and removes it from the vector grave
 
-    Card top() const; // returns the top card ( most recent dead card ) from the vector grave
+    Card top(); // returns the top card ( most recent dead card ) from the vector grave
 
     void add( Card card ); // adds a dead card to the vector grave
 };
