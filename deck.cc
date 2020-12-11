@@ -15,7 +15,7 @@ Deck::Deck(string filename) {
     string i;
 
     minions = load_data("minion.csv");
-
+    
     // Reading the .deck file and adding each card by its name
     while ( true ) {
         infile >> i;
