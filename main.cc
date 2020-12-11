@@ -37,7 +37,11 @@ int main () {
 		// set opponent to each other	
 		player1.setOpp(&player2);
 		player2.setOpp(&player1);
-		
+					
+		// load deck
+		player1.setDeck(&Deck{"default.deck"});	
+		player1.setDeck(&Deck{"default.deck"});
+
 		string cmd;
 		string option;
 
@@ -50,7 +54,7 @@ int main () {
 		cout << cur->getName() << "'s turn" << endl;
 		cur->addMaxMagic(1);
 		cur->setMagic(cur->getMaxMagic());
-		
+			
     		bool quit = false;
 
 		while (cin >> cmd) {
