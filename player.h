@@ -6,6 +6,8 @@
 #include "hand.h"
 #include "deck.h"
 
+class Deck;
+
 class Player{
 int life;
 int magic;
