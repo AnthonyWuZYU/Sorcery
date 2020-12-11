@@ -6,18 +6,65 @@
 #include <chrono>
 #include <vector>
 #include <stdexcept>
+#include <sstream>
 
 using namespace std;
 
 Deck::Deck(string filename) {
     ifstream infile{ filename };
     string i;
+
+    minions = load_data("minion.csv");
+
     // Reading the .deck file and adding each card by its name
     while ( true ) {
         infile >> i;
         if ( infile.fail() ) break;
         this->add(i);
     }
+}
+
+Deck::~Deck() {}
+
+std::vector<std::string> get_info(std::vector<std::vector<std::string>> data, std::string cardname) {
+    for (auto it = data.begin(); it != data.end(); it++) {
+        if (it->at(0) == cardname) {
+            return *it;
+        }
+    }
+    return *data.begin();
+}
+
+bool is_in(std::vector<std::vector<std::string>> data, std::string str) {
+    for (auto it = data.begin(); it != data.end(); it++) {
+        if (it->at(0) == str) {
+            return true;
+        }
+    }
+    return false;
+}
+
+std::vector<std::vector<std::string>> load_data(std::string filename) {
+    std::vector< std::vector< std::string > > data;
+    string line = "";
+    string temp = "";
+    ifstream fin{ filename };
+
+    while (getline(fin, line)) {
+        std::vector< std::string > vec;
+        stringstream s{line};
+
+        // Parses the line by , and stores the string into the row
+        while(getline(s, temp, ',')) {
+            vec.emplace_back(temp);
+        }
+
+        //adds row to data grid
+        data.push_back(vec);
+    }
+    fin.close();
+
+    return data;
 }
 
 void Deck::shuffle() {
@@ -28,9 +75,7 @@ void Deck::shuffle() {
 	} 
 }
 
-Deck::~Deck() {}
-
-Card Deck::get_top() {
+Card Deck::get_top() const{
     return cards.back();
 }
 
@@ -48,5 +93,19 @@ void Deck::remove(Card card) {
 }
 
 void Deck::add(string cardname) {
+    vector<string> info;
+    // Check if it is a minion card
+    if (is_in(minions, cardname)) {
+        info = get_info(minions, cardname);
+        Card temp = Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3])};
+    }
+}
 
+Card Deck::get_card(std::string name) const {
+    for (auto it = cards.begin(); it != cards.end(); it++) {
+        if (it->get_Name() == name) {
+            return *it;
+        }
+    }
+    return *cards.begin();
 }
