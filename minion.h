@@ -4,23 +4,33 @@
 #include "player.h"
 #include <vector>
 
-class Minion : Card {
+class Minion : public Card {
     int attack;
     int defence;
     int action;
     //vector<Enchantment> minionEnchantments;
     public: 
         // Constructor
-        Minion(int a, int d);
+        Minion(std::string name, int cost, int attack, int defence, std::string ability="");
 
         // Deconstructor
         ~Minion();
 
-        //atack(player): Attacks either a minion or player
-        void attack(Player *player);
+        //Copy Assignment Operator
+        Card & operator=(const Card & other) override;
 
-        //attack(minion): Attacks a minion
-        void attack(Minion *minion);
+        //Compare Operator
+        bool equal(const Card &other) const override;
+
+        //use_ability(): uses the ability object of the card to perform the ability
+        //void use_ability() override;
+
+        //destroy(): destroys the card
+        void destroy() override;
+
+        //atack(player): Attacks either a minion or player
+        void attack_target(Player *player);
+        void attack_target(Minion *minion);
 
         // set_attack(a): sets the minion's attack to int a
         void set_attack(int a);
@@ -32,13 +42,14 @@ class Minion : Card {
         void set_action(int a);
 
         // get_attack(): returns the minion's attack
-        int get_attack();
+        int get_attack() const;
 
         // get_defence(): returns the minion's defence
-        int get_defence();
+        int get_defence() const;
 
         // get_action(): return's the minion's action value
-        int get_action();
+        int get_action() const;
 
         //void use_Ability(); 
-}
+};
+#endif
