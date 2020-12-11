@@ -1,7 +1,7 @@
 #include "graveyard.h"
 
 Card Graveyard::revive(){
-    Card temp = grave.back;
+    Card temp = grave.back();
 
     grave.pop_back();
 
@@ -9,7 +9,7 @@ Card Graveyard::revive(){
 }
 
 Card Graveyard::top(){
-    return grave.back;
+    return grave.back();
 }
 
 void Graveyard::add( Card card ){
