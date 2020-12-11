@@ -40,10 +40,8 @@ int main () {
 		
 		string cmd;
 		string option;
-<<<<<<< HEAD
-=======
+
 		int pos;
->>>>>>> anthony-wu
 		
 		// cursor set the player1 as the initial player
 		Player* cur = player2.getOpp();	
@@ -69,24 +67,16 @@ int main () {
 				cout << "          inspect minion -- View a minion's card and all enchantments on that minion." << endl;
 				cout << "          hand -- Describe all cards in your hand." << endl;
 				cout << "          board -- Describe all cards on the board." << endl;
-<<<<<<< HEAD
+
 			} else if (cmd == "hand") {
-				
-		
-			} else if (cmd == "end") {
-=======
-		
+			
 			} else if (cmd == "end") {
 				// end of turn effect
->>>>>>> anthony-wu
 				cur = cur->getOpp();	
-				cout << cur->getName() << "'s turn" << endl;
                 		cur->addMaxMagic(1);
                 		cur->setMagic(cur->getMaxMagic());
-<<<<<<< HEAD
                         
 			} else if (cmd == "quit") {
-=======
 				// draw cards
 				// start of turn effect
 
@@ -112,7 +102,6 @@ int main () {
                                 // use i(pos) th
 				// if play i p t
                         } else if (cmd == "quit") {
->>>>>>> anthony-wu
                                 quit = true;
 
                         } else {
