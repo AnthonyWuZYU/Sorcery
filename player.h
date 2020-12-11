@@ -7,6 +7,7 @@
 #include "deck.h"
 
 class Deck;
+class Hand;
 
 class Player{
 int life;
