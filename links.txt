@@ -1,0 +1,15 @@
+Plan of action document:
+
+https://docs.google.com/document/d/1M7ujFjvakzLBZexEslUphaVW31bPlbWJWRtTJiDlC4o/edit?usp=sharing
+
+UML diagram:
+
+https://drive.google.com/file/d/1tPI1FNHAw8SJfGqwwruOcvFY4FgIJopC/view?usp=sharing
+
+Sorcery pdf:
+
+https://learn.uwaterloo.ca/d2l/le/content/577313/viewContent/3341946/View
+
+Project Guidelines:
+
+https://learn.uwaterloo.ca/d2l/le/content/577313/viewContent/3341943/View
