@@ -37,7 +37,7 @@ void Player::setName( string n ){
     name = n;
 }
 
-Deck Player::getDeck(){
+Deck* Player::getDeck(){
     return deck;
 }
 
@@ -45,7 +45,7 @@ void Player::setDeck( Deck *d ){
     deck = d;
 }
 
-Hand Player::getHand(){
+Hand* Player::getHand(){
     return hand;
 }
 
