@@ -1,6 +1,6 @@
 #include "graveyard.h"
 
-Card Graveyard::revive() const{
+Card Graveyard::revive(){
     Card temp = grave.back;
 
     grave.pop_back;
@@ -8,7 +8,7 @@ Card Graveyard::revive() const{
     return temp;
 }
 
-Card Graveyard::top() const{
+Card Graveyard::top(){
     return grave.back;
 }
 
