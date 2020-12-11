@@ -97,7 +97,14 @@ void Deck::add(string cardname) {
     // Check if it is a minion card
     if (is_in(minions, cardname)) {
         info = get_info(minions, cardname);
+        // Create the ability
+        if (info[4] != "") {
+            //Add an activated ability
+        } else if (info[5] != "") {
+            //Add a triggered ability
+        }
         Card temp = Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3])};
+        cards.emplace_back(temp);
     }
 }
 
