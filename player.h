@@ -2,7 +2,6 @@
 #define __PLAYER_H__
 #include <iostream>
 #include <string>
-#include "view.h"
 #include "hand.h"
 #include "deck.h"
 

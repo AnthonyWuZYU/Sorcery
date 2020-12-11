@@ -87,8 +87,8 @@ Card Deck::pop() {
 
 void Deck::remove(Card card) {
     for (auto it = cards.begin(); it != cards.end(); it++) {
-            cards.erase(it);
-            break;
+        if (card == *it) cards.erase(it);
+        break;
     }
 }
 

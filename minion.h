@@ -4,6 +4,8 @@
 #include "player.h"
 #include <vector>
 
+class Player;
+
 class Minion : public Card {
     int attack;
     int defence;
@@ -18,9 +20,6 @@ class Minion : public Card {
 
         //Copy Assignment Operator
         Card & operator=(const Card & other) override;
-
-        //Compare Operator
-        bool equal(const Card &other) const override;
 
         //use_ability(): uses the ability object of the card to perform the ability
         //void use_ability() override;
@@ -50,6 +49,6 @@ class Minion : public Card {
         // get_action(): return's the minion's action value
         int get_action() const;
 
-        //void use_Ability(); 
+        void use_ability() override; 
 };
 #endif
