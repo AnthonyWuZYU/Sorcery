@@ -49,6 +49,6 @@ class Minion : public Card {
         // get_action(): return's the minion's action value
         int get_action() const;
 
-        //void use_Ability(); 
+        void use_ability() override; 
 };
 #endif

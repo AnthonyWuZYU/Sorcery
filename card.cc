@@ -2,6 +2,14 @@
 
 Card::Card(std::string name, int cost) : name{name}, cost{cost} {}
 
+Card::~Card(){}
+
+void Card::use_ability(){}
+
+void Card::destroy() {}
+
+Card & Card::operator=(const Card & other)  {}
+
 int Card::get_Cost() const {return cost;}
 
 std::string Card::get_Name() const {return name;}

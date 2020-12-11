@@ -34,6 +34,10 @@ void Minion::attack_target(Minion *target) {
     }
 }
 
+void Minion::use_ability() {}
+
+void Minion::destroy() {}
+
 void Minion::set_attack(int a) {attack = a;}
 
 void Minion::set_defence(int d) {defence = d;}
