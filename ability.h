@@ -17,8 +17,6 @@ class Ability {
         AbilityType get_type();
 
         std::string get_description();
-
-
 };
 
 
