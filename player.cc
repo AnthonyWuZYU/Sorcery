@@ -63,9 +63,14 @@ void Player::setHand( Hand *h ){
 }
 
 void Player::setOpp( Player *opp ) {
-	opponent = opp;
+        opponent = opp;
 }
 
 Player* Player::getOpp() {
         return opponent;
+}
+
+void Player::draw(){
+    Card drawn = deck->pop();
+    hand->add( drawn );       
 }
