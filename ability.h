@@ -8,9 +8,12 @@ enum class AbilityType {Triggered, Activated};
 class Ability {
     AbilityType type;
     std::string description;
-    std::vector<Card> target;
 
     public:
+        Ability(AbilityType type, std::string description);
+
+        ~Ability();
+
         // activate_ability(): gets called by use_ability(), will perform ability based on the description
         void activate_ability();
 

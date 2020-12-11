@@ -1,4 +1,4 @@
 ﻿Name,Cost,Charges,Ability
-Dark Ritual,0,5,"At the start of your turn, gain 1 magic"
-Aura of Power,1,4,"1 | Whenever a minion enters play under your control, it gains +1/+1"
-Standstill,3,4,"2 | Whenever a minion enters play, destroy it"
+Dark Ritual,0,5,At the start of your turn, gain 1 magic
+Aura of Power,1,4,1 | Whenever a minion enters play under your control, it gains +1/+1
+Standstill,3,4,2 | Whenever a minion enters play, destroy it

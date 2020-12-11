@@ -27,6 +27,7 @@ void Minion::attack_target(Player *player) {
 
 void Minion::attack_target(Minion *target) {
     target->set_defence(target->get_defence() - attack);
+    this->set_defence(this->get_defence()- target->get_attack());
 
     // Check if target is dead
     if (target->get_defence() <= 0) {
@@ -34,7 +35,25 @@ void Minion::attack_target(Minion *target) {
     }
 }
 
-void Minion::use_ability() {}
+void Minion::use_ability(Player *player) {
+    // Minion Abilities : Activated
+    if (description == "Deals damage to all the opponent minions equal to its attack value when it dies") {
+        
+    } else if (description == "Whenever an opponent's minion enters play, deal 1 damage to it") {
+
+    } else if (description == "At the end of your turn, all your minions gain +0/+1") {
+
+    } 
+        // Minion Abilities : Triggered
+    else if (description == "1 | Deal 1 damage to target minion") {
+
+    } else if (description == "Summon a 1/1 air elemental") {
+
+    } else if (description == "Summon up to three 1/1 air elementals") {
+
+    }
+
+}
 
 void Minion::destroy() {}
 

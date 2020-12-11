@@ -8,6 +8,9 @@ class Deck {
 
     // Temporary Code for Card Database
     std::vector<std::vector<std::string>> minions;
+    std::vector<std::vector<std::string>> spells;
+    std::vector<std::vector<std::string>> enchantments;
+    std::vector<std::vector<std::string>> rituals;
 
     public:
         // Constructor for Deck. Takes field filename, will be the .deck file to load

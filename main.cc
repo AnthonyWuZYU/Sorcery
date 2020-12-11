@@ -81,11 +81,11 @@ int main () {
 				// start of turn effect
 
 			} else if (cmd == "attack" ) {
-                                cin >> pos;
-                                // i(pos) th minion attack
+                cin >> pos;
+            	// i(pos) th minion attack
 				// if attack i j 
                                 
-                        } else if (cmd == "hand") {
+            } else if (cmd == "hand") {
 				// show hands
 			} else if (cmd == "board") {
 				// show board
@@ -94,17 +94,17 @@ int main () {
 				// inspect i(pos) th
 			
 			} else if (cmd == "use" ) {
-                                cin >> pos;
-                                // use i(pos) th
+                cin >> pos;
+                // use i(pos) th
                                 
-                        } else if (cmd == "play" ) {
-                                cin >> pos;
-                                // use i(pos) th
+            } else if (cmd == "play" ) {
+                cin >> pos;
+                // use i(pos) th
 				// if play i p t
-                        } else if (cmd == "quit") {
+            } else if (cmd == "quit") {
                                 quit = true;
 
-                        } else {
+            } else {
 				cerr << "Invalid command." << endl;
 				cerr << "Type \"help\" to show all possible command." << endl;
 			}

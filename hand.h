@@ -18,7 +18,7 @@ class Hand{
 
     void add(Card card); // adds a card object into the cards vector if it is not full. Returns a message
                         // if the hand is already full. 
- 
+                        
     void remove(unsigned int i); // removes a card object from the cards vector at the specified index i
 };
 
