@@ -17,8 +17,6 @@ int main () {
 	string player1_name;
 	string player2_name;
 	
-	int turn = 0;	
-
 	try {
 		//get player1's name 
 		while ( player1_name.empty() ) {
@@ -36,9 +34,16 @@ int main () {
         	}
         	Player player2{player2_name};
 		
+		player1.setOpp(&player2);
+		player2.setOpp(&player1);
+		
 		string cmd;
 		string option;
-		cout << "Player 1's turn" << endl;
+		
+		Player* cur = player2.getOpp();	
+		
+
+		cout << cur->getName() << "'s turn" << endl;
     		bool quit = false;
 
 		while (cin >> cmd) {
@@ -55,11 +60,14 @@ int main () {
 				cout << "          inspect minion -- View a minion's card and all enchantments on that minion." << endl;
 				cout << "          hand -- Describe all cards in your hand." << endl;
 				cout << "          board -- Describe all cards on the board." << endl;
-			} else if (cmd == "quit") {
-				quit = true;
+			} else if (cmd == "hand") {
+				
 		
-			} else if (cmd == "quit") {
-                                turn = ( turn++ ) % 2;
+			} else if (cmd == "end") {
+				cur = cur->getOpp();	
+
+                        } else if (cmd == "quit") {
+                                quit = true;
 
                         } else {
 				cerr << "Invalid command." << endl;
@@ -67,7 +75,8 @@ int main () {
 			}
 			
 			if (quit) break;
-			cout << "Player " << turn + 1 << "'s turn:" << endl;
+			
+			cout << cur->getName() << "'s turn" << endl;	
 		}
 
 

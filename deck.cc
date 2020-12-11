@@ -28,6 +28,8 @@ void Deck::shuffle() {
 	} 
 }
 
+Deck::~Deck() {}
+
 Card Deck::get_top() {
     return cards.back();
 }
@@ -40,10 +42,8 @@ Card Deck::pop() {
 
 void Deck::remove(Card card) {
     for (auto it = cards.begin(); it != cards.end(); it++) {
-        if (*it == card) {
             cards.erase(it);
             break;
-        }
     }
 }
 
