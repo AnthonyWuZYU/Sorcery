@@ -39,8 +39,10 @@ int main () {
 		player2.setOpp(&player1);
 					
 		// load deck
-		player1.setDeck(&Deck{"default.deck"});	
-		player1.setDeck(&Deck{"default.deck"});
+		Deck* d1 = new Deck{"default.deck"};
+		Deck* d2 = new Deck{"default.deck"};
+		player1.setDeck(d1);	
+		player1.setDeck(d2);
 
 		string cmd;
 		string option;
