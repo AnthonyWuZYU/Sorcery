@@ -10,15 +10,45 @@ void Board::move_to_field(Card card) {
     }
 }
 
-void remove_from_play(unsigned int i {
-    
+void set_field(vector<Card> new_field) {
+    field.assign(new_field.begin(), new_field.end());
 }
 
-Card remove_from_hand(unsigned int i) {
-
+vector<Card> get_field() {
+    return field;
 }
 
 Card draw_from_deck() {
     return deck->pop();
 }
+
+Card remove_from_field(unsigned int i) {
+    Card temp = field(i);
+    field.erase(i);
+    return temp;
+}
+
+Card remove_from_hand(unsigned int i) {
+    Card temp = hand->getCard(i);
+    hand->remove(i);
+    return temp;
+}
+
+Card get_card_field(unsigned int i) {
+    return field[i];
+}
+
+void set_card_field(unsigned int i, Card card) {
+    field[i] = card;
+}
+
+void move_to_graveyard(Card card) {
+    graveyard->add(card);
+}
+
+void move_to_hand(Card card) {
+    hand->add(card);
+}
+
+
 
