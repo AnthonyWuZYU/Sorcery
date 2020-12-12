@@ -16,6 +16,9 @@ class Board {
         Board(Deck deck, Graveyard graveyard, Hand hand);
         ~Board();
         void play_card(Card card);
+        void remove_from_play(Card card);
+        void move_to_grave(Card card);
+        void move_to_hand(Card card);
 };
 
 #endif
