@@ -18,8 +18,8 @@ class Board {
         Board(Deck deck, Graveyard graveyard, Hand hand);
         ~Board();
         void move_to_field(Card card);
-        void set_field(vector<Card> new_field);
-        vector<Card> get_field();
+        void set_field(std::vector<Card> new_field);
+        std::vector<Card> get_field();
         Card draw_from_deck();
         Card remove_from_field(unsigned int i);
         Card remove_from_hand(unsigned int i);
