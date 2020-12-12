@@ -42,9 +42,12 @@ class Player{
 
         Player * getOpp(); // method to return the pointer of the player's opponent
 
-        void set_board(Board *board);
+        void setBoard(Board *board); // method to set/change the player's board
+
+        Board * getBoard(); // method to return the player's board
 
         void draw(); // method to draw a card from the player's deck and add it in the hand
 };
 
 #endif
+

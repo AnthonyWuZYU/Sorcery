@@ -45,7 +45,12 @@ void Player::setName( string n ){
     name = n;
 }
 
-void Player::set_board(Board* board) {
+
+Board* Player::getBoard(){
+    return board;
+}
+
+void Player::setBoard(Board* board) {
     this->board = board;
 }
 
@@ -60,3 +65,5 @@ Player* Player::getOpp() {
 void Player::draw(){
       
 }
+
+
