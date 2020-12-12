@@ -63,7 +63,11 @@ Player* Player::getOpp() {
 }
 
 void Player::draw(){
-      
+    board->move_to_hand(board->draw_from_deck());
+}
+
+void Player::play_card(unsigned int i) {
+    board->move_to_field(board->remove_from_hand(i));
 }
 
 

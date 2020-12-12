@@ -35,6 +35,10 @@ Card Board::remove_from_hand(unsigned int i) {
     return temp;
 }
 
+Card Board::get_card_hand(unsigned int i) {
+    return hand->getCard(i);
+}
+
 Card Board::get_card_field(unsigned int i) {
     return field[i];
 }

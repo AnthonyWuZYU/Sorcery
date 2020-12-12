@@ -24,6 +24,7 @@ class Board {
         Card remove_from_field(unsigned int i);
         Card remove_from_hand(unsigned int i);
         Card get_card_field(unsigned int i);
+        Card get_card_hand(unsigned int i);
         void set_card_field(unsigned int i, Card card);
         void move_to_graveyard(Card card);
         void move_to_hand(Card card);

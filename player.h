@@ -47,6 +47,10 @@ class Player{
         Board * getBoard(); // method to return the player's board
 
         void draw(); // method to draw a card from the player's deck and add it in the hand
+
+        void play_card(unsigned int i); // takes index of card from hand to place on field
+
+
 };
 
 #endif
