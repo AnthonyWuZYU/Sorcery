@@ -1,16 +1,15 @@
 #include "player.h"
 using namespace std;
 
-Player::Player(): life{20}, maxMagic{}, magic{0}, name{""}, deck{nullptr}, hand{nullptr}, opponent{nullptr}
+Player::Player(): life{20}, maxMagic{}, magic{0}, name{""}, board{nullptr}, opponent{nullptr}
 {}
 
-Player::Player( string name ): life{20}, magic{0}, name{name}, deck{nullptr}, hand{nullptr}, opponent{nullptr}
+Player::Player( string name ): life{20}, magic{0}, name{name}, board{nullptr}, opponent{nullptr}
 {}
 
 Player::~Player()
 {
-    delete hand;
-    delete deck;
+    delete board;
     delete opponent;
 }
 
@@ -46,26 +45,29 @@ void Player::setName( string n ){
     name = n;
 }
 
-Deck* Player::getDeck(){
-    return deck;
+
+Board* Player::getBoard(){
+    return board;
 }
 
-void Player::setDeck( Deck *d ){
-    deck = d;
-}
-
-Hand* Player::getHand(){
-    return hand;
-}
-
-void Player::setHand( Hand *h ){
-    hand = h;
+void Player::setBoard(Board* board) {
+    this->board = board;
 }
 
 void Player::setOpp( Player *opp ) {
-	opponent = opp;
+        opponent = opp;
 }
 
 Player* Player::getOpp() {
         return opponent;
 }
+
+void Player::draw(){
+    board->move_to_hand(board->draw_from_deck());
+}
+
+void Player::play_card(unsigned int i) {
+    board->move_to_field(board->remove_from_hand(i));
+}
+
+

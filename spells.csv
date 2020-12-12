@@ -1,0 +1,7 @@
+﻿Name,Cost,Ability
+Banish,2,Destroy target minion or ritual
+Unsummon,1,Return target minion to its owner's hand
+Recharge,1,Your ritual gains 3 charges
+Disenchant,1,Destroy the top enchant on target minion
+Raise Dead,1,Resurrect the top minion in your graveyard and set its defence to 1
+Blizzard,3,Deal 2 damage to all minions
