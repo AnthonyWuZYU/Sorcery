@@ -11,16 +11,19 @@ class Deck;
 class Board {
     Deck *deck;
     Graveyard *graveyard;
-    std::vector<Card> cards_in_play;
+    std::vector<Card> field;
     Hand *hand; 
 
     public: 
         Board(Deck deck, Graveyard graveyard, Hand hand);
         ~Board();
-        void play_card(Card card);
-        void remove_from_play(Card card);
-        void move_to_grave(Card card);
+        void move_to_field(Card card);
+        Card draw_from_deck();
+        Card remove_from_field(unsigned int i);
+        Card remove_from_hand(unsigned int i);
+        void move_to_graveyard(Card card);
         void move_to_hand(Card card);
+
 };
 
 #endif
