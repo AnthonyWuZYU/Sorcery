@@ -6,6 +6,8 @@
 #include "hand.h"
 #include <vector>
 
+class Deck;
+
 class Board {
     Deck *deck;
     Graveyard *graveyard;

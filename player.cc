@@ -1,16 +1,15 @@
 #include "player.h"
 using namespace std;
 
-Player::Player(): life{20}, maxMagic{}, magic{0}, name{""}, deck{nullptr}, hand{nullptr}, opponent{nullptr}
+Player::Player(): life{20}, maxMagic{}, magic{0}, name{""}, board{nullptr}, opponent{nullptr}
 {}
 
-Player::Player( string name ): life{20}, magic{0}, name{name}, deck{nullptr}, hand{nullptr}, opponent{nullptr}
+Player::Player( string name ): life{20}, magic{0}, name{name}, board{nullptr}, opponent{nullptr}
 {}
 
 Player::~Player()
 {
-    delete hand;
-    delete deck;
+    delete board;
     delete opponent;
 }
 
@@ -46,20 +45,8 @@ void Player::setName( string n ){
     name = n;
 }
 
-Deck* Player::getDeck(){
-    return deck;
-}
-
-void Player::setDeck( Deck *d ){
-    deck = d;
-}
-
-Hand* Player::getHand(){
-    return hand;
-}
-
-void Player::setHand( Hand *h ){
-    hand = h;
+void Player::set_board(Board* board) {
+    this->board = board;
 }
 
 void Player::setOpp( Player *opp ) {
@@ -71,6 +58,5 @@ Player* Player::getOpp() {
 }
 
 void Player::draw(){
-    Card drawn = deck->pop();
-    hand->add( drawn );       
+      
 }
