@@ -56,3 +56,4 @@ class Player{
         void draw(); // method to draw a card from the player's deck and add it in the hand
 };
 
+#endif
