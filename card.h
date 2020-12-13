@@ -25,6 +25,9 @@ class Card {
         //Copy Assignment Operator
         virtual Card & operator=(const Card & other);
 
+        // print function
+        virtual std::ostream& print(std::ostream& os) const;
+
         //Compare Operator
         bool operator==(const Card &other) const;
 

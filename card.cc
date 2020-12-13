@@ -12,6 +12,8 @@ void Card::destroy() {}
 
 Card & Card::operator=(const Card & other)  {}
 
+std::ostream& Card::print(std::ostream& os) const {}
+
 int Card::get_Cost() const {return cost;}
 
 std::string Card::get_Name() const {return name;}
@@ -41,6 +43,5 @@ bool Card::operator!=(const Card &other) const {
 
 
 std::ostream& operator<<(std::ostream &os, const Card &card) {
-    os << card.get_Name();
-    return os;
+    return card.print(os);
 }

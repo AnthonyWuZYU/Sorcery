@@ -22,11 +22,12 @@ class Minion : public Card {
         // Deconstructor
         ~Minion();
 
+        // Copy Constructor
+        Minion(const Card &other);
+
         //Copy Assignment Operator
         Card & operator=(const Card & other) override;
 
-        //use_ability(): uses the ability object of the card to perform the ability
-        //void use_ability() override;
 
         //destroy(): destroys the card
         void destroy() override;
@@ -52,6 +53,8 @@ class Minion : public Card {
 
         // get_action(): return's the minion's action value
         int get_action() const;
+
+        std::ostream& print(std::ostream& os) const override;
 
         // use_ability(player, desc): use the minion's ability based on the desc. Ability gets used on target (if applicable)
         void use_ability( Player *player, std::string desc, Card *target);
