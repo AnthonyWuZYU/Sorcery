@@ -1,10 +1,10 @@
 #include "player.h"
 using namespace std;
 
-Player::Player(): life{20}, maxMagic{}, magic{0}, name{""}, board{nullptr}, opponent{nullptr}
+Player::Player(): life{20}, maxMagic{}, magic{3}, name{""}, board{nullptr}, opponent{nullptr}
 {}
 
-Player::Player( string name ): life{20}, magic{0}, name{name}, board{nullptr}, opponent{nullptr}
+Player::Player( string name ): life{20}, magic{3}, name{name}, board{nullptr}, opponent{nullptr}
 {}
 
 Player::~Player()

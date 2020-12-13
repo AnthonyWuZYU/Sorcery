@@ -1,7 +1,9 @@
 #include "board.h"
 #include <vector>
+#include <iostream>
+using namespace std;
 
-Board::Board(Deck deck, Graveyard graveyard, Hand hand) : deck{&deck}, graveyard{&graveyard}, hand{&hand} {}
+Board::Board(Deck* deck, Graveyard* graveyard, Hand* hand) : deck{deck}, graveyard{graveyard}, hand{hand} {}
 
 Board::~Board() {}
 

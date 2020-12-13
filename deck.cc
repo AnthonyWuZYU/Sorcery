@@ -15,11 +15,13 @@ Deck::Deck(string filename) {
     string i;
 
     minions = load_data("minion.csv");
+    spells = load_data("spells.csv");
+    rituals = load_data("rituals.csv");
+    enchantments = load_data("enchantments.csv");
+
 
     // Reading the .deck file and adding each card by its name
-    while ( true ) {
-        infile >> i;
-        if ( infile.fail() ) break;
+    while ( getline(infile, i) ) {
         this->add(i);
     }
 }
@@ -94,7 +96,6 @@ void Deck::remove(Card card) {
 
 void Deck::add(string cardname) {
     vector<string> info;
-    Card temp;
     // Check if it is a minion card
     if (is_in(minions, cardname)) {
         info = get_info(minions, cardname);
@@ -104,7 +105,8 @@ void Deck::add(string cardname) {
         } else if (info[5] != "") {
             //Add a triggered ability
         }
-        temp = Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3])};
+        Card temp = Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3])};
+        cards.emplace_back(temp);
     } else if (is_in(enchantments, cardname)) {
         info = get_info(enchantments, cardname);
 
@@ -118,7 +120,7 @@ void Deck::add(string cardname) {
         // The card is not of the four types and we should throw an error
         cerr << "Invalid Card in deck" << endl;
     }
-    cards.emplace_back(temp);
+    
 }
 
 

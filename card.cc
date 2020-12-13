@@ -2,6 +2,8 @@
 
 Card::Card(std::string name, int cost) : name{name}, cost{cost} {}
 
+Card::Card(){}
+
 Card::~Card(){}
 
 void Card::use_ability(){}

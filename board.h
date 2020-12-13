@@ -15,7 +15,7 @@ class Board {
     Hand *hand; 
 
     public: 
-        Board(Deck deck, Graveyard graveyard, Hand hand);
+        Board(Deck *deck, Graveyard *graveyard, Hand *hand);
         ~Board();
         void move_to_field(Card card);
         void set_field(std::vector<Card> new_field);

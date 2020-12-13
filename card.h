@@ -14,6 +14,9 @@ class Card {
         // depending on the string ability, we create the associated ability object
         Card(std::string name, int cost);
 
+        // Default constructor
+        Card();
+
         // Card deconstructor
         virtual ~Card();
 
@@ -43,5 +46,8 @@ class Card {
 
         //destroy(): destroys the card
         virtual void destroy();
+
+        // Returns the type of the card
+        std::string type();
 };
 #endif
