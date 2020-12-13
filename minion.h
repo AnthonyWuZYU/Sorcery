@@ -51,11 +51,7 @@ class Minion : public Card {
         int get_action() const;
 
         // use_ability(player, desc): use the minion's ability based on the desc. Ability gets used on target (if applicable)
-<<<<<<< HEAD
-        //void use_ability( Player *player, std::string desc, target);
-=======
         void use_ability( Player *player, std::string desc, Card *target);
->>>>>>> 772642cb436c2bb39f1bf0b40650fc482289e2cf
 };
 #endif
 
