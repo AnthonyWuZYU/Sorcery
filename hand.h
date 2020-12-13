@@ -20,6 +20,8 @@ class Hand{
                         // if the hand is already full. 
  
     void remove(unsigned int i); // removes a card object from the cards vector at the specified index i
-};
 
+    
+};
+std::ostream& operator<<(std::ostream &os, const Hand &hand);
 #endif

@@ -5,6 +5,7 @@
 #include "graveyard.h"
 #include "hand.h"
 #include <vector>
+#include <iostream>
 
 class Deck;
 
@@ -17,18 +18,45 @@ class Board {
     public: 
         Board(Deck *deck, Graveyard *graveyard, Hand *hand);
         ~Board();
-        void move_to_field(Card card);
+
+        //Field Operations
+
         void set_field(std::vector<Card> new_field);
-        std::vector<Card> get_field();
-        Card draw_from_deck();
+
+        std::vector<Card> get_field() const;
+
         Card remove_from_field(unsigned int i);
-        Card remove_from_hand(unsigned int i);
-        Card get_card_field(unsigned int i);
-        Card get_card_hand(unsigned int i);
+
+        void add_to_field(Card card);
+
         void set_card_field(unsigned int i, Card card);
-        void move_to_graveyard(Card card);
-        void move_to_hand(Card card);
+
+        Card get_card_field(unsigned int i) const;
+
+        // Deck Operations
+
+        Deck* get_deck() const;
+
+        Card draw_from_deck();
+
+        // Hand Operations
+        
+        Hand* get_hand() const;
+
+        Card remove_from_hand(unsigned int i);
+        
+        Card get_card_hand(unsigned int i) const;
+        
+        void add_to_hand(Card card);
+
+        // Graveyard Operations
+
+        Graveyard* get_graveyard() const;
+
+        void add_to_graveyard(Card card);
+
+        
 
 };
-
+std::ostream& operator<<(std::ostream &os, const Board &board);
 #endif

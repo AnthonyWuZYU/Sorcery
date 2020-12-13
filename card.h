@@ -1,18 +1,20 @@
 #ifndef CARD_H
 #define CARD_H
 #include <string>
+#include <iostream>
 
 
 class Card {
 
     std::string name; // Name of the Card
     int cost; // Magic Cost to use Card
+    std::string card_type;
     //Ability ability
     
     public: 
         // Constructor, takes in string Name, int Cost and the name of ability
         // depending on the string ability, we create the associated ability object
-        Card(std::string name, int cost);
+        Card(std::string name, int cost, std::string card_type);
 
         // Default constructor
         Card();
@@ -37,6 +39,8 @@ class Card {
         //get_Cost: None -> Int
         int get_Cost() const;
 
+        std::string get_type() const;
+
         void set_Cost(int c);
 
         void set_Name(std::string n);
@@ -49,5 +53,9 @@ class Card {
 
         // Returns the type of the card
         std::string type();
+
+        
 };
+
+std::ostream& operator<<(std::ostream &os, const Card &card);
 #endif

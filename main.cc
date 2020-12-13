@@ -96,6 +96,7 @@ int main()
 			else if (cmd == "hand")
 			{
 				// Displays cards in hand
+				cout << *cur->getBoard()->get_hand() << endl;
 				
 			}
 			else if (cmd == "end")

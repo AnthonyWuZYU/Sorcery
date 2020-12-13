@@ -50,7 +50,6 @@ class Player{
 
         void play_card(unsigned int i); // takes index of card from hand to place on field
 
-
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include "card.h"
 
-Card::Card(std::string name, int cost) : name{name}, cost{cost} {}
+Card::Card(std::string name, int cost, std::string card_type) : name{name}, cost{cost}, card_type{card_type} {}
 
 Card::Card(){}
 
@@ -15,6 +15,8 @@ Card & Card::operator=(const Card & other)  {}
 int Card::get_Cost() const {return cost;}
 
 std::string Card::get_Name() const {return name;}
+
+std::string Card::get_type() const {return card_type;}
 
 void Card::set_Cost(int c) {cost = c;}
 
@@ -34,4 +36,11 @@ bool Card::operator!=(const Card &other) const {
     } else {
         return true;
     }
+}
+
+
+
+std::ostream& operator<<(std::ostream &os, const Card &card) {
+    os << card.get_Name();
+    return os;
 }

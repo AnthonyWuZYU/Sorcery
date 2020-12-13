@@ -43,7 +43,7 @@ class Deck {
         // add(card): Adds inputted card to top of deck
         //add: Card -> None
         void add(std::string cardname);
-
+        
 };
 
 // Loads the minion vector from the minion.csv file

@@ -25,3 +25,10 @@ void Hand::add( Card card ){
 void Hand::remove( unsigned int i ){
     cards.erase( cards.begin() + i);
 }
+
+std::ostream& operator<<(std::ostream &os, const Hand &hand) {
+    for (auto& it : hand.getHand()) {
+        os << it << " ";
+    }
+    return os;
+}
