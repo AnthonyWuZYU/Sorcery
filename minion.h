@@ -1,5 +1,6 @@
 #ifndef MINION_H
 #define MINION_H
+#include "ascii_graphics.h"
 #include "card.h"
 #include "player.h"
 #include <vector>
@@ -51,7 +52,7 @@ class Minion : public Card {
         // get_action(): return's the minion's action value
         int get_action() const;
 
-        std::ostream& print(std::ostream& os) const override;
+        void print(std::ostream& os) const override;
 
         // use_ability(player, desc): use the minion's ability based on the desc. Ability gets used on target (if applicable)
         void use_ability( Player *player, std::string desc, Card *target);

@@ -71,7 +71,7 @@ int main()
 		cur->addMaxMagic(1);
 		cur->setMagic(cur->getMaxMagic());
 		cur->draw();
-		cout << "Card:" << cur->getBoard()->get_card_hand(0).get_Name() << endl;
+		//cout << "Card:" << cur->getBoard()->get_card_hand(0).get_Name() << endl;
 
 		bool quit = false;
 
