@@ -7,6 +7,13 @@ attack{attack}, defence{defence}, action{0}, Card{name, cost, card_type} {}
 
 Minion::~Minion(){}
 
+Minion::Minion(const Card &other) : Card{other.get_Name(), other.get_Cost(), other.get_type()} {
+    const Minion* temp = dynamic_cast<const Minion*>(&other);
+    attack = temp->get_attack();
+    defence = temp->get_defence();
+    action = temp->get_action();
+}
+
 Card & Minion::operator=(const Card & other)  {
     const Minion* temp = dynamic_cast<const Minion*>(&other);
     this->set_Name(temp->get_Name());
@@ -36,6 +43,7 @@ void Minion::attack_target(Minion *target) {
 }
 
 void Minion::use_ability(Player *player, string description, Card *target) {
+    /*
     // Minion Abilities : Triggered
     if (description == "Deals damage to all the opponent minions equal to its attack value when it dies") {
         Player *op = player->getOpp();
@@ -128,7 +136,15 @@ void Minion::use_ability(Player *player, string description, Card *target) {
         player->setBoard( temp );
         player->setMagic( player->getMagic() - 2 );
     }
+    */
+}
 
+std::ostream& Minion::print(std::ostream& os) const {
+    string name;
+    os << "|-------------------------------|" << endl;
+
+
+    return os;
 }
 
 void Minion::destroy() {}
