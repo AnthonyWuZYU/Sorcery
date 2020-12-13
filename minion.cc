@@ -7,6 +7,13 @@ attack{attack}, defence{defence}, action{0}, Card{name, cost, card_type} {}
 
 Minion::~Minion(){}
 
+Minion::Minion(const Card &other) : Card{other.get_Name(), other.get_Cost(), other.get_type()} {
+ const Minion* temp = dynamic_cast<const Minion*>(&other);
+ attack = temp->get_attack();
+ defence = temp->get_defence();
+ action = temp->get_action();
+}
+
 Card & Minion::operator=(const Card & other)  {
     const Minion* temp = dynamic_cast<const Minion*>(&other);
     this->set_Name(temp->get_Name());
@@ -42,7 +49,10 @@ void Minion::use_ability(Player *player, string description, Card *target) {
         vector<Card> oppField = op->getBoard()->get_field();
 
         for ( int i = 0; i < oppField.size(); i++ ){
-            oppField.at(i).set_defence(oppField.at(i).get_defence() - attack);
+            if( oppField.at(i).get_type() == "Minion"){
+            Minion temp = Minion(oppField.at(i));    
+            temp.set_defence(temp.get_defence() - attack);
+            }
         }
 
         Board *temp = op->getBoard();
@@ -58,7 +68,11 @@ void Minion::use_ability(Player *player, string description, Card *target) {
         vector<Card> field = player->getBoard()->get_field();
 
         for( int i = 0; i < field.size(); i++ ){
-            field.at(i).set_defence( field.at(i).get_defence() + 1 );
+
+            if(field.at(i).get_type() == "Minion"){
+            Minion temp = Minion(field.at(i));    
+            temp.set_defence( temp.get_defence() + 1 );
+            }
         }
 
         Board *temp = player->getBoard();
@@ -74,7 +88,11 @@ void Minion::use_ability(Player *player, string description, Card *target) {
 
         for( int i = 0; i < length; i++ ){
             if( oppField.at(i) == *target ){
-                oppField.at(i).set_defence(target->get_defence() - 1);
+                if( oppField.at(i).get_type() == "Minion"){
+                Minion temp = Minion(oppField.at(i));
+                Minion *tempp = dynamic_cast<Minion*> (target);    
+                temp.set_defence( tempp->get_defence() - 1 );
+                }
             }
         }
         Board *temp = op->getBoard();

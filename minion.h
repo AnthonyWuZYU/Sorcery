@@ -12,9 +12,12 @@ class Minion : public Card {
     int action;
     Card *target = nullptr;
     //vector<Enchantment> minionEnchantments;
-    public: 
+    public:
         // Constructor
         Minion(std::string name, int cost, int attack, int defence, std::string card_type, std::string ability="");
+
+        // Polymorphic Copy Constructor
+        Minion(const Card &other);
 
         // Deconstructor
         ~Minion();
