@@ -44,7 +44,6 @@ class Deck {
         //add: Card -> None
         void add(std::string cardname);
         
-        ostream& operator<<(ostream &os);
 };
 
 // Loads the minion vector from the minion.csv file

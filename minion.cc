@@ -2,8 +2,8 @@
 #include <algorithm>
 using namespace std;
 
-Minion::Minion(std::string name, int cost, int attack, int defence, std::string ability) : 
-attack{attack}, defence{defence}, action{0}, Card{name, cost} {}
+Minion::Minion(std::string name, int cost, int attack, int defence, std::string card_type, std::string ability) : 
+attack{attack}, defence{defence}, action{0}, Card{name, cost, card_type} {}
 
 Minion::~Minion(){}
 

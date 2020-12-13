@@ -105,7 +105,7 @@ void Deck::add(string cardname) {
         } else if (info[5] != "") {
             //Add a triggered ability
         }
-        Card temp = Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3])};
+        Card temp = Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3]), "Minion"};
         cards.emplace_back(temp);
     } else if (is_in(enchantments, cardname)) {
         info = get_info(enchantments, cardname);

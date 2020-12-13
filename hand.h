@@ -21,7 +21,7 @@ class Hand{
  
     void remove(unsigned int i); // removes a card object from the cards vector at the specified index i
 
-    ostream& operator<<(ostream &os);
+    
 };
-
+std::ostream& operator<<(std::ostream &os, const Hand &hand);
 #endif
