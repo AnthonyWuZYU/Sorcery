@@ -94,6 +94,7 @@ void Deck::remove(Card card) {
 
 void Deck::add(string cardname) {
     vector<string> info;
+    Card temp;
     // Check if it is a minion card
     if (is_in(minions, cardname)) {
         info = get_info(minions, cardname);
@@ -103,10 +104,23 @@ void Deck::add(string cardname) {
         } else if (info[5] != "") {
             //Add a triggered ability
         }
-        Card temp = Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3])};
-        cards.emplace_back(temp);
+        temp = Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3])};
+    } else if (is_in(enchantments, cardname)) {
+        info = get_info(enchantments, cardname);
+
+    } else if (is_in(spells, cardname)) {
+        info = get_info(spells, cardname);
+
+    } else if (is_in(rituals, cardname)) {
+        info = get_info(rituals, cardname);
+
+    } else {
+        // The card is not of the four types and we should throw an error
+        cerr << "Invalid Card in deck" << endl;
     }
+    cards.emplace_back(temp);
 }
+
 
 Card Deck::get_card(std::string name) const {
     for (auto it = cards.begin(); it != cards.end(); it++) {
