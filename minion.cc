@@ -43,7 +43,6 @@ void Minion::attack_target(Minion *target) {
 }
 
 void Minion::use_ability(Player *player, string description, Card *target) {
-    /*
     // Minion Abilities : Triggered
     if (description == "Deals damage to all the opponent minions equal to its attack value when it dies") {
         Player *op = player->getOpp();
@@ -147,7 +146,7 @@ void Minion::use_ability(Player *player, string description, Card *target) {
         player->setBoard( temp );
         player->setMagic( player->getMagic() - 2 );
     }
-    */
+
 }
 
 std::ostream& Minion::print(std::ostream& os) const {

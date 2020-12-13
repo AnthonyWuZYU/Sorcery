@@ -22,9 +22,6 @@ class Minion : public Card {
         // Deconstructor
         ~Minion();
 
-        // Copy Constructor
-        Minion(const Card &other);
-
         //Copy Assignment Operator
         Card & operator=(const Card & other) override;
 
