@@ -10,6 +10,7 @@ class Minion : public Card {
     int attack;
     int defence;
     int action;
+    Card *target = nullptr;
     //vector<Enchantment> minionEnchantments;
     public: 
         // Constructor
@@ -49,6 +50,8 @@ class Minion : public Card {
         // get_action(): return's the minion's action value
         int get_action() const;
 
-        void use_ability() override; 
+        // use_ability(player, desc): use the minion's ability based on the desc. Ability gets used on target (if applicable)
+        void use_ability( Player *player, std::string desc, target);
 };
 #endif
+
