@@ -140,8 +140,7 @@ void Minion::use_ability(Player *player, string description, Card *target) {
 }
 
 std::ostream& Minion::print(std::ostream& os) const {
-    string name;
-    os << "|-------------------------------|" << endl;
+    
 
 
     return os;
