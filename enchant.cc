@@ -2,7 +2,7 @@
 using namespace std;
 
 
-Enchant::Enchant(string name, int cost, int addAtk, int addDef, string ability): addAtk{addAtk}, addDef{addDef}, Card{name, cost}
+Enchant::Enchant(string name, int cost, int addAtk, int addDef, string ability): addAtk{addAtk}, addDef{addDef}, Card{name, cost, "Enchant"}
 {}
 
 Enchant::~Enchant() {
