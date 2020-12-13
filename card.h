@@ -1,6 +1,7 @@
 #ifndef CARD_H
 #define CARD_H
 #include <string>
+#include <iostream>
 
 
 class Card {
@@ -49,5 +50,7 @@ class Card {
 
         // Returns the type of the card
         std::string type();
+
+        std::ostream& operator<<(std::ostream &os);
 };
 #endif

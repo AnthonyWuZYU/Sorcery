@@ -29,6 +29,9 @@ class Board {
         void move_to_graveyard(Card card);
         void move_to_hand(Card card);
 
+        ostream& operator<<(ostream &os);
+
+
 };
 
 #endif

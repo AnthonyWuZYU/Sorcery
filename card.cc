@@ -35,3 +35,8 @@ bool Card::operator!=(const Card &other) const {
         return true;
     }
 }
+
+std::ostream& Card::operator<<(std::ostream &os) {
+    os << name;
+    return os;
+}
