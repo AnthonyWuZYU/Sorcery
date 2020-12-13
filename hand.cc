@@ -28,7 +28,6 @@ void Hand::remove( unsigned int i ){
 
 std::ostream& operator<<(std::ostream &os, const Hand &hand) {
     for (auto& it : hand.getHand()) {
-        cout << "Not broken yet" << endl;
         os << it << " ";
     }
     return os;

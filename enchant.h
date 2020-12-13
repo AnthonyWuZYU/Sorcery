@@ -9,11 +9,13 @@ class Player;
 class Enchant : public Card {
     int addAtk;
     int addDef;
+    int mulAtk;
+    int mulDef;
 
     public: 
         // Constructor
-        Enchant(std::string name, int cost, int addAtk, int addDef, std::string ability="");
-
+        Enchant(std::string name, int cost, int addAtk, int addDef, int mulAtk, int mulDef, std::string ability="");
+ 
         // Deconstructor
         ~Enchant();
 

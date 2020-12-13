@@ -1,5 +1,4 @@
 #include "card.h"
-using namespace std;
 
 Card::Card(std::string name, int cost, std::string card_type) : name{name}, cost{cost}, card_type{card_type} {}
 
@@ -13,7 +12,7 @@ void Card::destroy() {}
 
 Card & Card::operator=(const Card & other)  {}
 
-void Card::print(std::ostream& os) const {}
+std::ostream& Card::print(std::ostream& os) const {}
 
 int Card::get_Cost() const {return cost;}
 
@@ -44,6 +43,5 @@ bool Card::operator!=(const Card &other) const {
 
 
 std::ostream& operator<<(std::ostream &os, const Card &card) {
-    card.print(os);
-    return os;
+    return card.print(os);
 }

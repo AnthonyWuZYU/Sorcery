@@ -2,8 +2,8 @@
 #include <algorithm>
 using namespace std;
 
-Minion::Minion(std::string name, int cost, int attack, int defence, std::string card_type, std::string ability) : 
-attack{attack}, defence{defence}, action{0}, Card{name, cost, card_type} {}
+Minion::Minion(std::string name, int cost, int attack, int defence, std::string ability) : 
+attack{attack}, defence{defence}, action{0}, Card{name, cost, "Minion"} {}
 
 Minion::~Minion(){}
 
@@ -149,12 +149,11 @@ void Minion::use_ability(Player *player, string description, Card *target) {
 
 }
 
-void Minion::print(std::ostream& os) const {
-    cout << "Get to Minion" << endl;
-    std::vector<std::string> card_template_t = display_minion_no_ability(this->get_Name(),this->get_Cost(), attack, defence);
-    for (auto it: card_template_t) {
-        os << it;
-    }
+std::ostream& Minion::print(std::ostream& os) const {
+    
+
+
+    return os;
 }
 
 void Minion::destroy() {}

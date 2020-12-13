@@ -1,6 +1,6 @@
-﻿Name,Cost,Attack Multiplier,Defence Multiplier,Ability
-Giant Strength,1,+2,+2,
-Enrage,2,*2,-2,
-Delay,1,,,Enchanted minion does not gain an action on their next turn. This enchantment is automatically destroyed after 1 turn
-Magic Fatigue,0,,,Enchanted minion's activated ability costs 2 more
-Silence,1,,,Enchanted minion cannot use abilities
+﻿Name,Cost,Attak Adder,Defence Adder,Attack Multiplier,Defence Multiplier,Ability
+Giant Strength,1,2,2,1,1,
+Enrage,2,0,-2,2,1,
+Delay,1,0,0,1,1,Enchanted minion does not gain an action on their next turn. This enchantment is automatically destroyed after 1 turn
+Magic Fatigue,0,0,0,1,1,Enchanted minion's activated ability costs 2 more
+Silence,1,0,0,1,1,Enchanted minion cannot use abilities
