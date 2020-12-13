@@ -39,10 +39,20 @@ int main () {
 		player2.setOpp(&player1);
 					
 		// load deck
-		Deck* d1 = new Deck{"default.deck"};
-		Deck* d2 = new Deck{"default.deck"};
-		player1.setDeck(d1);	
-		player1.setDeck(d2);
+		Deck deck1 = Deck{"default.deck"};
+		Deck deck2 = Deck{"default.deck"};
+		Hand hand1, hand2;
+		Graveyard grave1, grave2;
+		
+		cout << deck1.pop().get_Name() << endl;
+
+		Board board1 = Board{deck1, grave1, hand1};
+		Board board2 = Board{deck2, grave2, hand2};
+
+		player1.setBoard(&board1);
+		player2.setBoard(&board2);  		
+		
+		
 
 		string cmd;
 		string option;
@@ -56,7 +66,9 @@ int main () {
 		cout << cur->getName() << "'s turn" << endl;
 		cur->addMaxMagic(1);
 		cur->setMagic(cur->getMaxMagic());
-			
+		//cur->draw();	
+		//cout << cur->getBoard()->get_card_hand(0).get_Name() << endl;
+		
     		bool quit = false;
 
 		while (cin >> cmd) {
@@ -75,17 +87,17 @@ int main () {
 				cout << "          board -- Describe all cards on the board." << endl;
 
 			} else if (cmd == "hand") {
-			
+				
+				cout << deck1.pop().get_Name() << endl;	
 			} else if (cmd == "end") {
 				// end of turn effect
 				cur = cur->getOpp();	
                 		cur->addMaxMagic(1);
                 		cur->setMagic(cur->getMaxMagic());
                         
-			} else if (cmd == "quit") {
 				// draw cards
 				// start of turn effect
-
+				//
 			} else if (cmd == "attack" ) {
                                 cin >> pos;
                                 // i(pos) th minion attack
