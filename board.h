@@ -56,6 +56,8 @@ class Board {
 
         // Graveyard Operations
 
+        Card* remove_from_graveyard();
+
         Graveyard* get_graveyard() const;
 
         void add_to_graveyard(Card* card);
