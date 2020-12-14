@@ -26,7 +26,13 @@ Deck::Deck(string filename) {
     }
 }
 
-Deck::~Deck() {}
+Deck::~Deck() {
+    for (auto& it : cards) {
+        delete it;
+        it = nullptr;
+    }
+    cards.erase(std::remove(cards.begin(), cards.end(), nullptr), cards.end());
+}
 
 std::vector<std::string> get_info(std::vector<std::vector<std::string>> data, std::string cardname) {
     for (auto it = data.begin(); it != data.end(); it++) {
@@ -77,17 +83,17 @@ void Deck::shuffle() {
 	} 
 }
 
-Card Deck::get_top() const{
+Card* Deck::get_top() const{
     return cards.back();
 }
 
-Card Deck::pop() {
-    Card temp = cards.back();
+Card* Deck::pop() {
+    Card* temp = cards.back();
     cards.pop_back();
     return temp;
 }
 
-void Deck::remove(Card card) {
+void Deck::remove(Card* card) {
     for (auto it = cards.begin(); it != cards.end(); it++) {
         if (card == *it) cards.erase(it);
         break;
@@ -105,7 +111,7 @@ void Deck::add(string cardname) {
         } else if (info[5] != "") {
             //Add a triggered ability
         }
-        Card temp = Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3]), "Minion"};
+        Card *temp = new Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3]), "Minion"};
         cards.emplace_back(temp);
     } else if (is_in(enchantments, cardname)) {
         info = get_info(enchantments, cardname);
@@ -124,11 +130,10 @@ void Deck::add(string cardname) {
 }
 
 
-Card Deck::get_card(std::string name) const {
-    for (auto it = cards.begin(); it != cards.end(); it++) {
-        if (it->get_Name() == name) {
-            return *it;
+Card* Deck::get_card(std::string name) const {
+    for (auto it : cards) {
+        if (it->get_name() == name) {
+            return it;
         }
     }
-    return *cards.begin();
 }

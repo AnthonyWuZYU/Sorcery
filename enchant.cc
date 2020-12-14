@@ -9,6 +9,13 @@ Enchant::~Enchant() {
 
 }
 
+Card & Enchant::operator=(const Card* other) {
+
+}
+
+void Enchant::print(std::ostream &os) const {
+	
+}
 
 int Enchant::get_addAtk() {
 	return addAtk;

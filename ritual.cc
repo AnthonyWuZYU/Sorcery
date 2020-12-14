@@ -6,7 +6,7 @@ activation_cost{activation_cost}, charges{charges}, Card{name, cost, card_type} 
 
 Ritual::~Ritual() {}
 
-Ritual::Ritual(const Card &other) : Card{other.get_Name(), other.get_Cost(), other.get_type()} {
+Ritual::Ritual(const Card &other) : Card{other.get_name(), other.get_cost(), other.get_type()} {
  const Ritual* temp = dynamic_cast<const Ritual*>(&other);
  activation_cost = temp->getActivationCost();
  charges = temp->getCharges();
@@ -38,4 +38,14 @@ void Ritual::use_ability( Player *player, std::string description, Card *target 
         }
 }
 
+void Ritual::destroy() {
 
+}
+
+Card & Ritual::operator=(const Card* other) {
+
+}
+
+void Ritual::print(std::ostream &os) const {
+
+}

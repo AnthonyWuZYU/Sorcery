@@ -12,7 +12,7 @@ class Deck;
 class Board {
     Deck *deck;
     Graveyard *graveyard;
-    std::vector<Card> field;
+    std::vector<Card*> field;
     Hand *hand; 
 
     public: 
@@ -21,39 +21,39 @@ class Board {
 
         //Field Operations
 
-        void set_field(std::vector<Card> new_field);
+        void set_field(std::vector<Card*> new_field);
 
-        std::vector<Card> get_field() const;
+        std::vector<Card*> get_field() const;
 
-        Card remove_from_field(unsigned int i);
+        Card* remove_from_field(unsigned int i);
 
-        void add_to_field(Card card);
+        void add_to_field(Card* card);
 
-        void set_card_field(unsigned int i, Card card);
+        void set_card_field(unsigned int i, Card* card);
 
-        Card get_card_field(unsigned int i) const;
+        Card* get_card_field(unsigned int i) const;
 
         // Deck Operations
 
         Deck* get_deck() const;
 
-        Card draw_from_deck();
+        Card* draw_from_deck();
 
         // Hand Operations
         
         Hand* get_hand() const;
 
-        Card remove_from_hand(unsigned int i);
+        Card* remove_from_hand(unsigned int i);
         
-        Card get_card_hand(unsigned int i) const;
+        Card* get_card_hand(unsigned int i) const;
         
-        void add_to_hand(Card card);
+        void add_to_hand(Card* card);
 
         // Graveyard Operations
 
         Graveyard* get_graveyard() const;
 
-        void add_to_graveyard(Card card);
+        void add_to_graveyard(Card* card);
 
         
 

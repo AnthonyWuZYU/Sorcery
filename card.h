@@ -3,61 +3,33 @@
 #include <string>
 #include <iostream>
 
+// Abstract Class
+// Only pointers of Card can be made
 
 class Card {
+        std::string name;
+        int cost;
+        std::string card_type;
 
-    std::string name; // Name of the Card
-    int cost; // Magic Cost to use Card
-    std::string card_type;
-    //Ability ability
-    
     public: 
-        // Constructor, takes in string Name, int Cost and the name of ability
-        // depending on the string ability, we create the associated ability object
+        // Constructor
         Card(std::string name, int cost, std::string card_type);
-
-        // Default constructor
-        Card();
-
-        // Card deconstructor
         virtual ~Card();
-
-        //Copy Assignment Operator
-        virtual Card & operator=(const Card & other);
-
-        // print function
-        virtual void print(std::ostream& os) const;
-
-        //Compare Operator
-        bool operator==(const Card &other) const;
-
-        //Compare Operator
-        bool operator!=(const Card &other) const;
-
-        //get_Name(): returns the Name of the card
-        //get_Name: None -> String
-        std::string get_Name() const;
-
-        //get_Cost(): returns the magic cost of a card
-        //get_Cost: None -> Int
-        int get_Cost() const;
-
+        
+        // Get Functions
+        std::string get_name() const;
+        int get_cost() const;
         std::string get_type() const;
 
-        void set_Cost(int c);
+        // Set Functions
+        void set_name(std::string name);
+        void set_cost(int cost);
+        void set_type(std::string card_type);
 
-        void set_Name(std::string n);
-
-        //use_ability(): uses the ability object of the card to perform the ability
-        virtual void use_ability();
-
-        //destroy(): destroys the card
-        virtual void destroy();
-
-        // Returns the type of the card
-        std::string type();
-
-        
+        // Pure Virtual Functions
+        virtual void destroy() =0;
+        virtual Card & operator=(const Card* other) =0;
+        virtual void print(std::ostream &os) const =0;        
 };
 
 std::ostream& operator<<(std::ostream &os, const Card &card);

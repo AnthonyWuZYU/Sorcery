@@ -3,47 +3,16 @@ using namespace std;
 
 Card::Card(std::string name, int cost, std::string card_type) : name{name}, cost{cost}, card_type{card_type} {}
 
-Card::Card(){}
+Card::~Card() {}
 
-Card::~Card(){}
+std::string Card::get_name() const {return name;}
 
-void Card::use_ability(){}
-
-void Card::destroy() {}
-
-Card & Card::operator=(const Card & other)  {}
-
-void Card::print(std::ostream& os) const {}
-
-int Card::get_Cost() const {return cost;}
-
-std::string Card::get_Name() const {return name;}
+int Card::get_cost() const {return cost;}
 
 std::string Card::get_type() const {return card_type;}
 
-void Card::set_Cost(int c) {cost = c;}
+void Card::set_name(std::string name) {this->name = name;}
 
-void Card::set_Name(std::string n) {name = n;}
+void Card::set_cost(int cost) {this->cost = cost;}
 
-bool Card::operator==(const Card &other) const {
-    if (other.get_Name() == name) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-bool Card::operator!=(const Card &other) const {
-    if (other.get_Name() == name) {
-        return false;
-    } else {
-        return true;
-    }
-}
-
-
-
-std::ostream& operator<<(std::ostream &os, const Card &card) {
-    card.print(os);
-    return os;
-}
+void Card::set_type(std::string card_type) {this->card_type = card_type;}

@@ -18,6 +18,7 @@ class Enchant : public Card {
         ~Enchant();
 
         //Copy Assignment Operator
+        Card & operator=(const Card* other) override;
 
         //use_ability(): uses the ability object of the card to perform the ability
         //void use_ability() override;
@@ -29,6 +30,8 @@ class Enchant : public Card {
         //destroy(): destroys the card
         void destroy() override;
 
-        void use_ability() override; 
+        void use_ability(); 
+        void print(std::ostream &os) const override; 
 };
+
 #endif

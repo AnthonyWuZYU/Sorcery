@@ -5,15 +5,15 @@ int Hand::getSize() const{
     return cards.size();
 }
 
-vector<Card> Hand::getHand() const{
+vector<Card*> Hand::getHand() const{
     return cards;
 }
 
-Card Hand::getCard( unsigned int i ) const{
+Card* Hand::getCard( unsigned int i ) const{
     return cards.at(i);
 }
 
-void Hand::add( Card card ){
+void Hand::add( Card* card ){
     if(cards.size() < maxSize){
         cards.emplace_back(card);
     }
@@ -27,9 +27,8 @@ void Hand::remove( unsigned int i ){
 }
 
 std::ostream& operator<<(std::ostream &os, const Hand &hand) {
-    for (auto& it : hand.getHand()) {
-        cout << "Not broken yet" << endl;
-        os << it << " ";
+    for (auto it : hand.getHand()) {
+        it->print(os);
     }
     return os;
 }

@@ -4,7 +4,7 @@
 #include <vector>
 
 class Deck {
-    std::vector<Card> cards; // The Vector that holds all the cards of the deck
+    std::vector<Card *> cards; // The Vector that holds all the cards of the deck
 
     // Temporary Code for Card Database
     std::vector<std::vector<std::string>> minions;
@@ -25,20 +25,20 @@ class Deck {
         void shuffle();
 
         // get_top(): returns the card from the top of deck. Does not remove.
-        Card get_top() const;
+        Card* get_top() const;
 
         // pop(): returns card from top of deck. Removes card from deck.
         // pop: None -> Card
-        Card pop();
+        Card* pop();
 
         // get_card(name): returns the card that has card.name == name
         // get_card: String -> Card
         // Requires: the card associated with name is in the deck
-        Card get_card(std::string name) const;
+        Card* get_card(std::string name) const;
 
         // remove(card): Searches from deck and removes the given card from deck.
         // remove: Card -> None
-        void remove(Card card);
+        void remove(Card* card);
 
         // add(card): Adds inputted card to top of deck
         //add: Card -> None
