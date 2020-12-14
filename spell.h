@@ -17,7 +17,7 @@ class Spell : public Card {
         ~Spell();
 
         //Copy Assignment Operator
-        Card & operator=(const Card* other) override;
+        Card * operator=(const Card* other) override;
 
         void destroy() override;
 

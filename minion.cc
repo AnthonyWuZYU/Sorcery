@@ -21,6 +21,7 @@ Card* Minion::operator=(const Card* other)  {
     const Minion* temp = dynamic_cast<const Minion*>(other);
     this->set_name(temp->get_name());
     this->set_cost(temp->get_cost());
+    attack = temp->get_attack();
     defence = temp->get_defence();
     action = temp->get_action();
     return this;

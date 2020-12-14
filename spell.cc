@@ -12,11 +12,11 @@ Spell::~Spell() {
 
 }
 
-Card & Spell::operator=(const Card* other)  {
+Card * Spell::operator=(const Card* other)  {
     const Spell* temp = dynamic_cast<const Spell*>(other);
     this->set_name(temp->get_name());
     this->set_cost(temp->get_cost());
-    return *this;
+    return this;
 }
 
 void Spell::destroy() {

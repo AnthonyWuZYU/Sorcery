@@ -10,6 +10,8 @@ using namespace std;
 #include "player.h"
 #include "graveyard.h"
 
+void print_centre_graphic();
+
 int main()
 {
 	//istream *in = nullptr;
@@ -131,6 +133,7 @@ int main()
 			{
 				// show board
 				cout << *cur->getBoard();
+				print_centre_graphic();
 				cout << *cur->getOpp()->getBoard();
 			}
 			else if (cmd == "inspect")
@@ -168,5 +171,12 @@ int main()
 	}
 	catch (ios::failure)
 	{
+	}
+}
+
+
+void print_centre_graphic() {
+	for (auto it: CENTRE_GRAPHIC) {
+		cout << it;
 	}
 }
