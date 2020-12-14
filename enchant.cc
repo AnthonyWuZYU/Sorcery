@@ -19,7 +19,7 @@ Enchant::~Enchant() {
 
 }
 
-Card & Enchant::operator=(const Card* other)  {
+Card * Enchant::operator=(const Card* other)  {
         const Enchant* temp = dynamic_cast<const Enchant*>(other);
         this->set_name(temp->get_name());
         this->set_cost(temp->get_cost());
