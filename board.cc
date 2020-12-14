@@ -74,8 +74,28 @@ Card* Board::draw_from_deck() {
 }
 
 std::ostream& operator<<(std::ostream &os, const Board &board) {
+    vector<vector<string>> cards_graphics;
     for (auto it : board.get_field()) {
-        it->print(os);
+        if (it->get_type() == "Minion") {
+            Minion *temp = dynamic_cast<Minion *>(it);
+            string ability = temp->get_ability();
+            if (ability == "") {
+                cards_graphics.emplace_back(display_minion_no_ability(temp->get_name(),temp->get_cost(),temp->get_attack(),temp->get_defence()));
+            } 
+        } else if (it->get_type() == "Enchant") {
+
+        } else if (it->get_type() == "Spell") {
+
+        } else if (it->get_type() == "Ritual") {
+
+        }
+        
+    }
+    for (int i = 0; i < 11; i++) {
+        for (auto it: cards_graphics) {
+            os << it[i] << " ";
+        }
+        os << endl;
     }
     return os;
 }

@@ -4,7 +4,7 @@
 using namespace std;
 
 Minion::Minion(std::string name, int cost, int attack, int defence, std::string card_type, std::string ability) : 
-attack{attack}, defence{defence}, action{0}, Card{name, cost, "Minion"} {}
+attack{attack}, defence{defence}, action{0}, ability{ability}, Card{name, cost, "Minion"} {}
 
 Minion::~Minion(){
     delete target;
@@ -179,5 +179,7 @@ int Minion::get_attack() const {return attack;}
 int Minion::get_defence() const {return defence;}
 
 int Minion::get_action() const {return action;}
+
+std::string Minion::get_ability() const {return ability;}
 
 

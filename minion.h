@@ -12,6 +12,7 @@ class Minion : public Card {
     int defence;
     int action;
     Card *target = nullptr;
+    std::string ability;
     //vector<Enchantment> minionEnchantments;
     public:
         // Constructor
@@ -51,6 +52,8 @@ class Minion : public Card {
 
         // get_action(): return's the minion's action value
         int get_action() const;
+
+        std::string get_ability() const;
 
         void print(std::ostream &os) const override;
 
