@@ -2,15 +2,9 @@
 
 using namespace std;
 
-Spell::Spell(string name, int cost, string ability): ability {ability}, Card{name, cost, "Spell"} {}
+Spell::Spell(string name, int cost, string ability): Card{name, cost, "Spell"} {}
  
-Card * Spell::operator=(const Card* other)  {
-    const Spell* temp = dynamic_cast<const Spell*>(other);
-    this->set_name(temp->get_name());
-    this->set_cost(temp->get_cost());
-    ability = temp->get_ability();
-    return this;
-}
+Spell::Spell( const Card* other ): Card{ other->get_name(), other->get_cost(), other->get_type() } {}
 
 Spell::~Spell() {}
 
@@ -31,6 +25,8 @@ void Spell::use_ability( Player *player, std::string description, Card *target )
 
             op->setBoard(oppBoard);
             player->setOpp( op );
+            player->setMagic( player->getMagic() - 1);
+
         } else if (description == "Your ritual gains 3 charges") {
             Board* board = player->getBoard();
             Card* temp = board->get_ritual();
@@ -40,6 +36,7 @@ void Spell::use_ability( Player *player, std::string description, Card *target )
             board->set_ritual( ritual );        
 
             player->setBoard( board );
+            player->setMagic( player->getMagic() - 1);
         } else if (description == "Destroy the top enchant on target minion") {
             //do something
             
@@ -52,6 +49,7 @@ void Spell::use_ability( Player *player, std::string description, Card *target )
             board->add_to_field( alive );
 
             player->setBoard( board );
+            player->setMagic( player->getMagic() - 1);
 
         } else if (description == "Deal 2 damage to all minions") {
             Player *op = player->getOpp();
@@ -71,6 +69,7 @@ void Spell::use_ability( Player *player, std::string description, Card *target )
         op->setBoard( oppBoard );
         player->setOpp(op);
 
+        player->setMagic( player->getMagic() - 3);
         }
 }
 
@@ -79,6 +78,14 @@ void Spell::print(std::ostream& os) const {
     for (auto it: card_template_t) {
         os << it << endl;
     }
+}
+
+Card * Spell::operator=(const Card* other)  {
+    const Spell* temp = dynamic_cast<const Spell*>(other);
+    this->set_name(temp->get_name());
+    this->set_cost(temp->get_cost());
+    ability = temp->get_ability();
+    return this;
 }
 
 
