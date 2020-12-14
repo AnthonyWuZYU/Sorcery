@@ -81,14 +81,6 @@ void Spell::print(std::ostream& os) const {
     }
 }
 
-Card * Spell::operator=(const Card* other)  {
-    const Spell* temp = dynamic_cast<const Spell*>(other);
-    this->set_name(temp->get_name());
-    this->set_cost(temp->get_cost());
-    ability = temp->get_ability();
-    return this;
-}
-
 
 string Spell::get_ability() const {
         return ability;
