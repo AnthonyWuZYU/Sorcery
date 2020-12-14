@@ -4,7 +4,7 @@ using namespace std;
 
 Spell::Spell(string name, int cost, string ability): ability {ability}, Card{name, cost, "Spell"} {}
  
-Card & Spell::operator=(const Card* other)  {
+Card * Spell::operator=(const Card* other)  {
     const Spell* temp = dynamic_cast<const Spell*>(other);
     this->set_name(temp->get_name());
     this->set_cost(temp->get_cost());
