@@ -14,12 +14,7 @@ Card* Hand::getCard( unsigned int i ) const{
 }
 
 void Hand::add( Card* card ){
-    if(cards.size() < maxSize){
-        cards.emplace_back(card);
-    }
-    else{
-        cout << "Hand already full." << endl;
-    }
+    cards.emplace_back(card);
 }
 
 void Hand::remove( unsigned int i ){

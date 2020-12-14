@@ -80,6 +80,9 @@ Card* Board::draw_from_deck() {
 Card* Board::get_ritual() const {return ritual;}
 
 void Board::set_ritual( Card* a ){
+    // Remove the current ritual from play
+
+    // Set the new the ritual
     ritual = a;
 }
 

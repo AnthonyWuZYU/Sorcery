@@ -10,7 +10,7 @@ class Board;
 
 class Player{
         int life;
-        int maxMagic;
+        int maxMagic =2;
         int magic;
         std::string name;
         Player *opponent;

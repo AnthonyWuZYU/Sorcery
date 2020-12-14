@@ -136,11 +136,20 @@ int main()
 			{
 				// show board
 				print_top_border();
-				print_player(cur, 1);
-				cout << *cur->getBoard();
-				print_centre_graphic();
-				cout << *cur->getOpp()->getBoard();
-				print_player(cur->getOpp(), 2);
+				
+				if (cur->getName() == player1_name) {
+					print_player(cur, 1);
+					cout << *cur->getBoard();
+					print_centre_graphic();
+					cout << *cur->getOpp()->getBoard();
+					print_player(cur->getOpp(), 2);
+				} else {
+					print_player(cur->getOpp(), 1);
+					cout << *cur->getOpp()->getBoard();
+					print_centre_graphic();
+					cout << *cur->getBoard();
+					print_player(cur, 2);
+				}
 				print_bot_border();
 			}
 			else if (cmd == "inspect")
