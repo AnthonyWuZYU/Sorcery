@@ -1,5 +1,6 @@
 #include "minion.h"
 #include <algorithm>
+#include <iostream>
 using namespace std;
 
 Minion::Minion(std::string name, int cost, int attack, int defence, std::string card_type, std::string ability) : 
@@ -16,13 +17,13 @@ Minion::Minion(const Card* other) : Card{other->get_name(), other->get_cost(), o
  action = temp->get_action();
 }
 
-Card & Minion::operator=(const Card* other)  {
+Card* Minion::operator=(const Card* other)  {
     const Minion* temp = dynamic_cast<const Minion*>(other);
     this->set_name(temp->get_name());
     this->set_cost(temp->get_cost());
     defence = temp->get_defence();
     action = temp->get_action();
-    return *this;
+    return this;
 }
 
 
@@ -34,14 +35,12 @@ void Minion::attack_target(Player *player) {
     }
 }
 
-void Minion::attack_target(Minion *target) {
+void Minion::attack_target(Card *other) {
+    cout << "My defence is :" << defence << endl;
+    Minion *target = dynamic_cast<Minion *>(other);
     target->set_defence(target->get_defence() - attack);
-    this->set_defence(this->get_defence() - target->get_attack());
-
-    // Check if target is dead
-    if (target->get_defence() <= 0) {
-        // target dies
-    }
+    defence -= target->get_attack();
+    cout << "My defence is now :" << defence << endl;
 }
 
 void Minion::use_ability(Player *player, string description, Card *target) {

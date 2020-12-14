@@ -4,6 +4,7 @@
 #include <string>
 #include "view.h"
 #include "board.h"
+#include "minion.h"
 
 class Board;
 
@@ -49,6 +50,8 @@ class Player{
         void draw(); // method to draw a card from the player's deck and add it in the hand
 
         void play_card(unsigned int i); // takes index of card from hand to place on field
+
+        void minion_attack(unsigned int i, unsigned int j); 
 
 };
 

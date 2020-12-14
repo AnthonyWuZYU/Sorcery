@@ -114,9 +114,14 @@ int main()
 			}
 			else if (cmd == "attack")
 			{
+				int j = 1000;
 				cin >> pos;
+				cin >> j;
+				
 				// i(pos) th minion attack
 				// if attack i j
+				cur->minion_attack(pos, j);
+				
 			}
 			else if (cmd == "hand")
 			{
@@ -125,6 +130,8 @@ int main()
 			else if (cmd == "board")
 			{
 				// show board
+				cout << *cur->getBoard();
+				cout << *cur->getOpp()->getBoard();
 			}
 			else if (cmd == "inspect")
 			{
@@ -141,6 +148,7 @@ int main()
 				cin >> pos;
 				// use i(pos) th
 				// if play i p t
+				cur->play_card(pos);
 			}
 			else if (cmd == "quit")
 			{

@@ -28,7 +28,7 @@ class Card {
 
         // Pure Virtual Functions
         virtual void destroy() =0;
-        virtual Card & operator=(const Card* other) =0;
+        virtual Card * operator=(const Card* other) =0;
         virtual void print(std::ostream &os) const =0;        
 };
 

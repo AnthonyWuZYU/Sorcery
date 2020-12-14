@@ -9,7 +9,7 @@ Enchant::~Enchant() {
 
 }
 
-Card & Enchant::operator=(const Card* other) {
+Card * Enchant::operator=(const Card* other) {
 
 }
 

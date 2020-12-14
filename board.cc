@@ -75,7 +75,7 @@ Card* Board::draw_from_deck() {
 
 std::ostream& operator<<(std::ostream &os, const Board &board) {
     for (auto it : board.get_field()) {
-        os << it;
+        it->print(os);
     }
     return os;
 }
