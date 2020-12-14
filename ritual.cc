@@ -2,7 +2,7 @@
 using namespace std;
 
 Ritual::Ritual( std::string name, int cost, int activation_cost, int charges, std::string card_type, std::string ability ) :
-activation_cost{activation_cost}, charges{charges}, Card{name, cost, card_type} {}
+activation_cost{activation_cost}, charges{charges}, Card{name, cost, "Ritual"} {}
 
 Ritual::~Ritual() {}
 
@@ -49,3 +49,4 @@ Card & Ritual::operator=(const Card* other) {
 void Ritual::print(std::ostream &os) const {
 
 }
+
