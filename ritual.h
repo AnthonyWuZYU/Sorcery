@@ -14,7 +14,7 @@ Card *target = nullptr;
 public:
 
 // Constructor
-Ritual( std::string name, int cost, int activation_cost, int charges, std::string card_type, std::string ability = "" );
+Ritual( std::string name, int cost, int activation_cost, int charges, std::string ability = "" );
 
 // Polymorphic Copy Constructor
 Ritual( const Card *other );
@@ -36,11 +36,12 @@ void use_ability( Player *player, std::string desc, Card *target );
 
 void destroy() override;
 
-Card * operator=(const Card* other) override;
+Card & operator=(const Card* other) override;
 
 void print(std::ostream &os) const override;
 
 };
 
 #endif
+
 
