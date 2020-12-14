@@ -56,7 +56,7 @@ Card * Ritual::operator=(const Card* other) {
 }
 
 void Ritual::print(std::ostream &os) const {
-        std::vector<std::string> card_template_t = display_ritual(this->get_name(),this->get_cost(), this->getActivationCost(), "", this->getCharges());
+        std::vector<std::string> card_template_t = display_ritual(this->get_name(),this->get_cost(), this->getActivationCost(), this->get_ability(), this->getCharges());
         for (auto it: card_template_t) {
                 os << it << endl;
         }
