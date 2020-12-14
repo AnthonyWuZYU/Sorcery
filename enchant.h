@@ -25,7 +25,7 @@ class Enchant : public Card {
 
 
         //Copy Assignment Operator
-        Card & operator=(const Card* other) override;
+        Card * operator=(const Card* other) override;
 
         int get_addAtk() const;
 
