@@ -2,7 +2,7 @@
 using namespace std;
 
 Ritual::Ritual( std::string name, int cost, int activation_cost, int charges, std::string ability ) :
-activation_cost{activation_cost}, charges{charges}, Card{name, cost, "Ritual"} {}
+activation_cost{activation_cost}, charges{charges}, ability{ability}, Card{name, cost, "Ritual"} {}
 
 Ritual::~Ritual() {}
 
@@ -22,6 +22,10 @@ int Ritual::getCharges() const{
 
 void Ritual::setCharges( int a ){
     charges = a;
+}
+
+string Ritual::get_ability() const {
+    return ability;
 }
 
 void Ritual::use_ability( Player *player, std::string description, Card *target ){
