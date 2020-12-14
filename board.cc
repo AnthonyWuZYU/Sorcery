@@ -65,6 +65,10 @@ void Board::add_to_graveyard(Card* card) {
     graveyard->add(card);
 }
 
+Card* Board::remove_from_graveyard(){
+    return graveyard.revive();
+}
+
 // Deck Operations
 
 Deck * Board::get_deck() const {return deck;}
