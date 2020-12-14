@@ -10,6 +10,11 @@ using namespace std;
 #include "player.h"
 #include "graveyard.h"
 
+void print_centre_graphic();
+void print_top_border();
+void print_bot_border();
+void print_player(Player* player, int num);
+
 int main()
 {
 	//istream *in = nullptr;
@@ -130,8 +135,13 @@ int main()
 			else if (cmd == "board")
 			{
 				// show board
+				print_top_border();
+				print_player(cur, 1);
 				cout << *cur->getBoard();
+				print_centre_graphic();
 				cout << *cur->getOpp()->getBoard();
+				print_player(cur->getOpp(), 2);
+				print_bot_border();
 			}
 			else if (cmd == "inspect")
 			{
@@ -170,3 +180,51 @@ int main()
 	{
 	}
 }
+
+
+void print_centre_graphic() {
+	for (auto it: CENTRE_GRAPHIC) {
+		cout << it << endl;
+	}
+}
+
+void print_top_border() {
+	cout << EXTERNAL_BORDER_CHAR_TOP_LEFT;
+	for (int i=0; i < 165; i++) {
+		cout << EXTERNAL_BORDER_CHAR_LEFT_RIGHT;
+	}
+	cout << EXTERNAL_BORDER_CHAR_TOP_RIGHT << endl;
+}
+
+void print_bot_border() {
+	cout << EXTERNAL_BORDER_CHAR_BOTTOM_LEFT;
+	for (int i =0; i < 165; i++) {
+		cout << EXTERNAL_BORDER_CHAR_LEFT_RIGHT;
+	}
+	cout << EXTERNAL_BORDER_CHAR_BOTTOM_RIGHT << endl;
+}
+
+void print_player(Player* player, int num) {
+	vector<vector<string>> to_print;
+	
+	if (player->getBoard()->get_ritual() != nullptr) {
+		Ritual *temp = dynamic_cast<Ritual *>(player->getBoard()->get_ritual());
+		to_print.emplace_back(display_ritual(temp->get_name(),temp->get_cost(),temp->getActivationCost(),temp->get_ability(),
+                               temp->getCharges()));
+	} else {
+		to_print.emplace_back(CARD_TEMPLATE_BORDER);
+	}
+	to_print.emplace_back(CARD_TEMPLATE_EMPTY);
+	to_print.emplace_back(display_player_card(num,player->getName(),player->getLife(),player->getMagic()));
+	to_print.emplace_back(CARD_TEMPLATE_EMPTY);
+	to_print.emplace_back(CARD_TEMPLATE_BORDER);
+
+	for (int i = 0; i < 11; i++) {
+        cout << EXTERNAL_BORDER_CHAR_UP_DOWN;
+        for (auto it: to_print) {
+            cout << it[i];
+        }
+        cout << EXTERNAL_BORDER_CHAR_UP_DOWN << endl;
+    }
+}
+

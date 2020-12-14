@@ -10,17 +10,20 @@ class Ritual : public Card{
 int activation_cost;
 int charges;
 Card *target = nullptr;
+std::string ability;
 
 public:
 
 // Constructor
-Ritual( std::string name, int cost, int activation_cost, int charges, std::string card_type, std::string ability = "" );
+Ritual( std::string name, int cost, int activation_cost, int charges, std::string ability = "" );
 
 // Polymorphic Copy Constructor
 Ritual( const Card *other );
 
 // Deconstructor
 ~Ritual();
+
+std::string get_ability();
 
 // method to return the activation cost
 int getActivationCost() const;
@@ -43,4 +46,5 @@ void print(std::ostream &os) const override;
 };
 
 #endif
+
 
