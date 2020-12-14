@@ -2,9 +2,15 @@
 
 using namespace std;
 
-Spell::Spell(string name, int cost, string ability): Card{name, cost, "Spell"} {}
+Spell::Spell(string name, int cost, string ability): ability {ability}, Card{name, cost, "Spell"} {}
  
-Spell::Spell( const Card* other ): Card{ other->get_name(), other->get_cost(), other->get_type() } {}
+Card & Spell::operator=(const Card* other)  {
+    const Spell* temp = dynamic_cast<const Spell*>(other);
+    this->set_name(temp->get_name());
+    this->set_cost(temp->get_cost());
+    ability = temp->get_ability();
+    return *this;
+}
 
 Spell::~Spell() {}
 
