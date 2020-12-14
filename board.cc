@@ -87,15 +87,16 @@ std::ostream& operator<<(std::ostream &os, const Board &board) {
 
     // If we don't have 5 cards in play
     if (cards_graphics.size() != 5) {
-        for (int i = 0; i < 5-cards_graphics.size(); i++) {
-            cards_graphics.emplace_back(CARD_TEMPLATE_EMPTY);
+        int diff = 5 - cards_graphics.size();
+        for (int i = 0; i < diff; i++) {
+            cards_graphics.emplace_back(CARD_TEMPLATE_BORDER);
         }
     }
 
     for (int i = 0; i < 11; i++) {
-        cout << EXTERNAL_BORDER_CHAR_UP_DOWN << " ";
+        os << EXTERNAL_BORDER_CHAR_UP_DOWN;
         for (auto it: cards_graphics) {
-            os << it[i] << " ";
+            os << it[i];
         }
         os << EXTERNAL_BORDER_CHAR_UP_DOWN << endl;
     }

@@ -1,6 +1,7 @@
 #ifndef DECK_H
 #define DECK_H
 #include "minion.h"
+#include "ritual.h"
 #include <vector>
 
 class Deck {

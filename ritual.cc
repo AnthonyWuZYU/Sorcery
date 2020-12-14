@@ -2,7 +2,7 @@
 using namespace std;
 
 Ritual::Ritual( std::string name, int cost, int activation_cost, int charges, std::string card_type, std::string ability ) :
-activation_cost{activation_cost}, charges{charges}, Card{name, cost, "Ritual"} {}
+activation_cost{activation_cost}, charges{charges}, ability{ability}, Card{name, cost, "Ritual"} {}
 
 Ritual::~Ritual() {}
 
@@ -36,6 +36,10 @@ void Ritual::use_ability( Player *player, std::string description, Card *target 
         else if (description == "Whenever a minion enters play, destroy it") {
             //do something
         }
+}
+
+std::string Ritual::get_ability() {
+    return ability;
 }
 
 void Ritual::destroy() {
