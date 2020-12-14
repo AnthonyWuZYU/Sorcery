@@ -47,6 +47,7 @@ void Ritual::use_ability( Player *player, std::string description, Card *target 
 
         board->set_field( field );
         player->setBoard( board );
+        player->setMagic( player->getMagic() - 1);
         }
         else if (description == "Whenever a minion enters play, destroy it") {
             //do something
