@@ -6,7 +6,7 @@ activation_cost{activation_cost}, charges{charges}, Card{name, cost, "Ritual"} {
 
 Ritual::~Ritual() {}
 
-Ritual::Ritual(const Card* other) : Card{other.get_name(), other.get_cost(), other.get_type()} {
+Ritual::Ritual(const Card* other) : Card{other->get_name(), other->get_cost(), other->get_type()} {
  const Ritual* temp = dynamic_cast<const Ritual*>(other);
  activation_cost = temp->getActivationCost();
  charges = temp->getCharges();
