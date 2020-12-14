@@ -42,7 +42,7 @@ void Ritual::destroy() {
 
 }
 
-Card & Ritual::operator=(const Card* other) {
+Card * Ritual::operator=(const Card* other) {
 
 }
 
