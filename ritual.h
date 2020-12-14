@@ -23,7 +23,7 @@ Ritual( const Card *other );
 // Deconstructor
 ~Ritual();
 
-std::string get_ability();
+std::string get_ability() const;
 
 // method to return the activation cost
 int getActivationCost() const;
