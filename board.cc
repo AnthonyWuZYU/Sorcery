@@ -73,29 +73,35 @@ Card* Board::draw_from_deck() {
     return deck->pop();
 }
 
+Card* Board::get_ritual() const {return ritual;}
+
+void Board::set_ritual( Card* a ){
+    ritual = a;
+}
+
 std::ostream& operator<<(std::ostream &os, const Board &board) {
     vector<vector<string>> cards_graphics;
     for (auto it : board.get_field()) {
-        if (it->get_type() == "Minion") {
-            Minion *temp = dynamic_cast<Minion *>(it);
-            string ability = temp->get_ability();
-            if (ability == "") {
-                cards_graphics.emplace_back(display_minion_no_ability(temp->get_name(),temp->get_cost(),temp->get_attack(),temp->get_defence()));
-            } 
-        } else if (it->get_type() == "Enchant") {
-
-        } else if (it->get_type() == "Spell") {
-
-        } else if (it->get_type() == "Ritual") {
-
-        }
-        
+        Minion *temp = dynamic_cast<Minion *>(it);
+        string ability = temp->get_ability();
+        if (ability == "") {
+            cards_graphics.emplace_back(display_minion_no_ability(temp->get_name(),temp->get_cost(),temp->get_attack(),temp->get_defence()));
+        } 
     }
+
+    // If we don't have 5 cards in play
+    if (cards_graphics.size() != 5) {
+        for (int i = 0; i < 5-cards_graphics.size(); i++) {
+            cards_graphics.emplace_back(CARD_TEMPLATE_EMPTY);
+        }
+    }
+
     for (int i = 0; i < 11; i++) {
+        cout << EXTERNAL_BORDER_CHAR_UP_DOWN << " ";
         for (auto it: cards_graphics) {
             os << it[i] << " ";
         }
-        os << endl;
+        os << EXTERNAL_BORDER_CHAR_UP_DOWN << endl;
     }
     return os;
 }
