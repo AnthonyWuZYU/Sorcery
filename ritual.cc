@@ -42,7 +42,7 @@ void Ritual::destroy() {
 
 }
 
-Card & Ritual::operator=(const Card* other) {
+Card * Ritual::operator=(const Card* other) {
     const Ritual* temp = dynamic_cast<const Ritual*>(other);
     this->set_name(temp->get_name());
     this->set_cost(temp->get_cost());
