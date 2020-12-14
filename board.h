@@ -14,10 +14,13 @@ class Board {
     Graveyard *graveyard;
     std::vector<Card*> field;
     Hand *hand; 
+    Card *ritual = nullptr;
 
     public: 
         Board(Deck *deck, Graveyard *graveyard, Hand *hand);
         ~Board();
+
+        Card* get_ritual() const;
 
         //Field Operations
 

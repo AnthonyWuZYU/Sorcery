@@ -11,6 +11,10 @@ using namespace std;
 #include "graveyard.h"
 
 void print_centre_graphic();
+void print_top_border();
+void print_bot_border();
+void print_player1(Player* player);
+void print_player2(Player* player);
 
 int main()
 {
@@ -177,6 +181,21 @@ int main()
 
 void print_centre_graphic() {
 	for (auto it: CENTRE_GRAPHIC) {
-		cout << it;
+		cout << it << endl;
 	}
+}
+
+void print_top_border() {
+
+}
+
+void print_bot_border() {
+
+}
+void print_player1(Player* player) {
+
+}
+
+void print_player2(Player* player) {
+
 }
