@@ -24,6 +24,7 @@ Deck::Deck(string filename) {
     while ( getline(infile, i) ) {
         this->add(i);
     }
+    this->shuffle();
 }
 
 Deck::~Deck() {

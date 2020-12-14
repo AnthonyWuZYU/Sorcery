@@ -24,7 +24,7 @@ class Minion : public Card {
         ~Minion();
 
         //Copy Assignment Operator
-        Card & operator=(const Card* other) override;
+        Card * operator=(const Card* other) override;
 
 
         //destroy(): destroys the card
@@ -32,7 +32,7 @@ class Minion : public Card {
 
         //atack(player): Attacks either a minion or player
         void attack_target(Player *player);
-        void attack_target(Minion *minion);
+        void attack_target(Card *other);
 
         // set_attack(a): sets the minion's attack to int a
         void set_attack(int a);

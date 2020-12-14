@@ -67,3 +67,13 @@ void Player::play_card(unsigned int i) {
     board->add_to_field(board->remove_from_hand(i));
 }
 
+void Player::minion_attack(unsigned int i, unsigned int j) {
+    Minion* attacker = dynamic_cast<Minion *>(board->get_card_field(i));
+    if (j == 1000) {
+        //We attack the opposing the player
+        attacker->attack_target(opponent);
+    } else {
+        //We are attacking another minion
+        attacker->attack_target(opponent->getBoard()->get_card_field(j));
+    }
+}

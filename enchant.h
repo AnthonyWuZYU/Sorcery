@@ -18,7 +18,7 @@ class Enchant : public Card {
         ~Enchant();
 
         //Copy Assignment Operator
-        Card & operator=(const Card* other) override;
+        Card * operator=(const Card* other) override;
 
         //use_ability(): uses the ability object of the card to perform the ability
         //void use_ability() override;
