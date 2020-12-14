@@ -128,10 +128,6 @@ int main()
 				cur->minion_attack(pos, j);
 				
 			}
-			else if (cmd == "hand")
-			{
-				// show hands
-			}
 			else if (cmd == "board")
 			{
 				// show board
