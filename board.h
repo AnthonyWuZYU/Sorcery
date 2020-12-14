@@ -22,6 +22,8 @@ class Board {
 
         Card* get_ritual() const;
 
+        void set_ritual( Card* a );
+
         //Field Operations
 
         void set_field(std::vector<Card*> new_field);
@@ -54,6 +56,8 @@ class Board {
 
         // Graveyard Operations
 
+        Card* remove_from_graveyard();
+
         Graveyard* get_graveyard() const;
 
         void add_to_graveyard(Card* card);
@@ -63,3 +67,4 @@ class Board {
 };
 std::ostream& operator<<(std::ostream &os, const Board &board);
 #endif
+

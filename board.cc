@@ -65,6 +65,10 @@ void Board::add_to_graveyard(Card* card) {
     graveyard->add(card);
 }
 
+Card* Board::remove_from_graveyard(){
+    return graveyard->revive();
+}
+
 // Deck Operations
 
 Deck * Board::get_deck() const {return deck;}
@@ -74,6 +78,10 @@ Card* Board::draw_from_deck() {
 }
 
 Card* Board::get_ritual() const {return ritual;}
+
+void Board::set_ritual( Card* a ){
+    ritual = a;
+}
 
 std::ostream& operator<<(std::ostream &os, const Board &board) {
     vector<vector<string>> cards_graphics;

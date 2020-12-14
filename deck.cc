@@ -102,32 +102,35 @@ void Deck::remove(Card* card) {
 }
 
 void Deck::add(string cardname) {
-    vector<string> info;
+        vector<string> info;
     // Check if it is a minion card
-    if (is_in(minions, cardname)) {
-        info = get_info(minions, cardname);
-        // Create the ability
-        if (info[4] != "") {
-            //Add an activated ability
-        } else if (info[5] != "") {
-            //Add a triggered ability
-        }
-        Card *temp = new Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3]), "Minion"};
-        cards.emplace_back(temp);
-    } else if (is_in(enchantments, cardname)) {
-        info = get_info(enchantments, cardname);
-
-    } else if (is_in(spells, cardname)) {
-        info = get_info(spells, cardname);
-
-    } else if (is_in(rituals, cardname)) {
-        info = get_info(rituals, cardname);
-
-    } else {
+        if (is_in(minions, cardname)) {
+                info = get_info(minions, cardname);
+                // Create the ability
+                if (info[4] != "") {
+                    //Add an activated ability
+                } else if (info[5] != "") {
+                    //Add a triggered ability
+                }
+                Card *temp = new Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3]), "Minion"};
+                cards.emplace_back(temp);
+        } else if (is_in(enchantments, cardname)) {
+                info = get_info(enchantments, cardname);
+                Card *temp = new Enchant{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3]), stoi(info[4]), stoi(info[5]), info[6]};
+                cards.emplace_back(temp);
+        } else if (is_in(spells, cardname)) {
+                info = get_info(spells, cardname);
+                Card *temp = new Spell{info[0], stoi(info[1]), info[2]};
+                cards.emplace_back(temp);
+        } else if (is_in(rituals, cardname)) {
+                info = get_info(rituals, cardname);
+                Card *temp = new Ritual{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3])};
+                cards.emplace_back(temp);
+        } else {
         // The card is not of the four types and we should throw an error
-        cerr << "Invalid Card in deck" << endl;
-    }
-    
+                cerr << "Invalid Card in deck" << endl;
+        }
+
 }
 
 
