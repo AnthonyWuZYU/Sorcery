@@ -1,7 +1,7 @@
 #include "ritual.h"
 using namespace std;
 
-Ritual::Ritual( std::string name, int cost, int activation_cost, int charges, std::string card_type, std::string ability ) :
+Ritual::Ritual( std::string name, int cost, int activation_cost, int charges, std::string ability ) :
 activation_cost{activation_cost}, charges{charges}, Card{name, cost, "Ritual"} {}
 
 Ritual::~Ritual() {}
