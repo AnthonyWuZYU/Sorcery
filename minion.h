@@ -62,3 +62,4 @@ class Minion : public Card {
 };
 #endif
 
+

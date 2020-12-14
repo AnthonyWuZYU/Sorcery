@@ -34,8 +34,19 @@ void Ritual::use_ability( Player *player, std::string description, Card *target 
             
             charges -= 1;  
         } 
-        else if (description == "1 | Whenever a minion enters play under your control, it gains +1/+1") {
-            //do something
+        else if (description == "Whenever a minion enters play under your control, it gains +1/+1") {
+        Board *board = player->getBoard();
+        vector<Card*> field = board->get_field();
+        int length = field.size();
+
+        Minion *temp = new Minion(field.back());
+        temp->set_defence( temp->get_defence() + 1 );
+        temp->set_attack( temp->get_attack() + 1 );
+        field.back() = temp;
+        delete temp;
+
+        board->set_field( field );
+        player->setBoard( board );
         }
         else if (description == "Whenever a minion enters play, destroy it") {
             //do something
