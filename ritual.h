@@ -4,6 +4,8 @@
 #include "player.h"
 #include <vector>
 
+class Player;
+
 class Ritual : public Card{
 int activation_cost;
 int charges;
@@ -15,7 +17,7 @@ public:
 Ritual( std::string name, int cost, int activation_cost, int charges, std::string card_type, std::string ability = "" );
 
 // Polymorphic Copy Constructor
-Ritual( const Card &other );
+Ritual( const Card *other );
 
 // Deconstructor
 ~Ritual();
@@ -41,3 +43,4 @@ void print(std::ostream &os) const override;
 };
 
 #endif
+
