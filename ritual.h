@@ -39,7 +39,7 @@ void use_ability( Player *player, std::string desc, Card *target );
 
 void destroy() override;
 
-Card & operator=(const Card* other) override;
+Card * operator=(const Card* other) override;
 
 void print(std::ostream &os) const override;
 

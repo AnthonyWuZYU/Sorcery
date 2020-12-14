@@ -18,12 +18,7 @@ Card * Spell::operator=(const Card* other)  {
     const Spell* temp = dynamic_cast<const Spell*>(other);
     this->set_name(temp->get_name());
     this->set_cost(temp->get_cost());
-<<<<<<< HEAD
     return this;
-=======
-    ability = temp->get_ability();
-    return *this;
->>>>>>> master
 }
 
 void Spell::destroy() {

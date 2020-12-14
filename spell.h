@@ -19,11 +19,8 @@ class Spell : public Card {
 
         //Copy Assignment Operator
         Card * operator=(const Card* other) override;
-<<<<<<< HEAD
-=======
 
         std::string get_ability() const;
->>>>>>> master
 
         void destroy() override;
 

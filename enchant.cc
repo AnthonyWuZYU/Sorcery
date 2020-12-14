@@ -28,7 +28,7 @@ Card * Enchant::operator=(const Card* other)  {
         mulAtk = temp->get_mulAtk();
         mulDef = temp->get_mulDef();
         ability = temp->get_ability();
-        return *this;
+        return this;
 }       
 
 int Enchant::get_addAtk() const {
