@@ -19,7 +19,7 @@ Card * Spell::operator=(const Card* other)  {
     this->set_name(temp->get_name());
     this->set_cost(temp->get_cost());
     ability = temp->get_ability();
-    return *this;
+    return this;
 }
 
 void Spell::destroy() {
