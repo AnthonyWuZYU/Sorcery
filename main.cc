@@ -204,7 +204,9 @@ int main(int argc, char *argv[]) {
 			cout << cur->getName() << "'s turn" << endl;
 		}
 	}
-	catch (ios::failure) {}
+	catch (ios::failure) {
+		cerr << "failure" << endl;
+	}
 }
 
 

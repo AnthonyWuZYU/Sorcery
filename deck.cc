@@ -128,7 +128,7 @@ void Deck::add(string cardname) {
                 cards.emplace_back(temp);
         } else if (is_in(rituals, cardname)) {
                 info = get_info(rituals, cardname);
-                Card *temp = new Ritual{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3])};
+                Card *temp = new Ritual{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3]), info[4]};
                 cards.emplace_back(temp);
         } else {
         // The card is not of the four types and we should throw an error
