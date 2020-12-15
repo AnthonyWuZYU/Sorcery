@@ -2,10 +2,13 @@
 #define MINION_H
 #include "ascii_graphics.h"
 #include "card.h"
+#include "enchant.h"
 #include "player.h"
 #include <vector>
 
 class Player;
+
+class Enchant;
 
 class Minion : public Card {
     int attack;
@@ -13,7 +16,7 @@ class Minion : public Card {
     int action;
     Card *target = nullptr;
     std::string ability;
-    //vector<Enchantment> minionEnchantments;
+    std::vector<Enchant*> minionEnchantments;
     public:
         // Constructor
         Minion(std::string name, int cost, int attack, int defence, std::string card_type, std::string ability="");
@@ -49,7 +52,9 @@ class Minion : public Card {
 
         // get_defence(): returns the minion's defence
         int get_defence() const;
-
+        
+        void enchant(Enchant *enchantment);
+        
         // get_action(): return's the minion's action value
         int get_action() const;
 

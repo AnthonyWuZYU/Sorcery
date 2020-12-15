@@ -84,6 +84,12 @@ void Player::play_card(unsigned int i) {
                 board->add_to_field(board->remove_from_hand(i));
             } else if (card->get_type() == "Ritual") {
                 board->set_ritual(board->remove_from_hand(i));
+            } else if (card->get_type() == "Enchant") {
+                unsigned int pos = 7;
+                cin >> pos;
+                Minion* target = dynamic_cast<Minion *>(board->get_card_field(pos));
+                Enchant* enchantment = dynamic_cast<Enchant *>(board->remove_from_hand(i));
+                target->enchant(enchantment);
             }
         } else {
             cout << "You do not have enough magic to play this card!" << endl;
