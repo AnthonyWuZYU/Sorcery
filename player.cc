@@ -61,7 +61,14 @@ Player* Player::getOpp() {
 
 void Player::draw(){
     if (board->get_hand()->getSize() <= 5) {
-        board->add_to_hand(board->draw_from_deck());
+        Card *temp = board->draw_from_deck();
+        if (!temp) {
+            cout << "You have no cards left in your deck, a card was not drawn." << endl;
+        } else {
+            board->add_to_hand(temp);
+        }
+        temp = nullptr;
+        delete temp;
     } else {
         cout << "Your hand is full, a card was not drawn." << endl;
     }

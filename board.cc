@@ -94,6 +94,8 @@ std::ostream& operator<<(std::ostream &os, const Board &board) {
         if (ability == "") {
             cards_graphics.emplace_back(display_minion_no_ability(temp->get_name(),temp->get_cost(),temp->get_attack(),temp->get_defence()));
         } 
+        temp = nullptr;
+        delete temp;
     }
 
     // If we don't have 5 cards in play
@@ -111,6 +113,7 @@ std::ostream& operator<<(std::ostream &os, const Board &board) {
         }
         os << EXTERNAL_BORDER_CHAR_UP_DOWN << endl;
     }
+
     return os;
 }
 

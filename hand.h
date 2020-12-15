@@ -2,7 +2,10 @@
 #define HAND_H
 #include <iostream>
 #include <vector>
-#include "card.h"
+#include "minion.h"
+#include "enchant.h"
+#include "spell.h"
+#include "ritual.h"
 
 class Hand{
     std::vector<Card*> cards; // The Vector that stores the cards in a hand

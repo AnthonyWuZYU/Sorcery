@@ -89,9 +89,13 @@ Card* Deck::get_top() const{
 }
 
 Card* Deck::pop() {
-    Card* temp = cards.back();
-    cards.pop_back();
-    return temp;
+    if (cards.empty()) {
+        return nullptr;
+    } else {
+        Card* temp = cards.back();
+        cards.pop_back();
+        return temp;
+    }
 }
 
 void Deck::remove(Card* card) {
