@@ -156,25 +156,48 @@ int main(int argc, char *argv[]) {
 		        } else if (cmd == "inspect") {
                         	cin >> pos;
                         	if (pos < cur->getBoard()->get_field().size() && pos >= 0) {
-                                	cur->getBoard()->get_card_field(pos)->print(cout);
-                                	Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos));
-					
-					vector<vector<string>> to_print;
-    					for (auto it : target->get_enchant()) {
-						Enchant * enchant = dynamic_cast<Enchant *>(it);
-            					to_print.emplace_back(display_enchantment(enchant->get_name(),enchant->get_cost(),enchant->get_ability()));
-        				
-    					}
-    					for (int i = 0; i < 11; i++) {
-        					for (auto it: to_print) {
-            						cout << it[i];
-        					}
-        					cout << endl;
-					}
-				
-                            	} else {
-                            	    cerr << "No minion in this position" << endl;
-                            	}
+                                        cur->getBoard()->get_card_field(pos)->print(cout);
+                                        Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos));
+
+                                        vector<vector<string>> to_print;
+                                        for (auto it : target->get_enchant()) {
+                                                Enchant * enchant = dynamic_cast<Enchant *>(it);
+                                                if (enchant->get_ability() == " ") {
+                                                        string atk,def;
+                                                        if (enchant->get_addAtk() > 0) {
+                                                                atk = "+";
+                                                                atk += to_string(enchant->get_addAtk());
+                                                        } else if (enchant->get_addAtk() < 0) {
+                                                                atk = to_string(enchant->get_addAtk());
+                                                        } else {
+                                                                atk = "*";
+                                                                atk += to_string(enchant->get_mulAtk());
+                                                        }
+                                                        if (enchant->get_addDef() > 0) {
+                                                                def = "+";
+                                                                def += to_string(enchant->get_addDef());
+                                                        } else if (enchant->get_addDef() < 0) {
+                                                                def = to_string(enchant->get_addDef());
+                                                        } else {
+                                                                def = "*";
+                                                                def += to_string(enchant->get_mulDef());
+                                                        }
+                                                        to_print.emplace_back(display_enchantment_attack_defence(enchant->get_name(),enchant->get_cost(),enchant->get_ability(), atk, def));
+                                                } else {
+                                                        to_print.emplace_back(display_enchantment(enchant->get_name(),enchant->get_cost(),enchant->get_ability()));
+                                                }
+                                        }
+
+                                        for (int i = 0; i < 11; i++) {
+                                                for (auto it: to_print) {
+                                                        cout << it[i];
+                                                }
+                                                cout << endl;
+                                        }
+
+                                } else {
+                                    cerr << "No minion in this position" << endl;
+                                }
 			    
 			} else if (cmd == "use") {
 				cin >> pos;
