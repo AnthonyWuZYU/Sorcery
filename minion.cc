@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Minion::Minion(std::string name, int cost, int attack, int defence, std::string ability) : 
+Minion::Minion(std::string name, int cost, int attack, int defence, int activate_cost, std::string ability) : 
 attack{attack}, defence{defence}, action{0}, activate_cost{activate_cost}, ability{ability}, Card{name, cost, "Minion"} {}
 
 Minion::~Minion(){
