@@ -1,6 +1,6 @@
 Name,Cost,Attack,Defence,Triggered ability,Activate Cost,Activated Ability
-Air Elemental|0|1|1||0|
-Earth Elemental|3|4|4||0|
+Air Elemental|0|1|1||0| 
+Earth Elemental|3|4|4||0| 
 Bomb|2|1|2|Deals damage to all the opponent minions equal to its attack value when it dies|0|
 Fire Elemental|2|2|2|Whenever an opponent's minion enters play, deal 1 damage to it|0|
 Potion Seller|2|1|3|At the end of your turn, all your minions gain +0/+1|0|
