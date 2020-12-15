@@ -151,7 +151,7 @@ int main()
 			else if (cmd == "inspect")
 			{
 				cin >> pos;
-				// inspect i(pos) th
+				cur->getBoard()->get_card_field(pos)->print(cout);
 			}
 			else if (cmd == "use")
 			{

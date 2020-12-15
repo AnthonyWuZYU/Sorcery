@@ -73,9 +73,21 @@ void Minion::use_ability(Player *player, string description, Card *target) {
         player->setOpp( op );
 
     } else if (description == "Whenever an opponent's minion enters play, deal 1 damage to it") {
-        // do something
+        Player *op = player->getOpp();
+        Board *oppBoard = op->getBoard();
+        vector<Card*> oppField = oppBoard->get_field();
+        int length = oppField.size();
 
-    } else if (description == "At the end of your turn, all your minions gain +0/+1") {
+        Minion *temp = new Minion(oppField.back());
+        temp->set_defence( temp->get_defence() - 1 );
+        oppField.back() = temp;
+        delete temp;
+
+        oppBoard->set_field( oppField );
+        op->setBoard( oppBoard );
+        player->setOpp( op );       
+    }    
+        else if (description == "At the end of your turn, all your minions gain +0/+1") {
         vector<Card*> field = player->getBoard()->get_field();
 
         for( int i = 0; i < field.size(); i++ ){
@@ -119,7 +131,7 @@ void Minion::use_ability(Player *player, string description, Card *target) {
         player->setMagic( player->getMagic() -1 );
 
     } else if (description == "Summon a 1/1 air elemental") {
-        Card *summon = new Minion("Air Elemental", 0, 1, 1, "");
+        Card *summon = new Minion("Air Elemental", 0, 1, 1, "Minion", description);
         vector<Card*>  field = player->getBoard()->get_field();
 
         unsigned int length = field.size();
@@ -135,7 +147,7 @@ void Minion::use_ability(Player *player, string description, Card *target) {
         player->setMagic( player->getMagic() - 1 );
 
     } else if (description == "Summon up to three 1/1 air elementals") {
-        Card *summon = new Minion("Air Elemental", 0, 1, 1, "");
+        Card *summon = new Minion("Air Elemental", 0, 1, 1, "Minion", description);
         vector<Card*> field = player->getBoard()->get_field();
 
         unsigned int length = field.size();
@@ -188,5 +200,3 @@ int Minion::get_defence() const {return defence;}
 int Minion::get_action() const {return action;}
 
 std::string Minion::get_ability() const {return ability;}
-
-

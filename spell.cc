@@ -25,6 +25,8 @@ void Spell::use_ability( Player *player, std::string description, Card *target )
 
             op->setBoard(oppBoard);
             player->setOpp( op );
+            player->setMagic( player->getMagic() - 1);
+
         } else if (description == "Your ritual gains 3 charges") {
             Board* board = player->getBoard();
             Card* temp = board->get_ritual();
@@ -34,6 +36,7 @@ void Spell::use_ability( Player *player, std::string description, Card *target )
             board->set_ritual( ritual );        
 
             player->setBoard( board );
+            player->setMagic( player->getMagic() - 1);
         } else if (description == "Destroy the top enchant on target minion") {
             //do something
             
@@ -46,6 +49,7 @@ void Spell::use_ability( Player *player, std::string description, Card *target )
             board->add_to_field( alive );
 
             player->setBoard( board );
+            player->setMagic( player->getMagic() - 1);
 
         } else if (description == "Deal 2 damage to all minions") {
             Player *op = player->getOpp();
@@ -65,6 +69,7 @@ void Spell::use_ability( Player *player, std::string description, Card *target )
         op->setBoard( oppBoard );
         player->setOpp(op);
 
+        player->setMagic( player->getMagic() - 3);
         }
 }
 
