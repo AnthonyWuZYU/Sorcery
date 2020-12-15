@@ -236,6 +236,33 @@ bool Minion::use_ability(Player *player, string description)
     return success;
 }
 
+
+void Minion::set_attack(int a) {attack = a;}
+
+void Minion::set_defence(int d) {defence = d;}
+
+void Minion::set_action(int a) {action = a;}
+
+int Minion::get_attack() const {
+        int atk = this->attack;
+        for (auto it: minionEnchantments) {
+                Enchant* enchant = dynamic_cast<Enchant *>(it);
+                atk = (atk + enchant->get_addAtk() ) * enchant->get_mulAtk();
+        }
+        return atk;
+}
+
+int Minion::get_defence() const {
+        int def = this->defence;
+        for (auto it: minionEnchantments) {
+                Enchant* enchant = dynamic_cast<Enchant *>(it);
+                def = (def + enchant->get_addDef() ) * enchant->get_mulDef();
+        }
+        return def;
+}
+
+
+
 int Minion::get_action() const { return action; }
 
 std::string Minion::get_ability() const { return ability; }
