@@ -96,12 +96,19 @@ bool success = true;
             Board *board = player->getBoard();
             Card *temp = board->remove_from_graveyard();
 
-            Minion *alive = new Minion( temp );
+            if(board->get_field().size() == 5){
+                cout << "Spell failed. Field already full." << endl;
+            }
+
+            else{
+            Minion *alive = dynamic_cast<Minion*>( temp );
             alive->set_defence( 1 );
+
             board->add_to_field( alive );
 
             player->setBoard( board );
             player->setMagic( player->getMagic() - 1);
+            }
 
         } else if (description == "Deal 2 damage to all minions") {
             Player *op = player->getOpp();
