@@ -13,7 +13,7 @@ class Minion : public Card {
     int action;
     Card *target = nullptr;
     std::string ability;
-    //vector<Enchantment> minionEnchantments;
+    std::vector<Enchant*> minionEnchantments;
     public:
         // Constructor
         Minion(std::string name, int cost, int attack, int defence, std::string card_type, std::string ability="");
