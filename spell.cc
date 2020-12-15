@@ -8,17 +8,26 @@ Spell::Spell( const Card* other ): Card{ other->get_name(), other->get_cost(), o
 
 Spell::~Spell() {}
 
-void Spell::use_ability( Player *player, std::string description, Card *target ) {
+bool Spell::use_ability( Player *player, std::string description ) {
+bool success = true;
+
         if (description == "Destroy target minion or ritual") {
             // do something
-        } else if (description == "Return target minion to its owner's hand") {
+        } /*else if (description == "Return target minion to its owner's hand") {
             Player *op = player->getOpp();
             Board *oppBoard = op->getBoard();
+
             vector<Card*> oppField = oppBoard->get_field();
 
             for( int i = 0; i < oppField.size(); i++ ){
-                if( oppField.at(i) == target){
+                if( oppField.at(i) == target ){
+                    if( oppBoard->get_hand()->getSize() == 5){
+                        oppBoard->destroy( oppBoard->remove_from_field(i) );
+                        cout << "Opponent's Hand already full. The Card was destroyed." << endl;
+                    }
+                    else{
                     oppBoard->add_to_hand( oppBoard->remove_from_field( i ) );
+                    }
                     break;
                 }
             }
@@ -27,7 +36,7 @@ void Spell::use_ability( Player *player, std::string description, Card *target )
             player->setOpp( op );
             player->setMagic( player->getMagic() - 1);
 
-        } else if (description == "Your ritual gains 3 charges") {
+        }*/ else if (description == "Your ritual gains 3 charges") {
             Board* board = player->getBoard();
             Card* temp = board->get_ritual();
             Ritual* ritual = new Ritual( temp );
@@ -38,7 +47,54 @@ void Spell::use_ability( Player *player, std::string description, Card *target )
             player->setBoard( board );
             player->setMagic( player->getMagic() - 1);
         } else if (description == "Destroy the top enchant on target minion") {
-            //do something
+            int p;
+            int t;
+            cin >> p;
+            cin >> t;
+            
+            if( p == 1 ){
+                Board *board = player->getBoard();
+                vector<Card *> field = board->get_field();
+
+                Minion *target = new Minion( field.at(t) );
+                vector<Card*> enchantments = target->get_enchant();
+                Card *temp = enchantments.back();
+                enchantments.pop_back();
+                board->destroy( temp );
+
+                target->set_enchant(enchantments);
+                Card *minion = &*target;
+                field.at(t) = minion;
+                delete minion;
+                board->set_field( field );
+                player->setBoard( board );
+
+                player->setMagic(player->getMagic() - 1);
+            }
+            else if( p == 2 ){
+                Player *op = player->getOpp();
+                Board *board = op->getBoard();
+                vector<Card *> field = board->get_field();
+
+                Minion *target = new Minion( field.at(t) );
+                vector<Card*> enchantments = target->get_enchant();
+                Card *temp = enchantments.back();
+                enchantments.pop_back();
+                board->destroy( temp );
+
+                target->set_enchant(enchantments);
+                Card *minion = &*target;
+                field.at(t) = minion;
+                delete minion;
+                board->set_field( field );
+                op->setBoard( board );
+                player->setOpp( op );   
+
+                player->setMagic(player->getMagic() - 1);
+            }
+            else{
+                success = false;
+            }
             
         } else if (description == "Resurrect the top minion in your graveyard and set its defence to 1") {
             Board *board = player->getBoard();
@@ -71,6 +127,8 @@ void Spell::use_ability( Player *player, std::string description, Card *target )
 
         player->setMagic( player->getMagic() - 3);
         }
+
+        return success;
 }
 
 void Spell::print(std::ostream& os) const {

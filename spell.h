@@ -26,7 +26,7 @@ class Spell : public Card {
 
         void destroy() override;
 
-        void use_ability( Player *player, std::string desc, Card *target );
+        bool use_ability( Player *player, std::string desc);
 
         void print(std::ostream &os) const override;
 };
