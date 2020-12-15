@@ -64,7 +64,7 @@ std::vector<std::vector<std::string>> load_data(std::string filename) {
         stringstream s{line};
 
         // Parses the line by , and stores the string into the row
-        while(getline(s, temp, ',')) {
+        while(getline(s, temp, '|')) {
             vec.emplace_back(temp);
         }
 
@@ -110,13 +110,14 @@ void Deck::add(string cardname) {
     // Check if it is a minion card
         if (is_in(minions, cardname)) {
                 info = get_info(minions, cardname);
+                string ability = "";
                 // Create the ability
                 if (info[4] != "") {
-                    //Add an activated ability
-                } else if (info[5] != "") {
-                    //Add a triggered ability
+                    ability = info[4];
+                } else if (info[6] != "") {
+                    ability = info[6];
                 }
-                Card *temp = new Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3]), "Minion"};
+                Card *temp = new Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3]), stoi(info[5]), ability};
                 cards.emplace_back(temp);
         } else if (is_in(enchantments, cardname)) {
                 info = get_info(enchantments, cardname);
