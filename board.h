@@ -8,6 +8,7 @@
 #include <iostream>
 
 class Deck;
+class Hand;
 
 class Board {
     Deck *deck;
