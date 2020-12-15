@@ -31,9 +31,17 @@ std::ostream& operator<<(std::ostream &os, const Hand &hand) {
         if (it->get_type() == "Minion") {
             Minion *temp = dynamic_cast<Minion *>(it);
             string ability = temp->get_ability();
+            int activate_cost = temp->get_activate_cost();
             if (ability == "") {
                 to_print.emplace_back(display_minion_no_ability(temp->get_name(),temp->get_cost(),temp->get_attack(),temp->get_defence()));
-            } 
+            } else if (activate_cost == 0) {
+                to_print.emplace_back(display_minion_triggered_ability(temp->get_name(),temp->get_cost(),
+                                          temp->get_attack(),temp->get_defence(), temp->get_ability()));
+
+            } else {
+                to_print.emplace_back(display_minion_activated_ability(temp->get_name(),temp->get_cost(),
+                                          temp->get_attack(),temp->get_defence(), temp->get_activate_cost(), temp->get_ability()));
+            }
             temp = nullptr;
             delete temp;
         } else if (it->get_type() == "Enchant") {
