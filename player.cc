@@ -74,12 +74,12 @@ void Player::draw(){
     }
 }
 
-void Player::play_card(unsigned int i) {
+void Player::play_card(unsigned int i, bool test) {
     if (board->get_hand()->getSize() > i) {
         Card *card = board->get_hand()->getCard(i);
         int magic_cost = card->get_cost();
     
-        if (magic - magic_cost >= 0) { 
+        if (magic - magic_cost >= 0 || test) { 
             if (card->get_type() == "Minion") {
                 board->add_to_field(board->remove_from_hand(i));
             } else if (card->get_type() == "Ritual") {
@@ -106,6 +106,7 @@ void Player::play_card(unsigned int i) {
             cout << "You do not have enough magic to play this card!" << endl;
         }
         magic -= magic_cost;
+	if (magic < 0) magic = 0;
         card = nullptr;
         delete card;
     } else {

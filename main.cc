@@ -182,7 +182,7 @@ int main(int argc, char *argv[]) {
 				
 			} else if (cmd == "play") {
 				cin >> pos;
-				cur->play_card(pos-1);
+				cur->play_card(pos-1, test);
 			
 			} else if (cmd == "quit") {
 				quit = true;

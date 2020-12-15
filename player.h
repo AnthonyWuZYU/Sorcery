@@ -49,7 +49,7 @@ class Player{
 
         void draw(); // method to draw a card from the player's deck and add it in the hand
 
-        void play_card(unsigned int i); // takes index of card from hand to place on field
+        void play_card(unsigned int i, bool test); // takes index of card from hand to place on field
 
         void minion_attack(unsigned int i, unsigned int j = 1000); 
 
