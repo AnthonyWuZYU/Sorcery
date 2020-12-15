@@ -8,7 +8,6 @@
 #include <iostream>
 
 class Deck;
-class Hand;
 
 class Board {
     Deck *deck;
@@ -43,8 +42,6 @@ class Board {
 
         Deck* get_deck() const;
 
-        void set_deck(Deck* d);
-
         Card* draw_from_deck();
 
         // Hand Operations
@@ -64,9 +61,10 @@ class Board {
         Graveyard* get_graveyard() const;
 
         void add_to_graveyard(Card* card);
-        
+
+        void destroy( Card* card );
+
 
 };
 std::ostream& operator<<(std::ostream &os, const Board &board);
 #endif
-
