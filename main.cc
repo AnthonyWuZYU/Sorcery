@@ -70,11 +70,7 @@ int main() {
 		cur->addMaxMagic(1);
 		cur->setMagic(cur->getMaxMagic());
 		cur->draw();
-<<<<<<< HEAD
-		cur->reset_action();
 		//cout << "Card:" << cur->getBoard()->get_card_hand(0).get_Name() << endl;
-=======
->>>>>>> master
 
 		while (cin >> cmd) {
 		    
@@ -103,6 +99,7 @@ int main() {
 				cur = cur->getOpp();
 				cur->addMaxMagic(1);
 				cur->setMagic(cur->getMaxMagic());
+				cur->reset_action();
 
 				// draw cards
 				cur->draw();
@@ -112,7 +109,6 @@ int main() {
 			} else if (cmd == "attack") {
 				int j = 1000;
 				cin >> pos;
-<<<<<<< HEAD
 				if (cur->getOpp()->getBoard()->get_field().empty()) {
 					cur->minion_attack(pos-1);
 				} else {
@@ -122,15 +118,6 @@ int main() {
 			}
 			else if (cmd == "board")
 			{
-=======
-				cin >> j;
-				
-				// i(pos) th minion attack
-				// if attack i j
-				cur->minion_attack(pos, j);
-				
-			} else if (cmd == "board") {
->>>>>>> master
 				// show board
 				print_top_border();
 				
@@ -152,12 +139,6 @@ int main() {
 			    
 			} else if (cmd == "inspect") {
 				cin >> pos;
-<<<<<<< HEAD
-                cur->getBoard()->get_card_field(pos)->print(cout);
-                Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos));
-                for (auto it: target->get_enchant()) {
-                    it->print(cout);
-=======
                 if (pos < cur->getBoard()->get_field().size() && pos >= 0) {
                     cur->getBoard()->get_card_field(pos)->print(cout);
                     Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos));
@@ -166,7 +147,6 @@ int main() {
                     }
                 } else {
                     cerr << "No minion in this position" << endl;
->>>>>>> master
                 }
 			
 			    
@@ -178,16 +158,10 @@ int main() {
 				cin >> pos;
 				// use i(pos) th
 				// if play i p t
-<<<<<<< HEAD
 				cur->play_card(pos-1);
 			}
 			else if (cmd == "quit")
 			{
-=======
-				cur->play_card(pos);
-			
-			} else if (cmd == "quit") {
->>>>>>> master
 				quit = true;
 			
 			    
