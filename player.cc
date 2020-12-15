@@ -94,12 +94,13 @@ void Player::play_card(unsigned int i) {
                     Minion* target = dynamic_cast<Minion *>(temp);
                     Enchant* enchantment = dynamic_cast<Enchant *>(board->remove_from_hand(i));
                     target->enchant(enchantment);
-                } else if (card->get_type() == "Spell") {
-                    Spell* spell = dynamic_cast<Spell *>(board->get_card_hand(i));
-                    if (spell->use_ability(this, spell->get_ability())) {
-                        board->remove_from_hand(i);
-                    }
+                } 
+            } else if (card->get_type() == "Spell") {
+                Spell* spell = dynamic_cast<Spell *>(board->get_card_hand(i));
+                if (spell->use_ability(this, spell->get_ability())) {
+                    board->remove_from_hand(i);
                 }
+
             }
         } else {
             cout << "You do not have enough magic to play this card!" << endl;
