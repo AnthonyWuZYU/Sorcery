@@ -25,7 +25,7 @@ std::vector<Card*> Board::get_field() const {
 
 Card* Board::remove_from_field(unsigned int i) {
     Card* temp = field[i];
-    field.erase(field.begin()+1);
+    field.erase(field.begin()+i);
     return temp;
 }
 

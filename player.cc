@@ -106,13 +106,13 @@ void Player::minion_attack(unsigned int i, unsigned int j) {
                 // Check if minion is dead
                 if (target_defence <= 0) {
                     // Target Minion goes to graveyard
-                    cout << opponent->getBoard()->get_card_field(j)->get_name() << " has been sent to the graveyard!" << endl;
                     board->add_to_graveyard(opponent->getBoard()->remove_from_field(j));
+                    cout << "Opponent's " << opponent->getBoard()->get_card_field(j)->get_name() << " has been sent to the graveyard!" << endl;
                 }
                 if (attacker->get_defence() <= 0) {
                     // Attacking Minion goes to graveyard
-                    cout << attacker->get_name() << " has been sent to the graveyard!" << endl;
                     board->add_to_graveyard(board->remove_from_field(i));
+                    cout << "Attacker's " << attacker->get_name() << " has been sent to the graveyard!" << endl;
                 }
 
             } else {
