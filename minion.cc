@@ -222,14 +222,15 @@ int Minion::get_action() const {return action;}
 std::string Minion::get_ability() const {return ability;}
 
 void Minion::enchant(Enchant *enchantment) {
-        minionEnchantments.emplace_back(enchantment);
+        Card *enchant = Enchant(enchantment);
+        minionEnchantments.emplace_back(enchant);
 }
 
-std::vector<Enchant*> Minion::get_enchant() const {
+std::vector<Card*> Minion::get_enchant() const {
         return minionEnchantments;
 }
 
-void Minion::set_enchant(std::vector<Enchant*> enchants) {
+void Minion::set_enchant(std::vector<Card*> enchants) {
         minionEnchantments = enchants;
 }
 
