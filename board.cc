@@ -93,10 +93,19 @@ std::ostream& operator<<(std::ostream &os, const Board &board) {
     for (auto it : board.get_field()) {
         Minion *temp = dynamic_cast<Minion *>(it);
         string ability = temp->get_ability();
-        if (ability == "") {
+        if (ability == " ") {
             cards_graphics.emplace_back(display_minion_no_ability(temp->get_name(),temp->get_cost(),temp->get_attack(),temp->get_defence()));
-        } 
+        } else if (temp->get_activate_cost() == 0) {
+                cards_graphics.emplace_back(display_minion_triggered_ability(temp->get_name(),temp->get_cost(),
+                                          temp->get_attack(),temp->get_defence(), temp->get_ability()));
+
+        } else {
+                cards_graphics.emplace_back(display_minion_activated_ability(temp->get_name(),temp->get_cost(),
+                                          temp->get_attack(),temp->get_defence(), temp->get_activate_cost(), temp->get_ability()));
+        }
     }
+
+
 
     // If we don't have 5 cards in play
     if (cards_graphics.size() != 5) {
