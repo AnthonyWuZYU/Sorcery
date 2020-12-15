@@ -23,11 +23,15 @@ bool success = true;
 
                 if(t == "r"){
                     Card *ritual = board->get_ritual();
+                    board->set_ritual( nullptr );
+
                     board->destroy( ritual );
                 }
                 else{
                     int index = stoi( t );
                     Card *minion = board->get_card_field( index );
+                    board->remove_from_field( index );
+
                     board->destroy( minion );    
                 }
 
@@ -40,11 +44,15 @@ bool success = true;
 
                 if(t == "r"){
                     Card *ritual = oppBoard->get_ritual();
+                    oppBoard->set_ritual( nullptr );
+
                     oppBoard->destroy( ritual );                 
                 }
                 else{
                     int index = stoi( t );
                     Card *minion = oppBoard->get_card_field( index );
+                    oppBoard->remove_from_field( index );
+
                     oppBoard->destroy( minion ); 
                 }
             op->setBoard( oppBoard );
@@ -161,6 +169,12 @@ bool success = true;
             Board *board = player->getBoard();
             Card *temp = board->remove_from_graveyard();
 
+            if(board->get_graveyard()->getSize() == 0){
+                cout << "Nothing to resurrect. Graveyard is empty." << endl;
+                success = false;
+            }
+
+            else{
             if(board->get_field().size() == 5){
                 cout << "Spell failed. Field already full." << endl;
             }
@@ -174,6 +188,7 @@ bool success = true;
             player->setBoard( board );
             player->setMagic( player->getMagic() - 1);
             }
+        }
 
         } else if (description == "Deal 2 damage to all minions") {
             Player *op = player->getOpp();

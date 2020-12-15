@@ -1,4 +1,5 @@
 #include "graveyard.h"
+using namespace std;
 
 Card* Graveyard::revive(){
     Card* temp = grave.back();
@@ -14,4 +15,8 @@ Card* Graveyard::top(){
 
 void Graveyard::add( Card* card ){
     grave.emplace_back( card );
+}
+
+int Graveyard::getSize(){
+    return grave.size();
 }
