@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Spell::Spell(string name, int cost, string ability): Card{name, cost, "Spell"} {}
+Spell::Spell(string name, int cost, string ability): ability{ability}, Card{name, cost, "Spell"} {}
  
 Spell::Spell( const Card* other ): Card{ other->get_name(), other->get_cost(), other->get_type() } {}
 
