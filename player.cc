@@ -87,9 +87,20 @@ void Player::play_card(unsigned int i) {
             } else if (card->get_type() == "Enchant") {
                 unsigned int pos = 7;
                 cin >> pos;
-                Minion* target = dynamic_cast<Minion *>(board->get_card_field(pos));
-                Enchant* enchantment = dynamic_cast<Enchant *>(board->remove_from_hand(i));
-                target->enchant(enchantment);
+                Card* temp = board->get_card_field(pos);
+                if (temp) {
+                    Minion* target = dynamic_cast<Minion *>(temp);
+                    Enchant* enchantment = dynamic_cast<Enchant *>(board->remove_from_hand(i));
+                    target->enchant(enchantment);
+
+                    // Ensuring the pointers don't cause any mess in future
+                    enchantment = nullptr;
+                    target = nullptr;
+                    delete enchantment;
+                    delete card;
+                } else {
+                    cout << "There is no Minion at that index!" << endl;
+                }
             }
         } else {
             cout << "You do not have enough magic to play this card!" << endl;

@@ -30,7 +30,11 @@ Card* Board::remove_from_field(unsigned int i) {
 }
 
 Card* Board::get_card_field(unsigned int i) const {
-    return field[i];
+    if (i >= field.size()) {
+        return nullptr;
+    } else {
+        return field[i];
+    }
 }
 
 void Board::set_card_field(unsigned int i, Card* card) {
