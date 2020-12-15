@@ -59,8 +59,9 @@ void Enchant::use_ability() {
 }
 
 void Enchant::print(std::ostream& os) const {
-    std::vector<std::string> card_template_t = display_enchantment(this->get_name(),this->get_cost(), this->get_ability());
-    for (auto it: card_template_t) {
-        os << it << endl;
-    }
+	
+	std::vector<std::string> card_template_t = display_enchantment(this->get_name(),this->get_cost(), this->get_ability());
+	for (auto it: card_template_t) {
+        	os << it << endl;
+    	}
 }

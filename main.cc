@@ -145,7 +145,8 @@ int main() {
 					
 					vector<vector<string>> to_print;
     					for (auto it : target->get_enchant()) {
-            					to_print.emplace_back(display_enchantment(it->get_name(),it->get_cost(),it->get_ability()));
+						Enchant * enchant = dynamic_cast<Enchant *>(it);
+            					to_print.emplace_back(display_enchantment(enchant->get_name(),enchant->get_cost(),enchant->get_ability()));
         				
     					}
 
