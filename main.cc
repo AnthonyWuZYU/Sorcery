@@ -14,8 +14,20 @@ void print_top_border();
 void print_bot_border();
 void print_player(Player* player, int num);
 
-int main() {
+int main(int argc, char *argv[]) {
 	//istream *in = nullptr;
+    string deck1_name = "default.deck";
+    string deck2_name = "default.deck";
+    for (int i = 1; i < argc; i++) {
+            stringstream arg(argv[i]);
+            if (arg.str() == "-deck1" && i < argc - 1) {
+                  deck1_name = argv[i+1];
+            }
+            if (arg.str() == "-deck2" && i < argc - 1) {
+                  deck2_name = argv[i+1];
+            }
+    }
+
 
 	cin.exceptions(ios::failbit | ios::eofbit);
 	string player1_name;
@@ -45,8 +57,8 @@ int main() {
 		player2.setOpp(&player1);
 
 		// load deck
-		Deck deck1 = Deck{"default.deck"};
-		Deck deck2 = Deck{"default.deck"};
+		Deck deck1 = Deck{deck1_name};
+		Deck deck2 = Deck{deck2_name};
 		Hand hand1, hand2;
 		Graveyard grave1, grave2;
 
