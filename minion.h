@@ -16,7 +16,7 @@ class Minion : public Card {
     int action;
     Card *target = nullptr;
     std::string ability;
-    std::vector<Enchant*> minionEnchantments;
+    std::vector<Card*> minionEnchantments;
     public:
         // Constructor
         Minion(std::string name, int cost, int attack, int defence, std::string card_type, std::string ability="");
@@ -60,9 +60,9 @@ class Minion : public Card {
 
         std::string get_ability() const;
         
-        std::vector<Enchant*> get_enchant() const;
+        std::vector<Card*> get_enchant() const;
         
-        void set_enchant(std::vector<Enchant*> enchants);
+        void set_enchant(std::vector<Card*> enchants);
 
         void print(std::ostream &os) const override;
 
