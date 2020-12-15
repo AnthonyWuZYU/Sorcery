@@ -49,7 +49,9 @@ class Minion : public Card {
 
         // get_defence(): returns the minion's defence
         int get_defence() const;
-
+        
+        void enchant(Enchant *enchantment);
+        
         // get_action(): return's the minion's action value
         int get_action() const;
 
