@@ -51,10 +51,6 @@ string Enchant::get_ability() const {
         return this->ability;
 }
 
-void Enchant::destroy() {
-
-}
-
 void Enchant::use_ability() {
 }
 
