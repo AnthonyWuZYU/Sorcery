@@ -225,7 +225,11 @@ void Minion::enchant(Enchant *enchantment) {
         minionEnchantments.emplace_back(enchantment);
 }
 
-std::vector<Enchant*> Minion::get_enchant() {
+std::vector<Enchant*> Minion::get_enchant() const {
         return minionEnchantments;
+}
+
+void Minion::set_enchant(std::vector<Enchant*> enchants) {
+        minionEnchantments = enchants;
 }
 
