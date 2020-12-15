@@ -16,17 +16,21 @@ void print_player(Player* player, int num);
 
 int main(int argc, char *argv[]) {
 	//istream *in = nullptr;
-    string deck1_name = "default.deck";
-    string deck2_name = "default.deck";
-    for (int i = 1; i < argc; i++) {
-            stringstream arg(argv[i]);
-            if (arg.str() == "-deck1" && i < argc - 1) {
-                  deck1_name = argv[i+1];
-            }
-            if (arg.str() == "-deck2" && i < argc - 1) {
-                  deck2_name = argv[i+1];
-            }
-    }
+	string deck1_name = "default.deck";
+	string deck2_name = "default.deck";
+	bool test = false;
+	for (int i = 1; i < argc; i++) {
+        	stringstream arg(argv[i]);
+            	if (arg.str() == "-deck1" && i < argc - 1) {
+            	      deck1_name = argv[i+1];
+            	}
+            	if (arg.str() == "-deck2" && i < argc - 1) {
+            	      deck2_name = argv[i+1];
+            	}
+	    	if (arg.str() == "-testing") {
+	    		test = true;
+	    	}
+    	}
 
 
 	cin.exceptions(ios::failbit | ios::eofbit);
@@ -161,14 +165,12 @@ int main(int argc, char *argv[]) {
             					to_print.emplace_back(display_enchantment(enchant->get_name(),enchant->get_cost(),enchant->get_ability()));
         				
     					}
-
     					for (int i = 0; i < 11; i++) {
         					for (auto it: to_print) {
             						cout << it[i];
         					}
         					cout << endl;
 					}
-
 				
                             	} else {
                             	    cerr << "No minion in this position" << endl;
@@ -180,15 +182,18 @@ int main(int argc, char *argv[]) {
 				
 			} else if (cmd == "play") {
 				cin >> pos;
-				// use i(pos) th
-				// if play i p t
 				cur->play_card(pos-1);
-			}
-			else if (cmd == "quit")
-			{
-				quit = true;
 			
+			} else if (cmd == "quit") {
+				quit = true;
 			    
+			} else if (cmd == "draw" && test) {
+				cur->draw();
+				
+			} else if (cmd == "discard" && test) {
+				cin >> pos;
+				cur->getBoard()->remove_from_hand(pos);
+
 			} else {
 				cerr << "Invalid command." << endl;
 				cerr << "Type \"help\" to show all possible command." << endl;
