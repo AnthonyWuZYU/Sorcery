@@ -3,8 +3,8 @@
 #include <iostream>
 using namespace std;
 
-Minion::Minion(std::string name, int cost, int attack, int defence, std::string card_type, std::string ability) : 
-attack{attack}, defence{defence}, action{0}, ability{ability}, Card{name, cost, "Minion"} {}
+Minion::Minion(std::string name, int cost, int attack, int defence, std::string ability) : 
+attack{attack}, defence{defence}, action{0}, activate_cost{activate_cost}, ability{ability}, Card{name, cost, "Minion"} {}
 
 Minion::~Minion(){
     delete target;
@@ -15,6 +15,7 @@ Minion::Minion(const Card* other) : Card{other->get_name(), other->get_cost(), o
     attack = temp->get_attack();
     defence = temp->get_defence();
     action = temp->get_action();
+    activate_cost = temp->get_activate_cost();
     temp = nullptr;
     delete temp;
 }
@@ -26,6 +27,7 @@ Card* Minion::operator=(const Card* other)  {
     attack = temp->get_attack();
     defence = temp->get_defence();
     action = temp->get_action();
+    activate_cost = temp->get_activate_cost();
     temp = nullptr;
     delete temp;
     return this;
@@ -232,4 +234,8 @@ std::vector<Card*> Minion::get_enchant() const {
 void Minion::set_enchant(std::vector<Card*> enchants) {
         minionEnchantments = enchants;
 }
+
+int Minion::get_activate_cost() const {return activate_cost;}
+
+void Minion::set_activate_cost(int c) {activate_cost = c;}
 
