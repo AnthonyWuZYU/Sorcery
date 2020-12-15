@@ -261,7 +261,12 @@ int Minion::get_defence() const {
         return def;
 }
 
-
+void Minion::print(std::ostream& os) const {
+    std::vector<std::string> card_template_t = display_minion_no_ability(this->get_name(),this->get_cost(), attack, defence);
+    for (auto it: card_template_t) {
+        os << it << endl;
+    }
+}
 
 int Minion::get_action() const { return action; }
 
