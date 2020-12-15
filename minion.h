@@ -2,10 +2,13 @@
 #define MINION_H
 #include "ascii_graphics.h"
 #include "card.h"
+#include "enchant.h"
 #include "player.h"
 #include <vector>
 
 class Player;
+
+class Enchant;
 
 class Minion : public Card {
     int attack;
