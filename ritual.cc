@@ -54,10 +54,6 @@ void Ritual::use_ability( Player *player, std::string description, Card *target 
         }
 }
 
-void Ritual::destroy() {
-
-}
-
 Card * Ritual::operator=(const Card* other) {
     const Ritual* temp = dynamic_cast<const Ritual*>(other);
     this->set_name(temp->get_name());

@@ -34,10 +34,8 @@ class Enchant : public Card {
         int get_mulAtk() const;
 
         int get_mulDef() const;
-        std::string get_ability() const;
 
-        //destroy(): destroys the card
-        void destroy() override;
+        std::string get_ability() const;
 
         void use_ability();
 

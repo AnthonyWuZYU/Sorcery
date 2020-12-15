@@ -4,6 +4,7 @@
 #include "ascii_graphics.h"
 #include "ritual.h"
 #include "player.h"
+#include <string>
 
 class Player;
 class Ritual;
@@ -23,8 +24,6 @@ class Spell : public Card {
         Card * operator=(const Card* other) override;
 
         std::string get_ability() const;
-
-        void destroy() override;
 
         bool use_ability( Player *player, std::string desc);
 

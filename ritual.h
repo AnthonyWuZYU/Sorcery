@@ -38,8 +38,6 @@ void setCharges( int a );
 // use the ritual's ability based on the desc. Ability gets used on target (if applicable).
 void use_ability( Player *player, std::string desc, Card *target );
 
-void destroy() override;
-
 Card* operator=(const Card* other) override;
 
 void print(std::ostream &os) const override;
