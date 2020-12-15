@@ -73,6 +73,8 @@ Card* Board::remove_from_graveyard(){
 
 Deck * Board::get_deck() const {return deck;}
 
+void Board::set_deck(Deck* d) {deck = d;}
+
 Card* Board::draw_from_deck() {
     return deck->pop();
 }
