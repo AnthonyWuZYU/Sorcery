@@ -142,9 +142,21 @@ int main() {
                         	if (pos < cur->getBoard()->get_field().size() && pos >= 0) {
                                 	cur->getBoard()->get_card_field(pos)->print(cout);
                                 	Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos));
-                                	for (auto it: target->get_enchant()) {
-                                	    it->print(cout);
-                                	}
+					
+					vector<vector<string>> to_print;
+    					for (auto it : target->get_enchant()) {
+            					to_print.emplace_back(display_enchantment(it->get_name(),it->get_cost(),it->get_ability()));
+        				
+    					}
+
+    					for (int i = 0; i < 11; i++) {
+        					for (auto it: to_print) {
+            						cout << it[i];
+        					}
+        					cout << endl;
+					}
+
+				
                             	} else {
                             	    cerr << "No minion in this position" << endl;
                             	}
