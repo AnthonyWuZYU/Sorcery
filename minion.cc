@@ -193,9 +193,21 @@ void Minion::set_defence(int d) {defence = d;}
 
 void Minion::set_action(int a) {action = a;}
 
-int Minion::get_attack() const {return attack;}
+int Minion::get_attack() const {
+        int atk = this->attack;
+        for (auto it: minionEnchantments) {
+                atk = (atk + it->get_addAtk() ) * it->get_mulAtk();
+        }
+        return atk;
+}
 
-int Minion::get_defence() const {return defence;}
+int Minion::get_defence() const {
+        int def = this->defence;
+        for (auto it: minionEnchantments) {
+                def = (def + it->get_addDef() ) * it->get_mulDef();
+        }
+        return def;
+}
 
 int Minion::get_action() const {return action;}
 
