@@ -51,7 +51,9 @@ class Player{
 
         void play_card(unsigned int i); // takes index of card from hand to place on field
 
-        void minion_attack(unsigned int i, unsigned int j); 
+        void minion_attack(unsigned int i, unsigned int j = 1000); 
+
+        void reset_action();
 
 };
 

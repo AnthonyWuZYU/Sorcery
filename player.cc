@@ -88,7 +88,9 @@ void Player::play_card(unsigned int i) {
                 unsigned int pos = 7;
                 cin >> pos;
                 Card* temp = board->get_card_field(pos);
-                if (temp) {
+                if (!temp) {
+                    cout << "There is no Minion at that index!" << endl;  
+                } else {
                     Minion* target = dynamic_cast<Minion *>(temp);
                     Enchant* enchantment = dynamic_cast<Enchant *>(board->remove_from_hand(i));
                     target->enchant(enchantment);
@@ -98,8 +100,6 @@ void Player::play_card(unsigned int i) {
                     target = nullptr;
                     delete enchantment;
                     delete card;
-                } else {
-                    cout << "There is no Minion at that index!" << endl;
                 }
             }
         } else {
@@ -148,4 +148,14 @@ void Player::minion_attack(unsigned int i, unsigned int j) {
     } else {
         cout << "There is no minion at that index." << endl;
     }
+}
+
+void Player::reset_action() {
+    Minion *temp;
+    for (auto it: board->get_field()) {
+        temp = dynamic_cast<Minion *>(it);
+        temp->set_action(1);
+    }
+    temp = nullptr;
+    delete temp;
 }

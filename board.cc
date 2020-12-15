@@ -90,6 +90,8 @@ void Board::set_ritual( Card* a ){
     ritual = a;
 }
 
+void Board::set_deck(Deck* d) {deck = d;}
+
 std::ostream& operator<<(std::ostream &os, const Board &board) {
     vector<vector<string>> cards_graphics;
     for (auto it : board.get_field()) {

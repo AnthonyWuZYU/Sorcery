@@ -43,6 +43,8 @@ class Board {
 
         Deck* get_deck() const;
 
+        void set_deck(Deck* d);
+
         Card* draw_from_deck();
 
         // Hand Operations

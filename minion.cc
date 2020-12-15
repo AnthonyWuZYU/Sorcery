@@ -33,15 +33,23 @@ Card* Minion::operator=(const Card* other)  {
 
 
 int Minion::attack_target(Player *player) {
-    player->setLife(player->getLife() - attack);
+    if (action != 0) {
+        player->setLife(player->getLife() - attack);
+    } else {
+        cout << "Minion doesn't have any actions" << endl;
+    }
 
     return player->getLife();
 }
 
 int Minion::attack_target(Card *other) {
     Minion *target = dynamic_cast<Minion *>(other);
-    target->set_defence(target->get_defence() - attack);
-    defence -= target->get_attack();
+    if (action != 0) {
+        target->set_defence(target->get_defence() - attack);
+        defence -= target->get_attack();
+    } else {
+        cout << "Minion doesn't have any actions" << endl;
+    }
 
     // Returning the target's defence
     int d = target->get_defence();

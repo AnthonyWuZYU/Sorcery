@@ -76,6 +76,7 @@ int main()
 		cur->addMaxMagic(1);
 		cur->setMagic(cur->getMaxMagic());
 		cur->draw();
+		cur->reset_action();
 		//cout << "Card:" << cur->getBoard()->get_card_hand(0).get_Name() << endl;
 
 		bool quit = false;
@@ -121,12 +122,12 @@ int main()
 			{
 				int j = 1000;
 				cin >> pos;
-				cin >> j;
-				
-				// i(pos) th minion attack
-				// if attack i j
-				cur->minion_attack(pos, j);
-				
+				if (cur->getOpp()->getBoard()->get_field().empty()) {
+					cur->minion_attack(pos-1);
+				} else {
+					cin >> j;
+					cur->minion_attack(pos-1, j-1);
+				}
 			}
 			else if (cmd == "board")
 			{
@@ -163,7 +164,7 @@ int main()
 				cin >> pos;
 				// use i(pos) th
 				// if play i p t
-				cur->play_card(pos);
+				cur->play_card(pos-1);
 			}
 			else if (cmd == "quit")
 			{
