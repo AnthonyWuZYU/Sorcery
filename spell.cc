@@ -56,16 +56,14 @@ bool success = true;
                 Board *board = player->getBoard();
                 vector<Card *> field = board->get_field();
 
-                Minion *target = new Minion( field.at(t) );
+                Minion *target = dynamic_cast<Minion*> ( field.at(t) );
                 vector<Card*> enchantments = target->get_enchant();
                 Card *temp = enchantments.back();
                 enchantments.pop_back();
                 board->destroy( temp );
 
                 target->set_enchant(enchantments);
-                Card *minion = &*target;
-                field.at(t) = minion;
-                delete minion;
+                field.at(t) = target;
                 board->set_field( field );
                 player->setBoard( board );
 
@@ -76,18 +74,16 @@ bool success = true;
                 Board *board = op->getBoard();
                 vector<Card *> field = board->get_field();
 
-                Minion *target = new Minion( field.at(t) );
+                Minion *target = dynamic_cast<Minion*> ( field.at(t) );
                 vector<Card*> enchantments = target->get_enchant();
                 Card *temp = enchantments.back();
                 enchantments.pop_back();
                 board->destroy( temp );
 
                 target->set_enchant(enchantments);
-                Card *minion = &*target;
-                field.at(t) = minion;
-                delete minion;
+                field.at(t) = target;
                 board->set_field( field );
-                op->setBoard( board );
+                player->setBoard( board );
                 player->setOpp( op );   
 
                 player->setMagic(player->getMagic() - 1);
