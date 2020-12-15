@@ -101,7 +101,6 @@ bool Spell::use_ability(Player *player, std::string description)
                     player->setMagic(player->getMagic() - 1);
                 }
 
-                player->setMagic(player->getMagic() - 1);
             }
             else
             {
