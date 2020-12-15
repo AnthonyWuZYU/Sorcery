@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Deck::Deck(string filename) {
+Deck::Deck(string filename, bool test) {
     ifstream infile{ filename };
     string i;
 
@@ -24,7 +24,7 @@ Deck::Deck(string filename) {
     while ( getline(infile, i) ) {
         this->add(i);
     }
-    this->shuffle();
+    if (!test) this->shuffle();
 }
 
 Deck::~Deck() {

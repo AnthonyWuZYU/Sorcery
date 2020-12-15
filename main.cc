@@ -61,8 +61,8 @@ int main(int argc, char *argv[]) {
 		player2.setOpp(&player1);
 
 		// load deck
-		Deck deck1 = Deck{deck1_name};
-		Deck deck2 = Deck{deck2_name};
+		Deck deck1 = Deck{deck1_name, test};
+		Deck deck2 = Deck{deck2_name, test};
 		Hand hand1, hand2;
 		Graveyard grave1, grave2;
 

@@ -19,7 +19,7 @@ class Deck {
     public:
         // Constructor for Deck. Takes field filename, will be the .deck file to load
         // the cards into the deck.
-        Deck(std::string filename);
+        Deck(std::string filename, bool test);
 
         // Deconstructor for Deck
         ~Deck();

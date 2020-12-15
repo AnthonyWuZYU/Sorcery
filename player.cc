@@ -82,8 +82,12 @@ void Player::play_card(unsigned int i, bool test) {
         if (magic - magic_cost >= 0 || test) { 
             if (card->get_type() == "Minion") {
                 board->add_to_field(board->remove_from_hand(i));
+		magic -= magic_cost;
+        	if (magic < 0) magic = 0;
             } else if (card->get_type() == "Ritual") {
                 board->set_ritual(board->remove_from_hand(i));
+		magic -= magic_cost;
+        	if (magic < 0) magic = 0;
             } else if (card->get_type() == "Enchant") {
                 unsigned int pos = 7;
                 cin >> pos;
@@ -94,6 +98,8 @@ void Player::play_card(unsigned int i, bool test) {
                     Minion* target = dynamic_cast<Minion *>(temp);
                     Enchant* enchantment = dynamic_cast<Enchant *>(board->remove_from_hand(i));
                     target->enchant(enchantment);
+		    magic -= magic_cost;
+        	    if (magic < 0) magic = 0;
                 } 
             } else if (card->get_type() == "Spell") {
                 Spell* spell = dynamic_cast<Spell *>(board->get_card_hand(i));
@@ -102,11 +108,9 @@ void Player::play_card(unsigned int i, bool test) {
                 }
 
             }
-        } else {
+	} else {
             cout << "You do not have enough magic to play this card!" << endl;
         }
-        magic -= magic_cost;
-	if (magic < 0) magic = 0;
         card = nullptr;
         delete card;
     } else {
