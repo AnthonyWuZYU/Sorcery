@@ -200,3 +200,8 @@ int Minion::get_defence() const {return defence;}
 int Minion::get_action() const {return action;}
 
 std::string Minion::get_ability() const {return ability;}
+
+void Minion::enchant(Enchant *enchantment) {
+        minionEnchantments.emplace_back(enchantment);
+}
+
