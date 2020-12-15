@@ -141,7 +141,7 @@ void Minion::use_ability(Player *player, string description, Card *target) {
         player->setMagic( player->getMagic() -1 );
 
     } else if (description == "Summon a 1/1 air elemental") {
-        Card *summon = new Minion("Air Elemental", 0, 1, 1, "Minion", description);
+        Card *summon = new Minion("Air Elemental", 0, 1, 1, 0);
         vector<Card*>  field = player->getBoard()->get_field();
 
         unsigned int length = field.size();
@@ -157,7 +157,7 @@ void Minion::use_ability(Player *player, string description, Card *target) {
         player->setMagic( player->getMagic() - 1 );
 
     } else if (description == "Summon up to three 1/1 air elementals") {
-        Card *summon = new Minion("Air Elemental", 0, 1, 1, "Minion", description);
+        Card *summon = new Minion("Air Elemental", 0, 1, 1, 0);
         vector<Card*> field = player->getBoard()->get_field();
 
         unsigned int length = field.size();
