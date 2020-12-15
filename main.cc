@@ -192,7 +192,7 @@ int main(int argc, char *argv[]) {
 				
 			} else if (cmd == "discard" && test) {
 				cin >> pos;
-				cur->getBoard()->remove_from_hand(pos);
+				cur->getBoard()->get_hand()->remove(pos);
 
 			} else {
 				cerr << "Invalid command." << endl;

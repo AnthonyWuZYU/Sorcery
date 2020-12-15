@@ -17,8 +17,12 @@ void Hand::add( Card* card ){
     cards.emplace_back(card);
 }
 
-void Hand::remove( unsigned int i ){
-    cards.erase( cards.begin() + i);
+void Hand::remove( unsigned int i ) {
+    if (i < cards.size()) {
+    	cards.erase( cards.begin() + i);
+    } else {
+    	cerr << "There is no card in the position" << endl;
+    }
 }
 
 std::ostream& operator<<(std::ostream &os, const Hand &hand) {
