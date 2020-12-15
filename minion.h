@@ -59,6 +59,8 @@ class Minion : public Card {
         int get_action() const;
 
         std::string get_ability() const;
+        
+        std::vector<Enchant*> get_enchant();
 
         void print(std::ostream &os) const override;
 
