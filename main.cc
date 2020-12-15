@@ -2,32 +2,28 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-using namespace std;
-
 #include "card.h"
 #include "hand.h"
 #include "deck.h"
 #include "player.h"
 #include "graveyard.h"
+using namespace std;
 
 void print_centre_graphic();
 void print_top_border();
 void print_bot_border();
 void print_player(Player* player, int num);
 
-int main()
-{
+int main() {
 	//istream *in = nullptr;
 
 	cin.exceptions(ios::failbit | ios::eofbit);
 	string player1_name;
 	string player2_name;
 
-	try
-	{
+	try {
 		//get player1's name
-		while (player1_name.empty())
-		{
+		while (player1_name.empty()) {
 			cout << "Player 1: ";
 			getline(cin, player1_name);
 			if (player1_name.empty())
@@ -36,8 +32,7 @@ int main()
 		Player player1{player1_name};
 
 		//get player2's name
-		while (player2_name.empty())
-		{
+		while (player2_name.empty()) {
 			cout << "Player 2: ";
 			getline(cin, player2_name);
 			if (player1_name.empty())
@@ -55,8 +50,7 @@ int main()
 		Hand hand1, hand2;
 		Graveyard grave1, grave2;
 
-		//cout << deck1.pop().get_Name() << endl;
-
+		
 		Board board1 = Board{&deck1, &grave1, &hand1};
 		Board board2 = Board{&deck2, &grave2, &hand2};
 
@@ -65,8 +59,8 @@ int main()
 
 		string cmd;
 		string option;
-
-		int pos;
+		unsigned int pos = 0;
+		bool quit = false;
 
 		// cursor set the player1 as the initial player
 		Player *cur = player2.getOpp();
@@ -76,15 +70,10 @@ int main()
 		cur->addMaxMagic(1);
 		cur->setMagic(cur->getMaxMagic());
 		cur->draw();
-		//cout << "Card:" << cur->getBoard()->get_card_hand(0).get_Name() << endl;
 
-		bool quit = false;
-
-		while (cin >> cmd)
-		{
-
-			if (cmd == "help")
-			{
+		while (cin >> cmd) {
+		    
+			if (cmd == "help") {
 				cout << "Commands: help -- Display this message." << endl;
 				cout << "          end  -- End the current player's turn." << endl;
 				cout << "          quit -- End the game." << endl;
@@ -97,16 +86,15 @@ int main()
 				cout << "          inspect minion -- View a minion's card and all enchantments on that minion." << endl;
 				cout << "          hand -- Describe all cards in your hand." << endl;
 				cout << "          board -- Describe all cards on the board." << endl;
-			}
-			else if (cmd == "hand")
-			{
+			
+			    
+			} else if (cmd == "hand") {
 				// Displays cards in hand
 				cout << *cur->getBoard()->get_hand() << endl;
 				
-			}
-			else if (cmd == "end")
-			{
+			} else if (cmd == "end") {
 				// end of turn effect
+
 				cur = cur->getOpp();
 				cur->addMaxMagic(1);
 				cur->setMagic(cur->getMaxMagic());
@@ -116,9 +104,7 @@ int main()
 
 				// start of turn effect
 
-			}
-			else if (cmd == "attack")
-			{
+			} else if (cmd == "attack") {
 				int j = 1000;
 				cin >> pos;
 				cin >> j;
@@ -127,9 +113,7 @@ int main()
 				// if attack i j
 				cur->minion_attack(pos, j);
 				
-			}
-			else if (cmd == "board")
-			{
+			} else if (cmd == "board") {
 				// show board
 				print_top_border();
 				
@@ -147,47 +131,46 @@ int main()
 					print_player(cur, 2);
 				}
 				print_bot_border();
-			}
-			else if (cmd == "inspect")
-			{
+			
+			    
+			} else if (cmd == "inspect") {
 				cin >> pos;
-                cur->getBoard()->get_card_field(pos)->print(cout);
-                Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos));
-                for (auto it: target->get_enchant()) {
-                                        it->print(cout);
+                if (pos < cur->getBoard()->get_field().size() && pos >= 0) {
+                    cur->getBoard()->get_card_field(pos)->print(cout);
+                    Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos));
+                    for (auto it: target->get_enchant()) {
+                        it->print(cout);
+                    }
+                } else {
+                    cerr << "No minion in this position" << endl;
                 }
-			}
-			else if (cmd == "use")
-			{
+			
+			    
+			} else if (cmd == "use") {
 				cin >> pos;
 				// use i(pos) th
-			}
-			else if (cmd == "play")
-			{
+				
+			} else if (cmd == "play") {
 				cin >> pos;
 				// use i(pos) th
 				// if play i p t
 				cur->play_card(pos);
-			}
-			else if (cmd == "quit")
-			{
+			
+			} else if (cmd == "quit") {
 				quit = true;
-			}
-			else
-			{
+			
+			    
+			} else {
 				cerr << "Invalid command." << endl;
 				cerr << "Type \"help\" to show all possible command." << endl;
 			}
 
-			if (quit)
-				break;
+			if (quit) break;
 
 			cout << cur->getName() << "'s turn" << endl;
 		}
 	}
-	catch (ios::failure)
-	{
-	}
+	catch (ios::failure) {}
 }
 
 
