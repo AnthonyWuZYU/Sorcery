@@ -94,12 +94,11 @@ void Player::play_card(unsigned int i) {
                     Minion* target = dynamic_cast<Minion *>(temp);
                     Enchant* enchantment = dynamic_cast<Enchant *>(board->remove_from_hand(i));
                     target->enchant(enchantment);
-
-                    // Ensuring the pointers don't cause any mess in future
-                    enchantment = nullptr;
-                    target = nullptr;
-                    delete enchantment;
-                    delete card;
+                } else if (card->get_type() == "Spell") {
+                    Spell* spell = dynamic_cast<Spell *>(board->get_card_hand(i));
+                    if (spell->use_ability(this, spell->get_ability())) {
+                        board->remove_from_hand(i);
+                    }
                 }
             }
         } else {
