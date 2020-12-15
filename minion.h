@@ -14,12 +14,13 @@ class Minion : public Card {
     int attack;
     int defence;
     int action;
+    int activate_cost;
     Card *target = nullptr;
     std::string ability;
     std::vector<Card*> minionEnchantments;
     public:
         // Constructor
-        Minion(std::string name, int cost, int attack, int defence, std::string card_type, std::string ability="");
+        Minion(std::string name, int cost, int attack, int defence, int activate_cost, std::string ability="");
 
         // Polymorphic Copy Constructor
         Minion(const Card *other);
@@ -57,6 +58,10 @@ class Minion : public Card {
         std::string get_ability() const;
         
         std::vector<Card*> get_enchant() const;
+        
+        int get_activate_cost() const;
+
+        void set_activate_cost(int activate_cost);
         
         void set_enchant(std::vector<Card*> enchants);
 
