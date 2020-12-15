@@ -45,33 +45,32 @@ std::ostream& operator<<(std::ostream &os, const Hand &hand) {
             temp = nullptr;
             delete temp;
         } else if (it->get_type() == "Enchant") {
-	    Enchant *temp = dynamic_cast<Enchant *>(it);
-	    if (temp->get_ability() == " ") { 
-		string atk,def;
-		if (temp->get_addAtk() > 0) {
-			atk = "+";
-			atk += to_string(temp->get_addAtk());
-		} else if (temp->get_addAtk() < 0) {
-			atk = to_string(temp->get_addAtk());
-		} else {
-			atk = "*";
-			atk += to_string(temp->get_mulAtk());
-		}
-		if (temp->get_addDef() > 0) {
+            Enchant *temp = dynamic_cast<Enchant *>(it);
+            if (temp->get_ability() == " ") {
+                string atk,def;
+                if (temp->get_addAtk() > 0) {
+                        atk = "+";
+                        atk += to_string(temp->get_addAtk());
+                } else if (temp->get_addAtk() < 0) {
+                        atk = to_string(temp->get_addAtk());
+                } else {
+                        atk = "*";
+                        atk += to_string(temp->get_mulAtk());
+                }
+                if (temp->get_addDef() > 0) {
                         def = "+";
                         def += to_string(temp->get_addDef());
                 } else if (temp->get_addDef() < 0) {
                         def = to_string(temp->get_addDef());
                 } else {
                         def = "*";
-                        def += to_string(temp->get_mulDef());
+                        def += to_string(temp->get_mulDef()); 
                 }
-            	to_print.emplace_back(display_enchantment_attack_defence(temp->get_name(),temp->get_cost(),temp->get_ability(), atk, def));
-	    } else {
-	    	Enchant *temp = dynamic_cast<Enchant *>(it);
+                to_print.emplace_back(display_enchantment_attack_defence(temp->get_name(),temp->get_cost(),temp->get_ability(), atk, def));
+            } else {
                 to_print.emplace_back(display_enchantment(temp->get_name(),temp->get_cost(),temp->get_ability()));
-	    }
-	    temp = nullptr;
+            }
+            temp = nullptr;
             delete temp;
         } else if (it->get_type() == "Ritual") {
             Ritual *temp = dynamic_cast<Ritual *>(it);
