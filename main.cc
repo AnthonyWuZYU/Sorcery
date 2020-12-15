@@ -138,16 +138,16 @@ int main() {
 			
 			    
 		    } else if (cmd == "inspect") {
-                cin >> pos;
-                if (pos < cur->getBoard()->get_field().size() && pos >= 0) {
-                    cur->getBoard()->get_card_field(pos)->print(cout);
-                    Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos));
-                    for (auto it: target->get_enchant()) {
-                        it->print(cout);
+                    cin >> pos;
+                    if (pos < cur->getBoard()->get_field().size() && pos >= 0) {
+                        cur->getBoard()->get_card_field(pos)->print(cout);
+                        Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos));
+                        for (auto it: target->get_enchant()) {
+                            it->print(cout);
+                        }
+                    } else {
+                        cerr << "No minion in this position" << endl;
                     }
-                } else {
-                    cerr << "No minion in this position" << endl;
-                }
 			
 			    
 			} else if (cmd == "use") {
