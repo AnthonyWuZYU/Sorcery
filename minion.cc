@@ -229,7 +229,7 @@ std::vector<Enchant*> Minion::get_enchant() {
         return minionEnchantments;
 }
 
-void Minion::set_enchant(std::vector<Enchant*> enchants) {
+void Minion::set_enchant(std::vector<Enchant*> enchants) const {
         minionEnchantments = enchants;
 }
 
