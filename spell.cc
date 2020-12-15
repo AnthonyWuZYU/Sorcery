@@ -167,7 +167,6 @@ bool success = true;
             
         } else if (description == "Resurrect the top minion in your graveyard and set its defence to 1") {
             Board *board = player->getBoard();
-            Card *temp = board->remove_from_graveyard();
 
             if(board->get_graveyard()->getSize() == 0){
                 cout << "Nothing to resurrect. Graveyard is empty." << endl;
@@ -175,6 +174,8 @@ bool success = true;
             }
 
             else{
+            Card *temp = board->remove_from_graveyard();
+
             if(board->get_field().size() == 5){
                 cout << "Spell failed. Field already full." << endl;
             }
