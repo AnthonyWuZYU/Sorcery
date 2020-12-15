@@ -90,22 +90,38 @@ void Player::play_card(unsigned int i) {
 }
 
 void Player::minion_attack(unsigned int i, unsigned int j) {
+    // Check if i is in range
     if (i < board->get_field().size()) {
         Minion* attacker = dynamic_cast<Minion *>(board->get_card_field(i));
         if (j == 1000) {
         //We attack the opposing the player
-        attacker->attack_target(opponent);
+            int player_health = attacker->attack_target(opponent);
         } else {
             //We are attacking another minion
+
+            // Check if j is in range
             if (j < opponent->getBoard()->get_field().size()) {
-                attacker->attack_target(opponent->getBoard()->get_card_field(j));
+                int target_defence = attacker->attack_target(opponent->getBoard()->get_card_field(j));
+
+                // Check if minion is dead
+                if (target_defence <= 0) {
+                    // Target Minion goes to graveyard
+                    cout << opponent->getBoard()->get_card_field(j)->get_name() << " has been sent to the graveyard!" << endl;
+                    board->add_to_graveyard(opponent->getBoard()->remove_from_field(j));
+                }
+                if (attacker->get_defence() <= 0) {
+                    // Attacking Minion goes to graveyard
+                    cout << attacker->get_name() << " has been sent to the graveyard!" << endl;
+                    board->add_to_graveyard(board->remove_from_field(i));
+                }
+
             } else {
                 cout << "There is no target minion at that index." << endl;
             }
         }
+        attacker = nullptr;
+        delete attacker;
     } else {
         cout << "There is no minion at that index." << endl;
     }
-    
-    
 }

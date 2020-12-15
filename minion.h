@@ -32,8 +32,8 @@ class Minion : public Card {
         void destroy() override;
 
         //atack(player): Attacks either a minion or player
-        void attack_target(Player *player);
-        void attack_target(Card *other);
+        int attack_target(Player *player);
+        int attack_target(Card *other);
 
         // set_attack(a): sets the minion's attack to int a
         void set_attack(int a);

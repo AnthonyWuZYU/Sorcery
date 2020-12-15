@@ -11,10 +11,12 @@ Minion::~Minion(){
 }
 
 Minion::Minion(const Card* other) : Card{other->get_name(), other->get_cost(), other->get_type()} {
- const Minion* temp = dynamic_cast<const Minion*>(other);
- attack = temp->get_attack();
- defence = temp->get_defence();
- action = temp->get_action();
+    const Minion* temp = dynamic_cast<const Minion*>(other);
+    attack = temp->get_attack();
+    defence = temp->get_defence();
+    action = temp->get_action();
+    temp = nullptr;
+    delete temp;
 }
 
 Card* Minion::operator=(const Card* other)  {
@@ -24,24 +26,28 @@ Card* Minion::operator=(const Card* other)  {
     attack = temp->get_attack();
     defence = temp->get_defence();
     action = temp->get_action();
+    temp = nullptr;
+    delete temp;
     return this;
 }
 
 
-void Minion::attack_target(Player *player) {
+int Minion::attack_target(Player *player) {
     player->setLife(player->getLife() - attack);
 
-    if (player->getLife() <= 0) {
-        //Player loses
-    }
+    return player->getLife();
 }
 
-void Minion::attack_target(Card *other) {
-    cout << "My defence is :" << defence << endl;
+int Minion::attack_target(Card *other) {
     Minion *target = dynamic_cast<Minion *>(other);
     target->set_defence(target->get_defence() - attack);
     defence -= target->get_attack();
-    cout << "My defence is now :" << defence << endl;
+
+    // Returning the target's defence
+    int d = target->get_defence();
+    target = nullptr;
+    delete target;
+    return d;
 }
 
 void Minion::use_ability(Player *player, string description, Card *target) {
