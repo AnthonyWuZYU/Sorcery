@@ -152,7 +152,11 @@ int main()
 			else if (cmd == "inspect")
 			{
 				cin >> pos;
-				cur->getBoard()->get_card_field(pos)->print(cout);
+                cur->getBoard()->get_card_field(pos)->print(cout);
+                Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos));
+                for (auto it: target->get_enchant()) {
+                                        it->print(cout);
+                }
 			}
 			else if (cmd == "use")
 			{
