@@ -138,7 +138,7 @@ int main() {
 			
 			    
 		        } else if (cmd == "inspect") {
-                        cin >> pos;
+                            cin >> pos;
                             if (pos < cur->getBoard()->get_field().size() && pos >= 0) {
                                 cur->getBoard()->get_card_field(pos)->print(cout);
                                 Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos));
