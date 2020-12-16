@@ -60,7 +60,7 @@ Player* Player::getOpp() {
 }
 
 void Player::draw(){
-    if (board->get_hand()->getSize() < 5) {
+    if (board->get_hand()->getSize() < board->get_hand()->maxSize) {
         Card *temp = board->draw_from_deck();
         if (!temp) {
             cout << "You have no cards left in your deck, a card was not drawn." << endl;
