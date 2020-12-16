@@ -139,7 +139,6 @@ bool Minion::use_ability(Player *player)
 
         if (oppField.size() >= t)
         {
-
             Minion *temp = dynamic_cast<Minion *>(oppField.at(t-1));
             temp->set_defence(temp->get_defence() - 1);
             Player::is_dead(t-1, op->getBoard());

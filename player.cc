@@ -60,7 +60,7 @@ Player* Player::getOpp() {
 }
 
 void Player::draw(){
-    if (board->get_hand()->getSize() <= 5) {
+    if (board->get_hand()->getSize() < 5) {
         Card *temp = board->draw_from_deck();
         if (!temp) {
             cout << "You have no cards left in your deck, a card was not drawn." << endl;
@@ -91,7 +91,7 @@ void Player::play_card(unsigned int i, bool test) {
             } else if (card->get_type() == "Enchant") {
                 unsigned int pos = 7;
                 cin >> pos;
-                Card* temp = board->get_card_field(pos);
+                Card* temp = board->get_card_field(pos-1);
                 if (!temp) {
                     cout << "There is no Minion at that index!" << endl;  
                 } else {
@@ -154,7 +154,7 @@ void Player::reset_action() {
     delete temp;
 }
 
-void is_dead(unsigned int i, Board* board) {
+void Player::is_dead(unsigned int i, Board* board) {
     Minion *temp = dynamic_cast<Minion *>(board->get_card_field(i));
 
     if (temp->get_defence() <= 0) {
