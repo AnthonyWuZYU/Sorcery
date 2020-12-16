@@ -33,7 +33,7 @@ bool Spell::use_ability(Player *player, std::string description)
             }
             else
             {
-                int index = stoi(t);
+                int index = stoi(t) - 1;
                 Card *minion = board->get_card_field(index);
                 board->remove_from_field(index);
 
@@ -57,7 +57,7 @@ bool Spell::use_ability(Player *player, std::string description)
             }
             else
             {
-                int index = stoi(t);
+                int index = stoi(t) - 1;
                 Card *minion = oppBoard->get_card_field(index);
                 oppBoard->remove_from_field(index);
 
@@ -79,7 +79,8 @@ bool Spell::use_ability(Player *player, std::string description)
         int t;
         cin >> p;
         cin >> t;
-
+	
+	t--;
         if (p == 1)
         {
             Board *board = player->getBoard();
@@ -168,7 +169,8 @@ bool Spell::use_ability(Player *player, std::string description)
         int t;
         cin >> p;
         cin >> t;
-
+	
+	t--;
         if (p == 1)
         {
             Board *board = player->getBoard();
@@ -179,15 +181,23 @@ bool Spell::use_ability(Player *player, std::string description)
                 Minion *target = dynamic_cast<Minion *>(field.at(t));
                 vector<Card *> enchantments = target->get_enchant();
                 if (!enchantments.empty())
-                {
+                {	
                     Card *temp = enchantments.back();
-                    enchantments.pop_back();
+		    
+		    Enchant *enchantment = dynamic_cast<Enchant *>(temp);
+		    
+		    target->set_attack(target->get_attack()  /  enchantment->get_mulAtk() - enchantment->get_addAtk());
+                    target->set_defence(target->get_defence()  /  enchantment->get_mulDef() - enchantment->get_addDef());
+                    
+		    enchantments.pop_back();
                     board->destroy(temp);
 
                     target->set_enchant(enchantments);
                     field.at(t) = target;
                     board->set_field(field);
                     player->setBoard(board);
+			
+		    player->is_dead(t, player->getBoard());
 
                     player->setMagic(player->getMagic() - 1);
                 }
@@ -216,7 +226,13 @@ bool Spell::use_ability(Player *player, std::string description)
                 if (!enchantments.empty())
                 {
                     Card *temp = enchantments.back();
-                    enchantments.pop_back();
+
+                    Enchant *enchantment = dynamic_cast<Enchant *>(temp);
+                    
+                    target->set_attack(target->get_attack()  /  enchantment->get_mulAtk() - enchantment->get_addAtk());
+                    target->set_defence(target->get_defence()  /  enchantment->get_mulDef() - enchantment->get_addDef());
+		    
+		    enchantments.pop_back();
                     board->destroy(temp);
 
                     target->set_enchant(enchantments);
@@ -224,6 +240,8 @@ bool Spell::use_ability(Player *player, std::string description)
                     board->set_field(field);
                     player->setBoard(board);
                     player->setOpp(op);
+			
+		    player->getOpp()->is_dead(t, player->getOpp()->getBoard());
 
                     player->setMagic(player->getMagic() - 1);
                 }

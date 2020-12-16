@@ -153,9 +153,9 @@ int main(int argc, char *argv[]) {
 			    
 		        } else if (cmd == "inspect") {
                         	cin >> pos;
-                        	if (pos < cur->getBoard()->get_field().size() && pos >= 0) {
-                                        cur->getBoard()->get_card_field(pos)->print(cout);
-                                        Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos));
+                        	if (pos <= cur->getBoard()->get_field().size() && pos > 0) {
+                                        cur->getBoard()->get_card_field(pos-1)->print(cout);
+                                        Minion* target = dynamic_cast<Minion *>(cur->getBoard()->get_card_field(pos-1));
 
                                         vector<vector<string>> to_print;
                                         for (auto it : target->get_enchant()) {

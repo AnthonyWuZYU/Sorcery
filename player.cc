@@ -89,18 +89,37 @@ void Player::play_card(unsigned int i, bool test) {
 		magic -= magic_cost;
         	if (magic < 0) magic = 0;
             } else if (card->get_type() == "Enchant") {
+		int p;
                 unsigned int pos = 7;
-                cin >> pos;
-                Card* temp = board->get_card_field(pos-1);
-                if (!temp) {
-                    cout << "There is no Minion at that index!" << endl;  
-                } else {
-                    Minion* target = dynamic_cast<Minion *>(temp);
-                    Enchant* enchantment = dynamic_cast<Enchant *>(board->remove_from_hand(i));
-                    target->enchant(enchantment);
-		    magic -= magic_cost;
-        	    if (magic < 0) magic = 0;
-                } 
+                cin >> p;
+		cin >> pos;
+		if (p == 1) {
+			
+                	Card* temp = board->get_card_field(pos-1);
+                	if (!temp) {
+                    	cout << "There is no Minion at that index!" << endl;  
+                	} else {
+                	    Minion* target = dynamic_cast<Minion *>(temp);
+                	    Enchant* enchantment = dynamic_cast<Enchant *>(board->remove_from_hand(i));
+                	    target->enchant(enchantment);
+			    magic -= magic_cost;
+        		    if (magic < 0) magic = 0;
+			    this->is_dead(pos-1, board);
+                	}
+		 } else if (p == 2) {
+		 	Card* temp = opponent->getBoard()->get_card_field(pos-1);
+                        if (!temp) {
+                        cout << "There is no Minion at that index!" << endl;
+                        } else {
+                            Minion* target = dynamic_cast<Minion *>(temp);
+                            Enchant* enchantment = dynamic_cast<Enchant *>(board->remove_from_hand(i));
+                            target->enchant(enchantment);
+                            magic -= magic_cost;
+                            if (magic < 0) magic = 0;
+			}
+		 } else {
+		 	cerr << "Invalid player" << endl;
+		 }	
             } else if (card->get_type() == "Spell") {
                 Spell* spell = dynamic_cast<Spell *>(board->get_card_hand(i));
                 if (spell->use_ability(this, spell->get_ability())) {

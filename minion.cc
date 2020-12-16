@@ -218,31 +218,24 @@ void Minion::set_defence(int d) { defence = d; }
 
 void Minion::set_action(int a) { action = a; }
 
-int Minion::get_attack() const
-{
-    int atk = this->attack;
-    for (auto it : minionEnchantments)
-    {
-        Enchant *enchant = dynamic_cast<Enchant *>(it);
-        atk = (atk + enchant->get_addAtk()) * enchant->get_mulAtk();
-    }
-    return atk;
-}
+int Minion::get_attack() const {return attack;}
 
-int Minion::get_defence() const
-{
-    int def = this->defence;
-    for (auto it : minionEnchantments)
-    {
-        Enchant *enchant = dynamic_cast<Enchant *>(it);
-        def = (def + enchant->get_addDef()) * enchant->get_mulDef();
-    }
-    return def;
-}
+int Minion::get_defence() const {return defence;}
 
 void Minion::print(std::ostream &os) const
-{
-    std::vector<std::string> card_template_t = display_minion_no_ability(this->get_name(), this->get_cost(), attack, defence);
+{	
+    std::vector<std::string> card_template_t;
+    if (ability == "") {
+                card_template_t = display_minion_no_ability(this->get_name(),this->get_cost(),this->get_attack(),this->get_defence());
+    } else if (activate_cost == 0) {
+                card_template_t = display_minion_triggered_ability(this->get_name(),this->get_cost(),
+                                          this->get_attack(),this->get_defence(), this->get_ability());
+
+    } else {
+                card_template_t = display_minion_activated_ability(this->get_name(),this->get_cost(),
+                                          this->get_attack(),this->get_defence(), this->get_activate_cost(), this->get_ability());
+    }
+
     for (auto it : card_template_t)
     {
         os << it << endl;
@@ -256,6 +249,8 @@ std::string Minion::get_ability() const { return ability; }
 void Minion::enchant(Enchant *enchantment)
 {
     minionEnchantments.emplace_back(enchantment);
+    attack = (attack + enchantment->get_addAtk()) * enchantment->get_mulAtk();
+    defence = (defence + enchantment->get_addDef()) * enchantment->get_mulDef();
 }
 
 std::vector<Card *> Minion::get_enchant() const
