@@ -160,6 +160,8 @@ bool Minion::use_ability(Player *player)
         {
 	    Card *summon = new Minion("Air Elemental", 0, 1, 1, 0, "");
             player->getBoard()->add_to_field(player, summon);
+            summon = nullptr;
+            delete summon;
             Board *temp = player->getBoard();
             temp->set_field(field);
 
@@ -182,7 +184,9 @@ bool Minion::use_ability(Player *player)
             for (int i = 0; i < 3; i++)
             {
 		Card *summon = new Minion("Air Elemental", 0, 1, 1, 0, "");
-        	player->getBoard()->add_to_field(player, summon);        
+        	player->getBoard()->add_to_field(player, summon);      
+        	summon = nullptr;
+            delete summon;
             }
         }
         else if (length < 4)
@@ -191,12 +195,16 @@ bool Minion::use_ability(Player *player)
             {
 		Card *summon = new Minion("Air Elemental", 0, 1, 1, 0, "");
                 player->getBoard()->add_to_field(player, summon);
+                summon = nullptr;
+                delete summon;
             }
         }
         else if (length < 5)
         {
 		Card *summon = new Minion("Air Elemental", 0, 1, 1, 0, "");
                 player->getBoard()->add_to_field(player, summon);
+                summon = nullptr;
+                delete summon;
         }
         else
         {
