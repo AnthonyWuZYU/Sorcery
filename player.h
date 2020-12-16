@@ -55,6 +55,8 @@ class Player{
 
         void reset_action();
 
+        void use_abilities();
+
         static void is_dead(unsigned int i, Board* board);
         
 

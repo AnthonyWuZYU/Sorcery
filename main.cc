@@ -121,6 +121,7 @@ int main(int argc, char *argv[]) {
 				cur->draw();
 
 				// start of turn effect
+				cur->use_abilities();
 
 			} else if (cmd == "attack") {
 				int j = 1000;
