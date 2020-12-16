@@ -69,9 +69,10 @@ int Minion::attack_target(Card *other)
     return d;
 }
 
-bool Minion::use_ability(Player *player, string description)
+bool Minion::use_ability(Player *player)
 {
     bool success = true;
+    string description = ability;
 
     // Minion Abilities : Triggered
 
@@ -129,47 +130,23 @@ bool Minion::use_ability(Player *player, string description)
         player->setBoard(temp);
     }
     // Minion Abilities : Activated
-    else if (description == "1 | Deal 1 damage to target minion")
+    else if (description == "Deal 1 damage to target minion")
     {
-        int p;
         int t;
-
-        cin >> p;
         cin >> t;
+        Player *op = player->getOpp();
+        vector<Card *> oppField = op->getBoard()->get_field();
 
-        if (p == 1)
-        {
-            cout << "You cannot damage your own minion." << endl;
-            success = false;
-        }
-        else if (p == 2)
+        if (oppField.size() >= t)
         {
 
-            Player *op = player->getOpp();
-            vector<Card *> oppField = op->getBoard()->get_field();
-
-            if (oppField.size() > t)
-            {
-
-                Minion *temp = dynamic_cast<Minion *>(oppField.at(t));
-                temp->set_defence(temp->get_defence() - 1);
-                oppField.at(t) = temp;
-
-                Board *board = op->getBoard();
-                board->set_field(oppField);
-
-                op->setBoard(board);
-                player->setOpp(op);
-            }
-            else
-            {
-                cout << "Wrong Index." << endl;
-                success = false;
-            }
+            Minion *temp = dynamic_cast<Minion *>(oppField.at(t-1));
+            temp->set_defence(temp->get_defence() - 1);
+            Player::is_dead(t-1, op->getBoard());
         }
-
         else
         {
+            cout << "Wrong Index." << endl;
             success = false;
         }
     }
@@ -236,34 +213,39 @@ bool Minion::use_ability(Player *player, string description)
     return success;
 }
 
+void Minion::set_attack(int a) { attack = a; }
 
-void Minion::set_attack(int a) {attack = a;}
+void Minion::set_defence(int d) { defence = d; }
 
-void Minion::set_defence(int d) {defence = d;}
+void Minion::set_action(int a) { action = a; }
 
-void Minion::set_action(int a) {action = a;}
-
-int Minion::get_attack() const {
-        int atk = this->attack;
-        for (auto it: minionEnchantments) {
-                Enchant* enchant = dynamic_cast<Enchant *>(it);
-                atk = (atk + enchant->get_addAtk() ) * enchant->get_mulAtk();
-        }
-        return atk;
+int Minion::get_attack() const
+{
+    int atk = this->attack;
+    for (auto it : minionEnchantments)
+    {
+        Enchant *enchant = dynamic_cast<Enchant *>(it);
+        atk = (atk + enchant->get_addAtk()) * enchant->get_mulAtk();
+    }
+    return atk;
 }
 
-int Minion::get_defence() const {
-        int def = this->defence;
-        for (auto it: minionEnchantments) {
-                Enchant* enchant = dynamic_cast<Enchant *>(it);
-                def = (def + enchant->get_addDef() ) * enchant->get_mulDef();
-        }
-        return def;
+int Minion::get_defence() const
+{
+    int def = this->defence;
+    for (auto it : minionEnchantments)
+    {
+        Enchant *enchant = dynamic_cast<Enchant *>(it);
+        def = (def + enchant->get_addDef()) * enchant->get_mulDef();
+    }
+    return def;
 }
 
-void Minion::print(std::ostream& os) const {
-    std::vector<std::string> card_template_t = display_minion_no_ability(this->get_name(),this->get_cost(), attack, defence);
-    for (auto it: card_template_t) {
+void Minion::print(std::ostream &os) const
+{
+    std::vector<std::string> card_template_t = display_minion_no_ability(this->get_name(), this->get_cost(), attack, defence);
+    for (auto it : card_template_t)
+    {
         os << it << endl;
     }
 }

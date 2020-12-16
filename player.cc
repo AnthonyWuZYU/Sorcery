@@ -130,20 +130,9 @@ void Player::minion_attack(unsigned int i, unsigned int j) {
 
             // Check if j is in range
             if (j < opponent->getBoard()->get_field().size()) {
-                int target_defence = attacker->attack_target(opponent->getBoard()->get_card_field(j));
-
-                // Check if minion is dead
-                if (target_defence <= 0) {
-                    // Target Minion goes to graveyard
-                    board->add_to_graveyard(opponent->getBoard()->remove_from_field(j));
-                    cout << "Opponent's " << opponent->getBoard()->get_card_field(j)->get_name() << " has been sent to the graveyard!" << endl;
-                }
-                if (attacker->get_defence() <= 0) {
-                    // Attacking Minion goes to graveyard
-                    board->add_to_graveyard(board->remove_from_field(i));
-                    cout << "Attacker's " << attacker->get_name() << " has been sent to the graveyard!" << endl;
-                }
-
+                attacker->attack_target(opponent->getBoard()->get_card_field(j));
+                is_dead(j, opponent->getBoard());
+                is_dead(i, board);
             } else {
                 cout << "There is no target minion at that index." << endl;
             }
@@ -163,4 +152,16 @@ void Player::reset_action() {
     }
     temp = nullptr;
     delete temp;
+}
+
+void is_dead(unsigned int i, Board* board) {
+    Minion *temp = dynamic_cast<Minion *>(board->get_card_field(i));
+
+    if (temp->get_defence() <= 0) {
+        board->add_to_graveyard(board->remove_from_field(i));
+        cout << temp->get_name() << " has been sent to the graveyard!" << endl;
+    }
+    temp = nullptr;
+    delete temp;
+
 }

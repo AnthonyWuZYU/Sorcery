@@ -202,6 +202,10 @@ int main(int argc, char *argv[]) {
 			} else if (cmd == "use") {
 				cin >> pos;
 				// use i(pos) th
+				Minion* temp_m = dynamic_cast<Minion*>(cur->getBoard()->get_card_field(pos-1));
+				temp_m->use_ability(cur);
+				temp_m = nullptr;
+				delete temp_m;
 				
 			} else if (cmd == "play") {
 				cin >> pos;
