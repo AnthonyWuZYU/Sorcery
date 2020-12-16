@@ -118,25 +118,25 @@ void Deck::add(string cardname) {
                     ability = info[6];
                 }
                 Card *temp = new Minion{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3]), stoi(info[5]), ability};
-                cards.emplace_back(temp);
+                cards.emplace_back(&temp);
                 temp = nullptr;
                 delete temp;
         } else if (is_in(enchantments, cardname)) {
                 info = get_info(enchantments, cardname);
                 Card *temp = new Enchant{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3]), stoi(info[4]), stoi(info[5]), info[6]};
-                cards.emplace_back(temp);
+                cards.emplace_back(&temp);
                 temp = nullptr;
                 delete temp;
         } else if (is_in(spells, cardname)) {
                 info = get_info(spells, cardname);
                 Card *temp = new Spell{info[0], stoi(info[1]), info[2]};
-                cards.emplace_back(temp);
+                cards.emplace_back(&temp);
                 temp = nullptr;
                 delete temp;
         } else if (is_in(rituals, cardname)) {
                 info = get_info(rituals, cardname);
                 Card *temp = new Ritual{info[0], stoi(info[1]), stoi(info[2]), stoi(info[3]), info[4]};
-                cards.emplace_back(temp);
+                cards.emplace_back(&temp);
                 temp = nullptr;
                 delete temp;
         } else {
