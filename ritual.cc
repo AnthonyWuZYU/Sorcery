@@ -1,7 +1,7 @@
 #include "ritual.h"
 using namespace std;
 
-Ritual::Ritual(std::string name, int cost, int activation_cost, int charges, std::string ability) : activation_cost{activation_cost}, charges{charges}, ability{ability}, Card{name, cost, "Ritual"} {}
+Ritual::Ritual(std::string name, int cost, int activation_cost, int charges, std::string ability): Card{name, cost, "Ritual"}, activation_cost{activation_cost}, charges{charges}, ability{ability} {}
 
 Ritual::~Ritual() {}
 
@@ -45,7 +45,6 @@ void Ritual::use_ability(Player *player, std::string description)
     {
         Board *board = player->getBoard();
         vector<Card *> field = board->get_field();
-        int length = field.size();
 
         Minion *temp = dynamic_cast<Minion *>(field.back());
         temp->set_defence(temp->get_defence() + 1);
@@ -68,6 +67,10 @@ void Ritual::use_ability(Player *player, std::string description)
         player->setBoard(board);
 
         this->charges -= 2;
+    }
+    if (this->charges <= 0) {
+	player->getBoard()->set_ritual(nullptr);
+    	player->getBoard()->destroy(this);
     }
 }
 

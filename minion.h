@@ -20,7 +20,7 @@ class Minion : public Card {
     std::vector<Card*> minionEnchantments;
     public:
         // Constructor
-        Minion(std::string name, int cost, int attack, int defence, int activate_cost, std::string ability="");
+        Minion(std::string name, int cost, int attack, int defence, int activate_cost, std::string ability);
 
         // Polymorphic Copy Constructor
         Minion(const Card *other);

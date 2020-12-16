@@ -145,4 +145,5 @@ Card* Deck::get_card(std::string name) const {
             return it;
         }
     }
+    return nullptr;
 }

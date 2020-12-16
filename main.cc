@@ -18,6 +18,8 @@ int main(int argc, char *argv[]) {
 	//istream *in = nullptr;
 	string deck1_name = "default.deck";
 	string deck2_name = "default.deck";
+	string file_name = "";
+	bool file = false;
 	bool test = false;
 	for (int i = 1; i < argc; i++) {
         	stringstream arg(argv[i]);
@@ -30,8 +32,15 @@ int main(int argc, char *argv[]) {
 	    	if (arg.str() == "-testing") {
 	    		test = true;
 	    	}
+		if (arg.str() == "-init" && i < argc - 1) {
+                      file_name = argv[i+1];
+		      file = true;
+                }
     	}
-
+	
+	if (file) {
+	}
+	
 
 	cin.exceptions(ios::failbit | ios::eofbit);
 	string player1_name;
@@ -123,12 +132,32 @@ int main(int argc, char *argv[]) {
 			} else if (cmd == "attack") {
 				int j = 1000;
 				cin >> pos;
+				
 				if (cur->getOpp()->getBoard()->get_field().empty()) {
 					cur->minion_attack(pos-1);
 				} else {
 					cin >> j;
 					cur->minion_attack(pos-1, j-1);
 				}
+				if (cur->getOpp()->getLife() <= 0) {
+					print_top_border();
+	                                if (cur->getName() == player1_name) {
+        	                                print_player(cur, 1);
+                	                        cout << *cur->getBoard();
+                        	                print_centre_graphic();
+                                	        cout << *cur->getOpp()->getBoard();
+                                        	print_player(cur->getOpp(), 2);
+                                	} else {
+                                        	print_player(cur->getOpp(), 1);
+                                        	cout << *cur->getOpp()->getBoard();
+                                        	print_centre_graphic();
+                                        	cout << *cur->getBoard();
+                                        	print_player(cur, 2);
+                                	}
+                                	print_bot_border();
+             				cout << cur->getName() << " won!" << endl;
+					quit = true;
+            			}
 			}
 			else if (cmd == "board")
 			{
@@ -199,10 +228,26 @@ int main(int argc, char *argv[]) {
 			    
 			} else if (cmd == "use") {
 				cin >> pos;
+				bool silence = false;
 				unsigned int field_size = cur->getBoard()->get_field().size();
 				if (pos <= field_size && pos > 0) {
 					Minion* temp_m = dynamic_cast<Minion*>(cur->getBoard()->get_card_field(pos-1));
-                                	temp_m->use_ability(cur);
+                                	for (auto it: temp_m->get_enchant()) {
+						if (it->get_name() == "Silence") silence = true;
+					}
+					if (!silence) { 
+						if (temp_m->get_action() != 0) {
+							if (cur->getMagic() >= temp_m->get_activate_cost() || test) {
+								temp_m->use_ability(cur);
+							} else {
+								cerr << "Not enough magic" << endl;
+							}
+						} else {
+							cerr << "Minion doesn't have any actions" << endl;
+						}
+					} else {
+						cerr << "The minion is silenced, can not use its ability" << endl;
+					}
                                 	temp_m = nullptr;
                                 	delete temp_m;
 				} else {

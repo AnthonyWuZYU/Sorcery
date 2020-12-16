@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Spell::Spell(string name, int cost, string ability) : ability{ability}, Card{name, cost, "Spell"} {}
+Spell::Spell(string name, int cost, string ability) : Card{name, cost, "Spell"}, ability{ability} {}
 
 Spell::Spell(const Card *other) : Card{other->get_name(), other->get_cost(), other->get_type()} {}
 
@@ -86,8 +86,8 @@ bool Spell::use_ability(Player *player, std::string description)
             Board *board = player->getBoard();
 
             vector<Card *> oppField = board->get_field();
-
-            if (oppField.size() > t)
+	    int length = oppField.size();
+            if (length > t)
             {
 
                 if (board->get_hand()->getSize() == 5)
@@ -116,8 +116,8 @@ bool Spell::use_ability(Player *player, std::string description)
             Board *oppBoard = op->getBoard();
 
             vector<Card *> oppField = oppBoard->get_field();
-
-            if (oppField.size() > t)
+	    int length = oppField.size();
+            if (length > t)
             {
                 if (oppBoard->get_hand()->getSize() == 5)
                 {
@@ -175,8 +175,8 @@ bool Spell::use_ability(Player *player, std::string description)
         {
             Board *board = player->getBoard();
             vector<Card *> field = board->get_field();
-
-            if (board->get_field().size() > t)
+	    int length = board->get_field().size();
+            if (length > t && t >= 0)
             {
                 Minion *target = dynamic_cast<Minion *>(field.at(t));
                 vector<Card *> enchantments = target->get_enchant();
@@ -188,7 +188,10 @@ bool Spell::use_ability(Player *player, std::string description)
 		    
 		    target->set_attack(target->get_attack()  /  enchantment->get_mulAtk() - enchantment->get_addAtk());
                     target->set_defence(target->get_defence()  /  enchantment->get_mulDef() - enchantment->get_addDef());
-                    
+                    if (enchantment->get_name() == "Magic Fatigue") {
+                        target->set_activate_cost(target->get_activate_cost() - 2);
+
+                    } 
 		    enchantments.pop_back();
                     board->destroy(temp);
 
@@ -218,8 +221,8 @@ bool Spell::use_ability(Player *player, std::string description)
             Player *op = player->getOpp();
             Board *board = op->getBoard();
             vector<Card *> field = board->get_field();
-
-            if (board->get_field().size() > t)
+	    int length = board->get_field().size();
+            if ( length > t && t >= 0)
             {
                 Minion *target = dynamic_cast<Minion *>(field.at(t));
                 vector<Card *> enchantments = target->get_enchant();
@@ -232,6 +235,11 @@ bool Spell::use_ability(Player *player, std::string description)
                     target->set_attack(target->get_attack()  /  enchantment->get_mulAtk() - enchantment->get_addAtk());
                     target->set_defence(target->get_defence()  /  enchantment->get_mulDef() - enchantment->get_addDef());
 		    
+		    cout << enchantment->get_name() << endl;
+		    if (enchantment->get_name() == "Magic Fatigue") {
+     		    	target->set_activate_cost(target->get_activate_cost() - 2);
+    
+    		    }
 		    enchantments.pop_back();
                     board->destroy(temp);
 
@@ -298,8 +306,8 @@ bool Spell::use_ability(Player *player, std::string description)
         Player *op = player->getOpp();
         Board *oppBoard = op->getBoard();
         vector<Card *> oppField = oppBoard->get_field();
-
-        for (int i = 0; i < oppField.size(); i++)
+	int length = oppField.size();
+        for (int i = 0; i < length; i++)
         {
             Minion *temp = dynamic_cast<Minion *>(oppField.at(i));
             temp->set_defence(temp->get_defence() - 2);

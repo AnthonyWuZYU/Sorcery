@@ -10,7 +10,7 @@ class Ritual : public Card{
 int activation_cost;
 int charges;
 Card *target = nullptr;
-std::string ability;
+std::string ability = "";
 
 public:
 

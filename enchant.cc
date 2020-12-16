@@ -3,7 +3,7 @@ using namespace std;
 
 
 Enchant::Enchant(string name, int cost, int addAtk, int addDef, int mulAtk, int mulDef, string ability):
-        addAtk{addAtk}, addDef{addDef}, mulAtk{mulAtk}, mulDef{mulDef}, ability{ability}, Card{name, cost, "Enchant"}
+        Card{name, cost, "Enchant"}, addAtk{addAtk}, addDef{addDef}, mulAtk{mulAtk}, mulDef{mulDef}, ability{ability}
 {}
 
 Enchant::Enchant(const Card* other) : Card{other->get_name(), other->get_cost(), other->get_type()} {

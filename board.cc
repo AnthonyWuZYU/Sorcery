@@ -13,7 +13,6 @@ void Board::add_to_field(Player* player, Card* card) {
     if (field.size() < 5 ) {
         field.emplace_back(card);
 	player->getBoard()->trigger(player, "enter");
-	
     }
 }
 
@@ -164,7 +163,7 @@ void Board::trigger( Player *player, string type ) {
 
 		if (player->getOpp()->getBoard()->get_ritual() != nullptr) {
                 	if (player->getOpp()->getBoard()->get_ritual()->get_name() == "Standstill" ) {
-                                Ritual* temp = dynamic_cast<Ritual*>(player->getOpp()->getBoard()->get_ritual());
+				Ritual* temp = dynamic_cast<Ritual*>(player->getOpp()->getBoard()->get_ritual());
                                 temp->use_ability(player, temp->get_ability());
                                 temp = nullptr;
                                 delete temp;

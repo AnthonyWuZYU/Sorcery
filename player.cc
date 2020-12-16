@@ -1,10 +1,10 @@
 #include "player.h"
 using namespace std;
 
-Player::Player(): life{20}, maxMagic{3}, magic{3}, name{""}, board{nullptr}, opponent{nullptr}
+Player::Player(): life{20}, maxMagic{3}, magic{3}, name{""}
 {}
 
-Player::Player( string name ): life{20}, maxMagic{3},  magic{3}, name{name}, board{nullptr}, opponent{nullptr}
+Player::Player( string name ): life{20}, maxMagic{3},  magic{3}, name{name}
 {}
 
 Player::~Player()
@@ -60,7 +60,9 @@ Player* Player::getOpp() {
 }
 
 void Player::draw(){
-    if (board->get_hand()->getSize() < board->get_hand()->maxSize) {
+    int size = board->get_hand()->getSize();
+    int max_size = board->get_hand()->maxSize;
+    if (size < max_size) {
         Card *temp = board->draw_from_deck();
         if (!temp) {
             cout << "You have no cards left in your deck, a card was not drawn." << endl;
@@ -75,7 +77,8 @@ void Player::draw(){
 }
 
 void Player::play_card(unsigned int i, bool test) {
-    if (board->get_hand()->getSize() > i) {
+    unsigned int size = board->get_hand()->getSize();
+    if (size > i) {
         Card *card = board->get_hand()->getCard(i);
         int magic_cost = card->get_cost();
     
@@ -143,7 +146,8 @@ void Player::minion_attack(unsigned int i, unsigned int j) {
         Minion* attacker = dynamic_cast<Minion *>(board->get_card_field(i));
         if (j == 1000) {
         //We attack the opposing the player
-            int player_health = attacker->attack_target(opponent);
+            attacker->attack_target(opponent);
+	    attacker->set_action(0);
         } else {
             //We are attacking another minion
 
@@ -152,6 +156,7 @@ void Player::minion_attack(unsigned int i, unsigned int j) {
                 attacker->attack_target(opponent->getBoard()->get_card_field(j));
                 is_dead(j, opponent->getBoard());
                 is_dead(i, board);
+		attacker->set_action(0);
             } else {
                 cout << "There is no target minion at that index." << endl;
             }
@@ -165,9 +170,24 @@ void Player::minion_attack(unsigned int i, unsigned int j) {
 
 void Player::reset_action() {
     Minion *temp;
+    bool delay = false;
+    unsigned int index = 0;
     for (auto it: board->get_field()) {
         temp = dynamic_cast<Minion *>(it);
-        temp->set_action(1);
+	for (auto en: temp->get_enchant()) {
+		if (en->get_name() == "Delay") {
+			delay = true;
+			break;
+		}
+		index++;
+	}
+        if (!delay) {
+	       temp->set_action(1);
+	} else {
+		vector<Card *> temp_e = temp->get_enchant();
+		temp_e.erase(temp_e.begin() + index);
+		temp->set_enchant(temp_e);
+	}
     }
     temp = nullptr;
     delete temp;
