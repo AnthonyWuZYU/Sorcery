@@ -1,10 +1,10 @@
 #include "player.h"
 using namespace std;
 
-Player::Player(): life{20}, maxMagic{}, magic{3}, name{""}, board{nullptr}, opponent{nullptr}
+Player::Player(): life{20}, maxMagic{3}, magic{3}, name{""}, board{nullptr}, opponent{nullptr}
 {}
 
-Player::Player( string name ): life{20}, magic{3}, name{name}, board{nullptr}, opponent{nullptr}
+Player::Player( string name ): life{20}, maxMagic{3},  magic{3}, name{name}, board{nullptr}, opponent{nullptr}
 {}
 
 Player::~Player()
@@ -81,7 +81,7 @@ void Player::play_card(unsigned int i, bool test) {
     
         if (magic - magic_cost >= 0 || test) { 
             if (card->get_type() == "Minion") {
-                board->add_to_field(board->remove_from_hand(i));
+                board->add_to_field(this, board->remove_from_hand(i));
 		magic -= magic_cost;
         	if (magic < 0) magic = 0;
             } else if (card->get_type() == "Ritual") {
@@ -156,8 +156,12 @@ void Player::reset_action() {
 
 void Player::is_dead(unsigned int i, Board* board) {
     Minion *temp = dynamic_cast<Minion *>(board->get_card_field(i));
-
+	
     if (temp->get_defence() <= 0) {
+	if (temp->get_name() == "Bomb") {
+		temp->use_ability(opponent);
+	}
+	
         board->add_to_graveyard(board->remove_from_field(i));
         cout << temp->get_name() << " has been sent to the graveyard!" << endl;
     }

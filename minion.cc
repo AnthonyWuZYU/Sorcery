@@ -108,10 +108,10 @@ bool Minion::use_ability(Player *player)
         temp->set_defence(temp->get_defence() - 1);
         oppField.pop_back();
         oppField.emplace_back(temp);
-
         oppBoard->set_field(oppField);
         op->setBoard(oppBoard);
         player->setOpp(op);
+	player->is_dead(oppBoard->get_field().size() - 1, player->getOpp()->getBoard());
     }
     else if (description == "At the end of your turn, all your minions gain +0/+1")
     {
@@ -141,7 +141,7 @@ bool Minion::use_ability(Player *player)
         {
             Minion *temp = dynamic_cast<Minion *>(oppField.at(t-1));
             temp->set_defence(temp->get_defence() - 1);
-            Player::is_dead(t-1, op->getBoard());
+	    op->is_dead(t-1, op->getBoard());
         }
         else
         {
@@ -151,15 +151,14 @@ bool Minion::use_ability(Player *player)
     }
     else if (description == "Summon a 1/1 air elemental")
     {
-        Card *summon = new Minion("Air Elemental", 0, 1, 1, 0);
         vector<Card *> field = player->getBoard()->get_field();
 
         unsigned int length = field.size();
 
         if (length < 5)
         {
-            field.emplace_back(summon);
-
+	    Card *summon = new Minion("Air Elemental", 0, 1, 1, 0);
+            player->getBoard()->add_to_field(player, summon);
             Board *temp = player->getBoard();
             temp->set_field(field);
 
@@ -174,28 +173,29 @@ bool Minion::use_ability(Player *player)
     }
     else if (description == "Summon up to three 1/1 air elementals")
     {
-        Card *summon = new Minion("Air Elemental", 0, 1, 1, 0);
         vector<Card *> field = player->getBoard()->get_field();
 
         unsigned int length = field.size();
-
         if (length < 3)
         {
             for (int i = 0; i < 3; i++)
             {
-                field.emplace_back(summon);
+		Card *summon = new Minion("Air Elemental", 0, 1, 1, 0);
+        	player->getBoard()->add_to_field(player, summon);        
             }
         }
         else if (length < 4)
         {
             for (int i = 0; i < 2; i++)
             {
-                field.emplace_back(summon);
+		Card *summon = new Minion("Air Elemental", 0, 1, 1, 0);
+                player->getBoard()->add_to_field(player, summon);
             }
         }
         else if (length < 5)
         {
-            field.emplace_back(summon);
+		Card *summon = new Minion("Air Elemental", 0, 1, 1, 0);
+                player->getBoard()->add_to_field(player, summon);
         }
         else
         {

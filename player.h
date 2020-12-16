@@ -57,7 +57,7 @@ class Player{
 
         void use_abilities();
 
-        static void is_dead(unsigned int i, Board* board);
+        void is_dead(unsigned int i, Board* board);
         
 
 };

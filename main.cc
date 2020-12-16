@@ -66,7 +66,6 @@ int main(int argc, char *argv[]) {
 		Hand hand1, hand2;
 		Graveyard grave1, grave2;
 
-		
 		Board board1 = Board{&deck1, &grave1, &hand1};
 		Board board2 = Board{&deck2, &grave2, &hand2};
 
@@ -80,13 +79,11 @@ int main(int argc, char *argv[]) {
 
 		// cursor set the player1 as the initial player
 		Player *cur = player2.getOpp();
-
 		// game start and magic add 1 each turn, the magic fill to its max
 		cout << cur->getName() << "'s turn" << endl;
 		cur->addMaxMagic(1);
 		cur->setMagic(cur->getMaxMagic());
 		cur->draw();
-		//cout << "Card:" << cur->getBoard()->get_card_hand(0).get_Name() << endl;
 
 		while (cin >> cmd) {
 		    
@@ -111,7 +108,7 @@ int main(int argc, char *argv[]) {
 				
 			} else if (cmd == "end") {
 				// end of turn effect
-
+				cur->getBoard()->trigger(cur, "end");
 				cur = cur->getOpp();
 				cur->addMaxMagic(1);
 				cur->setMagic(cur->getMaxMagic());
@@ -121,7 +118,7 @@ int main(int argc, char *argv[]) {
 				cur->draw();
 
 				// start of turn effect
-				cur->use_abilities();
+				cur->getBoard()->trigger(cur, "start");
 
 			} else if (cmd == "attack") {
 				int j = 1000;
@@ -202,12 +199,16 @@ int main(int argc, char *argv[]) {
 			    
 			} else if (cmd == "use") {
 				cin >> pos;
-				// use i(pos) th
-				Minion* temp_m = dynamic_cast<Minion*>(cur->getBoard()->get_card_field(pos-1));
-				temp_m->use_ability(cur);
-				temp_m = nullptr;
-				delete temp_m;
-				
+				unsigned int field_size = cur->getBoard()->get_field().size();
+				if (pos <= field_size && pos > 0) {
+					Minion* temp_m = dynamic_cast<Minion*>(cur->getBoard()->get_card_field(pos-1));
+                                	temp_m->use_ability(cur);
+                                	temp_m = nullptr;
+                                	delete temp_m;
+				} else {
+					cerr << "Wrong index" << endl;
+				}
+
 			} else if (cmd == "play") {
 				cin >> pos;
 				cur->play_card(pos-1, test);

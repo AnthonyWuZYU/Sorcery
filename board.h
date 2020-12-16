@@ -33,7 +33,7 @@ class Board {
 
         Card* remove_from_field(unsigned int i);
 
-        void add_to_field(Card* card);
+        void add_to_field(Player *player, Card* card);
 
         void set_card_field(unsigned int i, Card* card);
 
@@ -65,8 +65,11 @@ class Board {
 
         void add_to_graveyard(Card* card);
 
-        void destroy( Card* card );
+        void destroy( Card* card );	
 
+	// trigger ability
+	
+	void trigger( Player *player, std::string type);
 
 };
 std::ostream& operator<<(std::ostream &os, const Board &board);

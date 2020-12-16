@@ -9,9 +9,11 @@ Board::~Board() {}
 
 // Field Operations
 
-void Board::add_to_field(Card* card) {
+void Board::add_to_field(Player* player, Card* card) {
     if (field.size() < 5 ) {
         field.emplace_back(card);
+	player->getBoard()->trigger(player, "enter");
+	
     }
 }
 
@@ -128,3 +130,59 @@ std::ostream& operator<<(std::ostream &os, const Board &board) {
 void Board::destroy( Card* card ){
     delete card;
 }
+
+void Board::trigger( Player *player, string type ) {
+	if ( type == "start") {
+		if ( this->get_ritual() != nullptr ) {
+			if ( this->get_ritual()->get_name() == "Dark Ritual" ) {
+				Ritual* temp = dynamic_cast<Ritual*>(this->get_ritual());	
+				temp->use_ability(player, temp->get_ability());
+                                temp = nullptr;
+                                delete temp;		
+			}
+		}
+
+	} else if ( type == "end" ) {
+		for (auto it: this->get_field()) {
+			if (it->get_name() == "Potion Seller" ) {
+				Minion *temp = dynamic_cast<Minion *>(it);
+				temp->use_ability(player);
+				temp = nullptr;
+				delete temp;
+			}
+		}	
+	
+	} else if ( type == "enter" ) {
+		if ( this->get_ritual() != nullptr ) {
+                        if ( this->get_ritual()->get_name() == "Aura of Power" ) {
+                                Ritual* temp = dynamic_cast<Ritual*>(this->get_ritual());
+                                temp->use_ability(player, temp->get_ability());
+                                temp = nullptr;
+                                delete temp;
+                        }
+                }
+
+		if (player->getOpp()->getBoard()->get_ritual() != nullptr) {
+                	if (player->getOpp()->getBoard()->get_ritual()->get_name() == "Standstill" ) {
+                                Ritual* temp = dynamic_cast<Ritual*>(player->getOpp()->getBoard()->get_ritual());
+                                temp->use_ability(player, temp->get_ability());
+                                temp = nullptr;
+                                delete temp;
+                        }
+		}	
+		for (auto it: player->getOpp()->getBoard()->get_field()) {
+                        if (it->get_name() == "Fire Elemental" ) {
+                                 Minion *temp = dynamic_cast<Minion *>(it);
+                                 temp->use_ability(player->getOpp());
+                                 temp = nullptr;
+                                 delete temp;
+                        }
+                }	
+
+	}
+	
+
+
+
+}
+

@@ -268,7 +268,7 @@ bool Spell::use_ability(Player *player, std::string description)
                 Minion *alive = dynamic_cast<Minion *>(temp);
                 alive->set_defence(1);
 
-                board->add_to_field(alive);
+                board->add_to_field(player, alive);
 
                 player->setBoard(board);
                 player->setMagic(player->getMagic() - 1);

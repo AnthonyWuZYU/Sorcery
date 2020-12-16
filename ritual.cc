@@ -36,7 +36,8 @@ void Ritual::use_ability(Player *player, std::string description)
 {
     if (description == "At the start of your turn, gain 1 magic")
     {
-        player->setMagic(player->getMagic() + 1);
+        player->addMaxMagic(1);
+	player->setMagic(player->getMaxMagic());
 
         charges -= 1;
     }
@@ -61,13 +62,12 @@ void Ritual::use_ability(Player *player, std::string description)
     {
         Board *board = player->getBoard();
         Card *temp = board->get_field().back();
-
         board->remove_from_field(board->get_field().size() - 1);
         board->destroy(temp);
 
         player->setBoard(board);
 
-        charges -= 2;
+        this->charges -= 2;
     }
 }
 
