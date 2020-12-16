@@ -198,7 +198,7 @@ void Player::is_dead(unsigned int i, Board* board) {
 	
     if (temp->get_defence() <= 0) {
 	if (temp->get_name() == "Bomb") {
-		temp->use_ability(opponent);
+		temp->use_ability(this);
 	}
 	
         board->add_to_graveyard(board->remove_from_field(i));
