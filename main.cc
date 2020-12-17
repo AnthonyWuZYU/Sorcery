@@ -74,8 +74,8 @@ int main(int argc, char *argv[])
 					cerr << "Player name cannot be empty" << endl;
 			}
 		} else {
-			getline(in_file,player1_name);
-			getline(in_file,player2_name);
+			in_file >> player1_name;
+			in_file >> player2_name;
 		}
 
 		Player player1{player1_name};
@@ -363,6 +363,11 @@ int main(int argc, char *argv[])
 					cin >> pos;
 				}
 				cur->getBoard()->get_hand()->remove(pos-1);
+			}
+			else if (cmd == "") {
+				while(cmd == "") {
+					cin >> cmd;
+				}
 			}
 			else
 			{
