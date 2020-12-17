@@ -314,7 +314,9 @@ int main(int argc, char *argv[])
 						{
 							if (cur->getMagic() >= temp_m->get_activate_cost() || test)
 							{
-								temp_m->use_ability(cur);
+								if (temp_m->use_ability(cur)) {
+									temp_m->set_action(0);
+								}
 							}
 							else
 							{

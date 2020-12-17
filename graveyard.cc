@@ -1,6 +1,13 @@
 #include "graveyard.h"
 using namespace std;
 
+Graveyard::~Graveyard() {
+	for (auto& it : grave) {
+                delete it;
+        }
+        grave.clear();	
+}
+
 Card* Graveyard::revive(){
     Card* temp = grave.back();
 
