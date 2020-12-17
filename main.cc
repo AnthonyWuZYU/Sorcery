@@ -364,11 +364,6 @@ int main(int argc, char *argv[])
 				}
 				cur->getBoard()->get_hand()->remove(pos-1);
 			}
-			else if (cmd == "") {
-				while(cmd == "") {
-					cin >> cmd;
-				}
-			}
 			else
 			{
 				cerr << "Invalid command." << endl;
