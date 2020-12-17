@@ -86,17 +86,12 @@ bool Minion::use_ability(Player *player)
         {
             if (oppField.at(i)->get_type() == "Minion")
             {
-                Minion *temp = dynamic_cast<Minion *>(oppField.at(i));
+                Minion *temp = dynamic_cast<Minion *>(player->getOpp()->getBoard()->get_field().at(i));
                 temp->set_defence(temp->get_defence() - attack);
                 oppField.at(i) = temp;
             }
         }
 
-        Board *temp = op->getBoard();
-        temp->set_field(oppField);
-
-        op->setBoard(temp);
-        player->setOpp(op);
     }
     else if (description == "Whenever an opponent's minion enters play, deal 1 damage to it")
     {
