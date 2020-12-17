@@ -8,6 +8,8 @@ class Graveyard{
     std::vector<Card*> grave; // The Vector that stores the dead cards of a player
 
     public:
+	
+    ~Graveyard();
 
     Card* revive(); // returns the top card ( most recent dead card ) and removes it from the vector grave
 
