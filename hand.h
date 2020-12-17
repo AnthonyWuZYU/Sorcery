@@ -11,6 +11,9 @@ class Hand{
     std::vector<Card*> cards; // The Vector that stores the cards in a hand
 
     public:
+
+    ~Hand();
+
     const std::size_t maxSize = 5; // The maximum size of the hand
 
     int getSize() const; // returns the size of the cards vector

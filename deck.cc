@@ -28,11 +28,11 @@ Deck::Deck(string filename, bool test) {
 }
 
 Deck::~Deck() {
-    for (auto& it : cards) {
-        delete it;
-        it = nullptr;
-    }
-    cards.erase(std::remove(cards.begin(), cards.end(), nullptr), cards.end());
+	for (auto& it : cards) {
+		delete it;
+	}
+	cards.clear();
+    	//cards.erase(std::remove(cards.begin(), cards.end(), nullptr), cards.end());
 }
 
 std::vector<std::string> get_info(std::vector<std::vector<std::string>> data, std::string cardname) {

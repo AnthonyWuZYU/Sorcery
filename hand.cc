@@ -1,6 +1,13 @@
 #include "hand.h"
 using namespace std;
 
+Hand::~Hand() {
+	for (auto& it : cards) {
+                delete it;
+        }
+        cards.clear();
+}
+
 int Hand::getSize() const{
     return cards.size();
 }
