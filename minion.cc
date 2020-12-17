@@ -80,18 +80,25 @@ bool Minion::use_ability(Player *player)
     {
         Player *op = player->getOpp();
         vector<Card *> oppField = op->getBoard()->get_field();
-	int length = oppField.size();
+        Board *oppBoard = op->getBoard();
+
+        int length = oppField.size();
 
         for (int i = 0; i < length; i++)
         {
-            if (oppField.at(i)->get_type() == "Minion")
+            Minion *temp = dynamic_cast<Minion *>(player->getOpp()->getBoard()->get_field().at(i));
+            temp->set_defence(temp->get_defence() - attack);
+            if (temp->get_defence() <= 0)
             {
-                Minion *temp = dynamic_cast<Minion *>(player->getOpp()->getBoard()->get_field().at(i));
-                temp->set_defence(temp->get_defence() - attack);
+                op->is_dead(i, oppBoard);
+                i--;
+                length--;
+            }
+            else
+            {
                 oppField.at(i) = temp;
             }
         }
-
     }
     else if (description == "Whenever an opponent's minion enters play, deal 1 damage to it")
     {
@@ -106,14 +113,14 @@ bool Minion::use_ability(Player *player)
         oppBoard->set_field(oppField);
         op->setBoard(oppBoard);
         player->setOpp(op);
-	player->is_dead(oppBoard->get_field().size() - 1, player->getOpp()->getBoard());
+        player->is_dead(oppBoard->get_field().size() - 1, player->getOpp()->getBoard());
     }
     else if (description == "At the end of your turn, all your minions gain +0/+1")
     {
         vector<Card *> field = player->getBoard()->get_field();
-	int length = field.size();
-        
-	for (int i = 0; i < length; i++)
+        int length = field.size();
+
+        for (int i = 0; i < length; i++)
         {
             Minion *temp = dynamic_cast<Minion *>(field.at(i));
             temp->set_defence(temp->get_defence() + 1);
@@ -132,12 +139,12 @@ bool Minion::use_ability(Player *player)
         cin >> t;
         Player *op = player->getOpp();
         vector<Card *> oppField = op->getBoard()->get_field();
-	int length = oppField.size();
+        int length = oppField.size();
         if (length >= t)
         {
-            Minion *temp = dynamic_cast<Minion *>(oppField.at(t-1));
+            Minion *temp = dynamic_cast<Minion *>(oppField.at(t - 1));
             temp->set_defence(temp->get_defence() - 1);
-	    op->is_dead(t-1, op->getBoard());
+            op->is_dead(t - 1, op->getBoard());
         }
         else
         {
@@ -153,7 +160,7 @@ bool Minion::use_ability(Player *player)
 
         if (length < 5)
         {
-	    Card *summon = new Minion("Air Elemental", 0, 1, 1, 0, "");
+            Card *summon = new Minion("Air Elemental", 0, 1, 1, 0, "");
             player->getBoard()->add_to_field(player, summon);
             summon = nullptr;
             delete summon;
@@ -178,17 +185,17 @@ bool Minion::use_ability(Player *player)
         {
             for (int i = 0; i < 3; i++)
             {
-		Card *summon = new Minion("Air Elemental", 0, 1, 1, 0, "");
-        	player->getBoard()->add_to_field(player, summon);      
-        	summon = nullptr;
-            delete summon;
+                Card *summon = new Minion("Air Elemental", 0, 1, 1, 0, "");
+                player->getBoard()->add_to_field(player, summon);
+                summon = nullptr;
+                delete summon;
             }
         }
         else if (length < 4)
         {
             for (int i = 0; i < 2; i++)
             {
-		Card *summon = new Minion("Air Elemental", 0, 1, 1, 0, "");
+                Card *summon = new Minion("Air Elemental", 0, 1, 1, 0, "");
                 player->getBoard()->add_to_field(player, summon);
                 summon = nullptr;
                 delete summon;
@@ -196,10 +203,10 @@ bool Minion::use_ability(Player *player)
         }
         else if (length < 5)
         {
-		Card *summon = new Minion("Air Elemental", 0, 1, 1, 0, "");
-                player->getBoard()->add_to_field(player, summon);
-                summon = nullptr;
-                delete summon;
+            Card *summon = new Minion("Air Elemental", 0, 1, 1, 0, "");
+            player->getBoard()->add_to_field(player, summon);
+            summon = nullptr;
+            delete summon;
         }
         else
         {
@@ -212,12 +219,16 @@ bool Minion::use_ability(Player *player)
 
         //player->setBoard(temp);
     }
-    if (success) {
-	if (player->getMagic() - activate_cost < 0) {
-		player->setMagic(0);
-	} else {
-    		player->setMagic(player->getMagic() - activate_cost);
-	}
+    if (success)
+    {
+        if (player->getMagic() - activate_cost < 0)
+        {
+            player->setMagic(0);
+        }
+        else
+        {
+            player->setMagic(player->getMagic() - activate_cost);
+        }
     }
     return success;
 }
@@ -228,22 +239,26 @@ void Minion::set_defence(int d) { defence = d; }
 
 void Minion::set_action(int a) { action = a; }
 
-int Minion::get_attack() const {return attack;}
+int Minion::get_attack() const { return attack; }
 
-int Minion::get_defence() const {return defence;}
+int Minion::get_defence() const { return defence; }
 
 void Minion::print(std::ostream &os) const
-{	
+{
     std::vector<std::string> card_template_t;
-    if (ability == "") {
-                card_template_t = display_minion_no_ability(this->get_name(),this->get_cost(),this->get_attack(),this->get_defence());
-    } else if (activate_cost == 0) {
-                card_template_t = display_minion_triggered_ability(this->get_name(),this->get_cost(),
-                                          this->get_attack(),this->get_defence(), this->get_ability());
-
-    } else {
-                card_template_t = display_minion_activated_ability(this->get_name(),this->get_cost(),
-                                          this->get_attack(),this->get_defence(), this->get_activate_cost(), this->get_ability());
+    if (ability == "")
+    {
+        card_template_t = display_minion_no_ability(this->get_name(), this->get_cost(), this->get_attack(), this->get_defence());
+    }
+    else if (activate_cost == 0)
+    {
+        card_template_t = display_minion_triggered_ability(this->get_name(), this->get_cost(),
+                                                           this->get_attack(), this->get_defence(), this->get_ability());
+    }
+    else
+    {
+        card_template_t = display_minion_activated_ability(this->get_name(), this->get_cost(),
+                                                           this->get_attack(), this->get_defence(), this->get_activate_cost(), this->get_ability());
     }
 
     for (auto it : card_template_t)
@@ -261,12 +276,11 @@ void Minion::enchant(Enchant *enchantment)
     minionEnchantments.emplace_back(enchantment);
     attack = (attack + enchantment->get_addAtk()) * enchantment->get_mulAtk();
     defence = (defence + enchantment->get_addDef()) * enchantment->get_mulDef();
-    
-    if (enchantment->get_name() == "Magic Fatigue") {
-	    activate_cost += 2;
-    
-    }
 
+    if (enchantment->get_name() == "Magic Fatigue")
+    {
+        activate_cost += 2;
+    }
 }
 
 std::vector<Card *> Minion::get_enchant() const
