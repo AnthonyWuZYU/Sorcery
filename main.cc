@@ -45,18 +45,19 @@ int main(int argc, char *argv[])
 	}
 
 	ifstream in_file;
-	if(file) {
+	if (file)
+	{
 		in_file = ifstream{file_name};
 	}
-	
 
 	cin.exceptions(ios::failbit | ios::eofbit);
 	string player1_name;
 	string player2_name;
 
 	try
-	{	
-		if (!file) {
+	{
+		if (!file)
+		{
 			//get player1's name
 			while (player1_name.empty())
 			{
@@ -73,7 +74,9 @@ int main(int argc, char *argv[])
 				if (player1_name.empty())
 					cerr << "Player name cannot be empty" << endl;
 			}
-		} else {
+		}
+		else
+		{
 			in_file >> player1_name;
 			in_file >> player2_name;
 		}
@@ -112,9 +115,12 @@ int main(int argc, char *argv[])
 
 		while (true)
 		{
-			if (file && !in_file.fail()) {
+			if (file && !in_file.eof())
+			{
 				in_file >> cmd;
-			} else {
+			}
+			else
+			{
 				cin >> cmd;
 			}
 
@@ -156,9 +162,12 @@ int main(int argc, char *argv[])
 			else if (cmd == "attack")
 			{
 				int j = 1000;
-				if (file && !in_file.fail()) {
+				if (file && !in_file.fail())
+				{
 					in_file >> pos;
-				} else {
+				}
+				else
+				{
 					cin >> pos;
 				}
 
@@ -168,9 +177,12 @@ int main(int argc, char *argv[])
 				}
 				else
 				{
-					if (file && !in_file.fail()) {
+					if (file && !in_file.fail())
+					{
 						in_file >> j;
-					} else {
+					}
+					else
+					{
 						cin >> j;
 					}
 					cur->minion_attack(pos - 1, j - 1);
@@ -224,9 +236,12 @@ int main(int argc, char *argv[])
 			}
 			else if (cmd == "inspect")
 			{
-				if (file && !in_file.fail()) {
+				if (file && !in_file.fail())
+				{
 					in_file >> pos;
-				} else {
+				}
+				else
+				{
 					cin >> pos;
 				}
 				if (pos <= cur->getBoard()->get_field().size() && pos > 0)
@@ -293,9 +308,12 @@ int main(int argc, char *argv[])
 			}
 			else if (cmd == "use")
 			{
-				if (file && !in_file.fail()) {
+				if (file && !in_file.fail())
+				{
 					in_file >> pos;
-				} else {
+				}
+				else
+				{
 					cin >> pos;
 				}
 				bool silence = false;
@@ -342,9 +360,12 @@ int main(int argc, char *argv[])
 			}
 			else if (cmd == "play")
 			{
-				if (file && !in_file.fail()) {
+				if (file && !in_file.fail())
+				{
 					in_file >> pos;
-				} else {
+				}
+				else
+				{
 					cin >> pos;
 				}
 				cur->play_card(pos - 1, test);
@@ -359,12 +380,15 @@ int main(int argc, char *argv[])
 			}
 			else if (cmd == "discard" && test)
 			{
-				if (file && !in_file.fail()) {
+				if (file && !in_file.fail())
+				{
 					in_file >> pos;
-				} else {
+				}
+				else
+				{
 					cin >> pos;
 				}
-				cur->getBoard()->get_hand()->remove(pos-1);
+				cur->getBoard()->get_hand()->remove(pos - 1);
 			}
 			else
 			{
